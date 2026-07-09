@@ -405,7 +405,7 @@ h1.display span {
   color: var(--text);
 }
 
-.tier-2 .col-head {
+.tier-2.col-head {
   background: var(--panel-orange);
   color: var(--text-dark);
 }
