@@ -410,7 +410,7 @@ h1.display span {
   color: var(--text-dark);
 }
 
-.tier-3 .col-head {
+.tier-3.col-head {
   background: var(--panel-lilac);
   color: var(--text-dark);
 }
