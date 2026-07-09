@@ -17,7 +17,7 @@ setInterval(updateStardate, 1000);
 document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     const target = document.getElementById(btn.getAttribute("data-target"));
-    if (target) target.scrollIntoView({ inline: "center" });
+    if (target) target.scrollIntoView({ inline: "center", block: "nearest" });
   });
 });
 
