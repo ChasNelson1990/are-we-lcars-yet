@@ -432,7 +432,7 @@ h1.display span {
   border-radius: 14px 14px 0 0;
 }
 
-.tier-7 .col-head .tier-era {
+.tier-7.col-head .tier-era {
   color: #8fd694;
   opacity: 1;
 }
