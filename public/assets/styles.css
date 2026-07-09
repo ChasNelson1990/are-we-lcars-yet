@@ -404,39 +404,39 @@ h1.display span {
   color: var(--text);
 }
 
-.tier-1.col-head {
+.tier-nx01.col-head {
   background: #3d3d46;
   color: var(--text);
 }
 
-.tier-2.col-head {
+.tier-tos.col-head {
   background: var(--panel-orange);
   color: var(--text-dark);
 }
 
-.tier-3.col-head {
+.tier-tng.col-head {
   background: var(--panel-lilac);
   color: var(--text-dark);
 }
 
-.tier-4.col-head {
+.tier-voy.col-head {
   background: var(--panel-peri);
   color: var(--text-dark);
 }
 
-.tier-6.col-head {
+.tier-disco.col-head {
   background: var(--panel-gold);
   color: var(--text-dark);
 }
 
-.tier-7.col-head {
+.tier-real.col-head {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--text-dim);
   border-radius: 14px 14px 0 0;
 }
 
-.tier-7.col-head .tier-era {
+.tier-real.col-head .tier-era {
   color: #8fd694;
   opacity: 1;
 }
