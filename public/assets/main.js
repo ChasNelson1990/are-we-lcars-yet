@@ -17,9 +17,13 @@ setInterval(updateStardate, 1000);
 const tierGrid = document.querySelector(".tier-grid");
 if (tierGrid) {
   const toggleRow = function (rowId) {
-    document.querySelectorAll(`[data-row="${rowId}"]`).forEach(function (el) {
+    tierGrid.querySelectorAll(`[data-row="${rowId}"]`).forEach(function (el) {
       el.classList.toggle("show-text");
     });
+    const trigger = tierGrid.querySelector(`.row-label.togglable[data-row="${rowId}"]`);
+    if (trigger) {
+      trigger.setAttribute("aria-expanded", trigger.classList.contains("show-text"));
+    }
   };
 
   tierGrid.addEventListener("click", function (e) {
@@ -31,6 +35,7 @@ if (tierGrid) {
   tierGrid.querySelectorAll(".row-label.togglable").forEach(function (el) {
     el.setAttribute("tabindex", "0");
     el.setAttribute("role", "button");
+    el.setAttribute("aria-expanded", "false");
   });
 
   tierGrid.addEventListener("keydown", function (e) {
