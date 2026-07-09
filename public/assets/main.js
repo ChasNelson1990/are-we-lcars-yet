@@ -1,12 +1,12 @@
 function updateStardate() {
   const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 0);
-  const diff = now - start;
-  const dayOfYear = Math.floor(diff / 86400000);
-  const frac = (
-    ((now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()) / 86400) *
-    10
-  ).toFixed(0);
+  const startOfYear = Date.UTC(now.getFullYear(), 0, 1);
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const dayOfYear = Math.floor((today - startOfYear) / 86400000) + 1;
+  const frac = Math.min(
+    9,
+    Math.floor(((now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()) / 86400) * 10)
+  );
   const stardate = `${now.getFullYear() - 1969}${dayOfYear.toString().padStart(3, "0")}.${frac}`;
   const el = document.getElementById("stardate");
   if (el) el.textContent = "STARDATE " + stardate;
