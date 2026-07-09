@@ -425,7 +425,7 @@ h1.display span {
   color: var(--text-dark);
 }
 
-.tier-7 .col-head {
+.tier-7.col-head {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--text-dim);
