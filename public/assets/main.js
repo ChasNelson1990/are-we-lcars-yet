@@ -14,11 +14,30 @@ function updateStardate() {
 updateStardate();
 setInterval(updateStardate, 1000);
 
-document.querySelector(".tier-grid").addEventListener("click", function (e) {
-  const target = e.target.closest("[data-row]");
-  if (!target) return;
-  const rowId = target.getAttribute("data-row");
-  document.querySelectorAll(`[data-row="${rowId}"]`).forEach(function (el) {
-    el.classList.toggle("show-text");
+const tierGrid = document.querySelector(".tier-grid");
+if (tierGrid) {
+  const toggleRow = function (rowId) {
+    document.querySelectorAll(`[data-row="${rowId}"]`).forEach(function (el) {
+      el.classList.toggle("show-text");
+    });
+  };
+
+  tierGrid.addEventListener("click", function (e) {
+    const target = e.target.closest("[data-row]");
+    if (!target) return;
+    toggleRow(target.getAttribute("data-row"));
   });
-});
+
+  tierGrid.querySelectorAll(".row-label.togglable").forEach(function (el) {
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("role", "button");
+  });
+
+  tierGrid.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const target = e.target.closest(".row-label.togglable");
+    if (!target) return;
+    e.preventDefault();
+    toggleRow(target.getAttribute("data-row"));
+  });
+}
