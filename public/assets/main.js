@@ -12,7 +12,7 @@ function updateStardate() {
   if (el) el.textContent = "STARDATE " + stardate;
 }
 updateStardate();
-setInterval(updateStardate, 1000);
+setInterval(updateStardate, 60000);
 
 document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
   btn.addEventListener("click", function () {
