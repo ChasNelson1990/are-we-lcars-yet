@@ -16,42 +16,12 @@
     <div class="lcars-frame">
       <nav class="lcars-rail">
         <div class="elbow"></div>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-nx01').scrollIntoView({ inline: 'center' })"
-        >
-          NX-01<br />2151
-        </button>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-tos').scrollIntoView({ inline: 'center' })"
-        >
-          TOS<br />2265
-        </button>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-tng').scrollIntoView({ inline: 'center' })"
-        >
-          TNG / DS9<br />2364
-        </button>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-voy').scrollIntoView({ inline: 'center' })"
-        >
-          VOYAGER<br />2371
-        </button>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-disco').scrollIntoView({ inline: 'center' })"
-        >
-          DISCO / SNW<br />2256–2401
-        </button>
-        <button
-          class="rail-btn"
-          onclick="document.getElementById('col-real').scrollIntoView({ inline: 'center' })"
-        >
-          REAL WORLD<br />2026
-        </button>
+        <button class="rail-btn" data-target="col-nx01">NX-01<br />2151</button>
+        <button class="rail-btn" data-target="col-tos">TOS<br />2265</button>
+        <button class="rail-btn" data-target="col-tng">TNG / DS9<br />2364</button>
+        <button class="rail-btn" data-target="col-voy">VOYAGER<br />2371</button>
+        <button class="rail-btn" data-target="col-disco">DISCO / SNW<br />2256–2401</button>
+        <button class="rail-btn" data-target="col-real">REAL WORLD<br />2026</button>
         <div class="rail-fill"></div>
         <div class="stardate" id="stardate">STARDATE —</div>
       </nav>

@@ -14,6 +14,13 @@ function updateStardate() {
 updateStardate();
 setInterval(updateStardate, 1000);
 
+document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    const target = document.getElementById(btn.getAttribute("data-target"));
+    if (target) target.scrollIntoView({ inline: "center" });
+  });
+});
+
 const tierGrid = document.querySelector(".tier-grid");
 if (tierGrid) {
   const toggleRow = function (rowId) {
