@@ -420,7 +420,7 @@ h1.display span {
   color: var(--text-dark);
 }
 
-.tier-6 .col-head {
+.tier-6.col-head {
   background: var(--panel-gold);
   color: var(--text-dark);
 }
