@@ -415,7 +415,7 @@ h1.display span {
   color: var(--text-dark);
 }
 
-.tier-4 .col-head {
+.tier-4.col-head {
   background: var(--panel-peri);
   color: var(--text-dark);
 }
