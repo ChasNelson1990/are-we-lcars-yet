@@ -48,7 +48,8 @@ if (tierGrid) {
 
   tierGrid.addEventListener("keydown", function (e) {
     if (e.key !== "Enter" && e.key !== " ") return;
-    const target = e.target.closest(".row-label.togglable");
+    const eventTarget = e.target instanceof Element ? e.target : e.target.parentElement;
+    const target = eventTarget && eventTarget.closest(".row-label.togglable");
     if (!target) return;
     e.preventDefault();
     toggleRow(target.getAttribute("data-row"));
