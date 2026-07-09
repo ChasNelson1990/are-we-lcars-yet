@@ -1,0 +1,33 @@
+{
+  "name": "are-we-lcars-yet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tongue-in-cheek feature comparison of every Star Trek computer generation — versus the real world.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "format": "prettier --write \"public/**/*.{html,css,js}\" \"*.md\"",
+    "format:check": "prettier --check \"public/**/*.{html,css,js}\" \"*.md\"",
+    "lint:js": "eslint public/assets/**/*.js",
+    "lint:css": "stylelint \"public/assets/**/*.css\"",
+    "lint:html": "htmlhint \"public/**/*.html\" --config .htmlhintrc",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "check": "npm run format:check && npm run lint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "htmlhint": "^1.1.4",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard": "^36.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChasNelson1990/are-we-lcars-yet.git"
+  },
+  "license": "MIT"
+}
