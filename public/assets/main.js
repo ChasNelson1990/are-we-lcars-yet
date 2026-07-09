@@ -34,7 +34,8 @@ if (tierGrid) {
   };
 
   tierGrid.addEventListener("click", function (e) {
-    const target = e.target.closest("[data-row]");
+    const eventTarget = e.target instanceof Element ? e.target : e.target.parentElement;
+    const target = eventTarget && eventTarget.closest("[data-row]");
     if (!target) return;
     toggleRow(target.getAttribute("data-row"));
   });
