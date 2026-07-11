@@ -1,12 +1,21 @@
 # Are We LCARS Yet?
 
-A tongue-in-cheek feature comparison of every Star Trek computer generation — NX-01, Constitution Class, Galaxy Class, Intrepid Class, and the Discovery/Picard/SNW era — benchmarked against what Claude, ChatGPT, and Gemini can actually do today.
+A tongue-in-cheek feature comparison of nine Star Trek computer generations, in strict
+in-universe stardate order — NX-01, Discovery (2256), Strange New Worlds, Constitution Class,
+Galaxy Class, Deep Space Nine, Intrepid Class, Picard-era, and Discovery (3189) — benchmarked
+against what Claude, ChatGPT, and Gemini can actually do today. Every claim is backed by an
+episode citation in the companion report page.
 
 **Live site:** https://chasnelson1990.github.io/are-we-lcars-yet/
 
 ## What's here
 
-A single static page (`public/index.html` + `public/assets/`) styled after LCARS, the _Star Trek: The Next Generation_ interface language. No build step, no framework — just HTML, CSS, and a little vanilla JS for the stardate clock and the icon/text row toggle.
+Two static pages (`public/index.html`, `public/report.html` + `public/assets/`) styled after
+LCARS, the _Star Trek: The Next Generation_ interface language. No build step, no framework —
+just HTML, CSS, and a little vanilla JS for the stardate clock and the icon/text row toggle.
+`index.html` is the comparison table; `report.html` is the full citation trail behind it —
+catalogued on-screen requests per era, claim-by-claim verification against primary transcripts,
+and a sources list.
 
 ## Local development
 

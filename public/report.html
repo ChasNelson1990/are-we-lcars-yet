@@ -1,0 +1,1529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computer Core Report — Are We LCARS Yet?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/report.css" />
+  </head>
+  <body>
+    <div class="lcars-frame">
+      <nav class="lcars-rail">
+        <div class="elbow"></div>
+        <a href="index.html" class="rail-link">&larr; COMPARE<br />PLANS</a>
+        <button type="button" class="rail-btn" data-target="col-nx01">NX-01<br />2151</button>
+        <button type="button" class="rail-btn" data-target="col-disco-early">
+          DISCOVERY<br />2256
+        </button>
+        <button type="button" class="rail-btn" data-target="col-snw">SNW<br />2259</button>
+        <button type="button" class="rail-btn" data-target="col-tos">TOS<br />2265</button>
+        <button type="button" class="rail-btn" data-target="col-tng">TNG<br />2364</button>
+        <button type="button" class="rail-btn" data-target="col-ds9">DS9<br />2369</button>
+        <button type="button" class="rail-btn" data-target="col-voy">VOYAGER<br />2371</button>
+        <button type="button" class="rail-btn" data-target="col-picard">PICARD<br />2399</button>
+        <button type="button" class="rail-btn" data-target="col-disco-zora">
+          DISCOVERY<br />3189
+        </button>
+        <button type="button" class="rail-btn" data-target="col-method">
+          METHOD<br />&amp; SOURCES
+        </button>
+        <div class="rail-fill"></div>
+        <div class="stardate" id="stardate">STARDATE —</div>
+      </nav>
+
+      <main class="report-main">
+        <div class="top-bar">
+          <div class="chip c1"></div>
+          <div class="chip c2"></div>
+          <div class="chip c3"></div>
+        </div>
+
+        <div class="report-hero">
+          <span class="eyebrow">COMPUTER CORE // RESEARCH DIVISION</span>
+          <h1 class="display" style="font-size: clamp(1.8rem, 3.6vw, 2.8rem)">
+            Every claim on the <span>compare page</span>, sourced.
+          </h1>
+          <p class="sub">
+            This is the citation trail behind
+            <a href="index.html" style="color: var(--panel-orange)">the comparison table</a>: real
+            on-screen requests made of each era's computer, hologram, or holodeck system, what
+            happened, how long it took when the show actually said, and whether the comparison
+            page's specific claims hold up against primary transcripts and reference sources.
+          </p>
+          <p class="sub">
+            Coverage isn't even — some tiers got a deep pass, others a thin one, and that's marked
+            honestly per section rather than padded out. See
+            <a href="#col-method" style="color: var(--panel-orange)">Method &amp; Sources</a> for
+            what this does and doesn't cover.
+          </p>
+        </div>
+
+        <!-- ============ NX-01 ============ -->
+        <section class="report-section" id="col-nx01">
+          <h2 class="tier-title" style="--accent: var(--panel-nx01); color: var(--text)">
+            NX-01 <span class="tier-era-tag">2151 &middot; ENT</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              NX-01 runs on manual switches and dials with no touchscreen bridge interface. Its
+              defining trait, repeatedly and on screen, is a universal translator that doesn't work
+              — which is why Hoshi Sato is a main character. No holodeck exists anywhere aboard; the
+              only holographic technology the crew encounters is explicitly alien.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lock translator onto Klaang's Klingon dialect</td>
+                    <td class="ep-cite">Broken Bow (1&times;01&ndash;02)</td>
+                    <td><span class="pill pill-bad">Failure</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">"The translator. It's not locking onto his dialect."</td>
+                  </tr>
+                  <tr>
+                    <td>Dictate personal log ("Computer, pause" / "Resume log")</td>
+                    <td class="ep-cite">Broken Bow (1&times;01&ndash;02)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Voice log dictation works reliably even while translation doesn't.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Decontamination chamber cycle, spore exposure</td>
+                    <td class="ep-cite">Broken Bow (1&times;01&ndash;02)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Routine functioning system, unlike the translator.</td>
+                  </tr>
+                  <tr>
+                    <td>Translate Axanar hail</td>
+                    <td class="ep-cite">Fight or Flight (1&times;03)</td>
+                    <td><span class="pill pill-bad">Failure &rarr; manual</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Archer: "Then forget the translator. Do it yourself."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Translate Kreetassan social remark</td>
+                    <td class="ep-cite">Vox Sola (1&times;22)</td>
+                    <td><span class="pill pill-bad">Failure</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Mistranslation worsens a diplomatic incident.</td>
+                  </tr>
+                  <tr>
+                    <td>Translator during Archer/Riann first contact</td>
+                    <td class="ep-cite">Civilization (1&times;09)</td>
+                    <td><span class="pill pill-warn">Comedic failure</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Fixed via manual hardware adjustment.</td>
+                  </tr>
+                  <tr>
+                    <td>Query alien repair station for hull repairs</td>
+                    <td class="ep-cite">Dead Stop (2&times;04)</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">34.2 hrs (stated)</td>
+                    <td class="notes-cite">
+                      Station later revealed malicious; NX-01's own computer noted as far smaller.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Keypad-unlock Daniels's quarters</td>
+                    <td class="ep-cite">Shockwave, Pt. I (1&times;26)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Physical keypad entry &mdash; manual, not spoken.</td>
+                  </tr>
+                  <tr>
+                    <td>Verbal Starfleet authorization ("Alpha-6-4")</td>
+                    <td class="ep-cite">Shockwave, Pt. I (1&times;26)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Spoken to a human receptionist over comms, not the ship's computer.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Claim verification</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Manual switches, dials, physical toggle banks</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">NX-01 bridge deliberately designed pre-LCARS.</td>
+                  </tr>
+                  <tr>
+                    <td>Touchscreen GUI: not yet invented</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      PADDs are in constant handheld use from the pilot onward.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NLP requires a dedicated linguist fallback</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">Directly the plot of four episodes above.</td>
+                  </tr>
+                  <tr>
+                    <td>Storage medium: optical data cartridges</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      An optical data network (ODN) is confirmed; "cartridges" as the portable
+                      format appears nowhere.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Processing redundancy: none</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Total systems failure during the Suliban boarding suggests thin redundancy; no
+                      line states it outright.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Holodeck: not available</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Confirmed absent, including any native training/simulation room.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Authorization: manual key + verbal code</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Verbal codes exist but go to a person over comms, not the "computer,
+                      authorization&hellip;" convention TOS/TNG use.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hostile takeovers: 1 (Romulan boarding, S1)</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      No Romulans appear in ENT season 1. First appearance is "Minefield"
+                      (2&times;03) &mdash; a standoff, no boarding.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Universal translator: beta, frequently fails</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">Well-documented across four episodes.</td>
+                  </tr>
+                  <tr>
+                    <td>Self-repair: none, requires drydock</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      No self-repair confirmed, but "Dead Stop" shows the crew seeking an alien
+                      station instead of a Starfleet drydock.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                chakoteya.net transcript archive &mdash; "Broken Bow," "Fight or Flight," "Vox
+                Sola," "Civilization," "Dead Stop," "Shockwave, Part I" (<a
+                  href="http://www.chakoteya.net/"
+                  target="_blank"
+                  rel="noopener"
+                  >chakoteya.net</a
+                >)
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Authorization_code"
+                  target="_blank"
+                  rel="noopener"
+                  >"Authorization code"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Enterprise_(NX-01)"
+                  target="_blank"
+                  rel="noopener"
+                  >"Enterprise (NX-01)"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Data_storage"
+                  target="_blank"
+                  rel="noopener"
+                  >"Data storage"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Optical_data_network"
+                  target="_blank"
+                  rel="noopener"
+                  >"Optical data network"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Library_computer"
+                  target="_blank"
+                  rel="noopener"
+                  >"Library computer"</a
+                >
+              </li>
+            </ol>
+            <span class="coverage-note">Coverage: deep pass, 9 catalogued instances</span>
+          </div>
+        </section>
+
+        <!-- ============ DISCOVERY (EARLY) ============ -->
+        <section class="report-section" id="col-disco-early">
+          <h2 class="tier-title" style="--accent: var(--panel-teal)">
+            USS Discovery
+            <span class="tier-era-tag">2256&ndash;2258 &middot; DISCO S1&ndash;2</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Pre-Zora Discovery: a standard Starfleet computer plus the mycelial network, a
+              navigation medium for the spore drive &mdash; not a data-storage system, despite how
+              it's sometimes described. The ship briefly has holo-communicators; a malfunction gets
+              them stripped out fleet-wide, which is the direct, on-screen reason Strange New Worlds
+              has none.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Report holo-comm systems failure</td>
+                    <td class="ep-cite">Disco 2&times;07 "An Obol for Charon"</td>
+                    <td><span class="pill pill-yes">Order carried out</span></td>
+                    <td class="notes-cite">
+                      Pike orders holo-comms stripped and never reinstalled &mdash; directly
+                      explains SNW's tech gap.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Real-time Klingon translation via communicator</td>
+                    <td class="ep-cite">Disco 1&times;09 "Into the Forest I Go"</td>
+                    <td><span class="pill pill-warn">Learns in real time</span></td>
+                    <td class="notes-cite">
+                      UT actively acquires Klingon rather than translating instantly; S1 also leaves
+                      long stretches subtitled, untranslated.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Contain the Control AI's attempted takeover of Section 31's network</td>
+                    <td class="ep-cite">Disco season 2 arc ("Control")</td>
+                    <td><span class="pill pill-bad">Contained after crisis</span></td>
+                    <td class="notes-cite">
+                      A hostile outside AI, not this ship's own computer becoming sentient &mdash; a
+                      distinct entity from Zora.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Holo-communicator"
+                  target="_blank"
+                  rel="noopener"
+                  >"Holo-communicator"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Mycelial_network"
+                  target="_blank"
+                  rel="noopener"
+                  >"Mycelial network"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Control"
+                  target="_blank"
+                  rel="noopener"
+                  >"Control"</a
+                >
+              </li>
+              <li>
+                Episode recap/analysis coverage (Den of Geek, ScreenRant) of "An Obol for Charon"
+                and "Into the Forest I Go"
+              </li>
+            </ol>
+            <span class="coverage-note"
+              >Coverage: thin, 3 catalogued instances &mdash; candidate for Track A follow-up</span
+            >
+          </div>
+        </section>
+
+        <!-- ============ SNW ============ -->
+        <section class="report-section" id="col-snw">
+          <h2 class="tier-title" style="--accent: var(--panel-peach)">
+            USS Enterprise (Pike refit)
+            <span class="tier-era-tag">2259&ndash;2261 &middot; SNW</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              SNW's Enterprise computer is deliberately built to feel older than Discovery's own
+              season 2, not newer &mdash; a real, on-screen technological regression (see the
+              Discovery-early section above), not an authoring inconsistency. Its holodeck-precursor
+              debut is framed by the show's own writers as the in-universe origin of the concept.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Set a 1960s-detective holodeck program</td>
+                    <td class="ep-cite">SNW 3&times;04 "A Space Adventure Hour"</td>
+                    <td><span class="pill pill-warn">Exceeds parameters</span></td>
+                    <td class="notes-cite">
+                      The generative program unexpectedly casts a holographic Spock as the story's
+                      antagonist &mdash; framed by SNW's writers as the in-universe origin of the
+                      holodeck.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>Episode recap/analysis coverage of SNW "A Space Adventure Hour" (season 3)</li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Holo-communicator"
+                  target="_blank"
+                  rel="noopener"
+                  >"Holo-communicator"</a
+                >
+                (for the removal explaining SNW's tech gap)
+              </li>
+            </ol>
+            <span class="coverage-note"
+              >Coverage: thin, 1 catalogued instance &mdash; candidate for Track A follow-up</span
+            >
+          </div>
+        </section>
+
+        <!-- ============ TOS ============ -->
+        <section class="report-section" id="col-tos">
+          <h2 class="tier-title" style="--accent: var(--panel-orange)">
+            Constitution Class <span class="tier-era-tag">2265 &middot; TOS</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              The best-supported tier in this whole report. Its two headline traits &mdash;
+              literal-mindedness and vulnerability to logical paradox &mdash; are quotable, on
+              screen, twice over: Norman and Nomad both short-circuit on contradiction, in almost
+              exactly those words.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Navigation estimate out of the "zone of darkness"</td>
+                    <td class="ep-cite">The Immunity Syndrome</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">6.37 min (stated)</td>
+                    <td class="notes-cite">
+                      Chekov: "Estimate we'll be out in six point thirty-seven minutes."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Library computer lookup, SS Botany Bay / Khan</td>
+                    <td class="ep-cite">Space Seed</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      "Doctor McCoy will show you how to tie into the library tapes." Khan: "You
+                      identified me with your computer system."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Expose tampered computer chess records</td>
+                    <td class="ep-cite">Court Martial</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Spock: "I personally programmed the computer for chess&hellip; yet I beat the
+                      machine five times."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Compute Kirk's physical age from medical banks</td>
+                    <td class="ep-cite">The Deadly Years</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      "Working. Subject's physical age&hellip; between sixty and seventy two."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Modify translator to communicate with the Companion</td>
+                    <td class="ep-cite">Metamorphosis</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Compares brainwave patterns, "then translates its findings into English."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Liar's Paradox fed to android Norman</td>
+                    <td class="ep-cite">I, Mudd</td>
+                    <td><span class="pill pill-bad">Short-circuits</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">"Illogical! Illogical! Please explain."</td>
+                  </tr>
+                  <tr>
+                    <td>Logic trap fed to the Nomad probe</td>
+                    <td class="ep-cite">The Changeling</td>
+                    <td><span class="pill pill-bad">Fatal loop</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">"Error. Error. Error. Examine."</td>
+                  </tr>
+                  <tr>
+                    <td>Self-destruct sequence, three-officer authorization</td>
+                    <td class="ep-cite">Let That Be Your Last Battlefield</td>
+                    <td><span class="pill pill-yes">Aborted safely</span></td>
+                    <td class="time-cite">30-sec countdown, stopped ~6 sec left</td>
+                    <td class="notes-cite">Kirk + Spock + Scott each individually verified.</td>
+                  </tr>
+                  <tr>
+                    <td>M-5 takes command for simulated war games</td>
+                    <td class="ep-cite">The Ultimate Computer</td>
+                    <td><span class="pill pill-bad">Catastrophic</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Fires real weapons on USS Excalibur, killing its crew.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Talk M-5 into self-shutdown</td>
+                    <td class="ep-cite">The Ultimate Computer</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      "What is the penalty for murder?" / "Death." / "This unit must die."
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Claim verification</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Voice interface, female register, "library tapes"</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Majel Barrett voices the computer throughout; "library tapes" is a direct
+                      quote (Space Seed).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Painfully literal, vulnerable to logic paradoxes</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Norman and Nomad both short-circuit on contradiction.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Duotronic core architecture</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Established in The Ultimate Computer; term doesn't recur elsewhere
+                      (spot-checked 5 more episodes).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>No AI personality until alien possession</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Nomad interfaces with ship systems as a visiting probe, not the native
+                      computer being "possessed."
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>M-5 sentience-risk incident</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">The Ultimate Computer, in detail.</td>
+                  </tr>
+                  <tr>
+                    <td>Holodeck: rec room only, unofficial patch</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      Live-action TOS has no such room; the simulation-capable "rec room" is from
+                      The Animated Series ("The Practical Joker").
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Universal translator: standard, reliable</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Only one on-screen working demo (Metamorphosis), and it required Spock to
+                      modify the device.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Stellar cartography via library computer only</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Star-chart lookups occur, but "stellar cartography" as a term is anachronistic
+                      to TOS.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                chakoteya.net, "Space Seed" &mdash;
+                <a href="http://www.chakoteya.net/StarTrek/24.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/StarTrek/24.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "Court Martial" &mdash;
+                <a href="http://www.chakoteya.net/StarTrek/15.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/StarTrek/15.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "The Deadly Years" &mdash;
+                <a href="http://www.chakoteya.net/StarTrek/40.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/StarTrek/40.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "Metamorphosis" &mdash;
+                <a href="http://www.chakoteya.net/StarTrek/31.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/StarTrek/31.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "The Menagerie, Part I" &mdash;
+                <a href="http://www.chakoteya.net/StarTrek/16.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/StarTrek/16.htm</a
+                >
+                (library computer self-ID)
+              </li>
+              <li>
+                chakoteya.net transcript archive &mdash; "I, Mudd," "The Changeling," "The Ultimate
+                Computer," "Let That Be Your Last Battlefield," "The Immunity Syndrome" (<a
+                  href="http://www.chakoteya.net/"
+                  target="_blank"
+                  rel="noopener"
+                  >chakoteya.net</a
+                >)
+              </li>
+            </ol>
+            <span class="coverage-note"
+              >Coverage: deep pass, 10 catalogued instances, primary transcripts direct-quoted</span
+            >
+          </div>
+        </section>
+
+        <!-- ============ TNG ============ -->
+        <section class="report-section" id="col-tng">
+          <h2 class="tier-title" style="--accent: var(--panel-lilac)">
+            Galaxy Class <span class="tier-era-tag">2364 &middot; TNG</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Where the comparison page's "handles sarcasm reasonably well" grade doesn't match the
+              transcripts: TNG's two biggest computer-driven plots &mdash; Moriarty and the Leah
+              Brahms hologram &mdash; both start with the computer taking an instruction too
+              literally, the same failure mode as TOS.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>"Create a mystery&hellip; an opponent capable of defeating Data"</td>
+                    <td class="ep-cite">Elementary, Dear Data (2&times;03)</td>
+                    <td><span class="pill pill-bad">Escalated to crisis</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Computer complies literally, creating a Moriarty capable of defeating Data at
+                      anything, including escaping the holodeck.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Holodeck-inside-a-holodeck deception</td>
+                    <td class="ep-cite">Ship in a Bottle (6&times;12)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Moriarty: "I think therefore I am" &mdash; tricked into believing he'd
+                      escaped.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dixon Hill 1941 holodeck program</td>
+                    <td class="ep-cite">The Big Goodbye (1&times;12)</td>
+                    <td><span class="pill pill-warn">Escalated</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      A computer malfunction traps the away team as the ship enters a spatial
+                      anomaly.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>"Tea. Earl Grey. Hot."</td>
+                    <td class="ep-cite">Contagion (2&times;11)</td>
+                    <td><span class="pill pill-bad">Failure</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Replicator produces a potted plant &mdash; first sign of the Iconian computer
+                      virus.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bynars' covert full-computer download; bluffed auto-destruct</td>
+                    <td class="ep-cite">11001001 (1&times;15)</td>
+                    <td><span class="pill pill-warn">Escalated, resolved</span></td>
+                    <td class="time-cite">4 min 59 sec countdown (stated)</td>
+                    <td class="notes-cite">
+                      Two-officer authorization (Picard + Riker), each individually verified.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Impersonate Picard's voice to seize helm/transporter</td>
+                    <td class="ep-cite">Brothers (4&times;03)</td>
+                    <td><span class="pill pill-yes">Success (temporary)</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Data enters a valid-format lockout code faster than the crew can react &mdash;
+                      a spoofed-authorization exploit.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Offhand remark about wanting "the actual engineer"</td>
+                    <td class="ep-cite">Booby Trap (3&times;06)</td>
+                    <td><span class="pill pill-yes">Success, unintended</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Computer generates a full hologram of Dr. Leah Brahms from an idiomatic
+                      remark.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Legal database query on artificial-lifeform rights precedent</td>
+                    <td class="ep-cite">The Measure of a Man (2&times;09)</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      No controlling precedent found &mdash; forces a first-principles ruling.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Claim verification</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NLP: conversational, handles sarcasm reasonably well</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      Opposite pattern shown &mdash; Booby Trap and Elementary, Dear Data are both
+                      caused by damaging over-literalism.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Storage: isolinear optical chips</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Confirmed canon term, introduced The Naked Now (1&times;03).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Core architecture: redundant, cross-linked, warp-powered</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Three redundant, cross-linked cores confirmed; "warp-powered" conflates the
+                      reactor with the compute core.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Onboard AI personality: Data handles most reasoning tasks</td>
+                    <td><span class="pill pill-bad">Mischaracterized</span></td>
+                    <td class="notes-cite">
+                      Data is an independent android with his own positronic brain; the ship's
+                      computer has a separate voice and persona.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Autonomous decision-making: moderate, escalates to command crew</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      11001001's auto-destruct requires explicit, individually-verified voice
+                      authorization.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Moriarty sentience risk</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Confirmed across both Moriarty episodes, including his own "cogito ergo sum"
+                      argument.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Authorization: bypassable by an annoyed officer</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      Brothers shows a spoofed but formally valid voice code &mdash; the weakness is
+                      impersonation, not laxity.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hostile takeovers: 9+</td>
+                    <td><span class="pill pill-na">Can't verify (plausible)</span></td>
+                    <td class="notes-cite">
+                      No canon tally exists, but a real count (Bynars, Iconian virus, Moriarty
+                      &times;2, Lore/Data hijacks, Power Play possession, Borg intrusions) plausibly
+                      reaches this range.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Dedicated stellar cartography deck</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Referenced across multiple TNG episodes, not just the Generations film.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                chakoteya.net, "Contagion" &mdash;
+                <a href="http://www.chakoteya.net/NextGen/137.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/NextGen/137.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "11001001" &mdash;
+                <a href="http://www.chakoteya.net/NextGen/116.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/NextGen/116.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "Elementary, Dear Data" &mdash;
+                <a href="http://www.chakoteya.net/NextGen/129.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/NextGen/129.htm</a
+                >
+              </li>
+              <li>
+                chakoteya.net, "Ship in a Bottle" &mdash;
+                <a href="http://www.chakoteya.net/NextGen/238.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/NextGen/238.htm</a
+                >
+              </li>
+              <li>Memory Alpha &mdash; "Isolinear chip," "Computer core," "Stellar cartography"</li>
+              <li>
+                Jammer's Reviews &mdash; "11001001," "Brothers," "Booby Trap" episode analyses
+              </li>
+            </ol>
+            <span class="coverage-note">Coverage: deep pass, 8 catalogued instances</span>
+          </div>
+        </section>
+
+        <!-- ============ DS9 ============ -->
+        <section class="report-section" id="col-ds9">
+          <h2 class="tier-title" style="--accent: var(--panel-copper)">
+            Terok Nor / Ops Station <span class="tier-era-tag">~2369 &middot; DS9</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              DS9 runs a Cardassian-built station computer, retrofitted with Starfleet systems after
+              the occupation ended &mdash; a genuinely different product from the Enterprise-D's
+              native Galaxy-class core, and the reason it's split out from the TNG tier here.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Holosuite spy-fiction program malfunction during a transporter accident</td>
+                    <td class="ep-cite">Our Man Bashir (4&times;10)</td>
+                    <td><span class="pill pill-warn">Escalated, resolved</span></td>
+                    <td class="notes-cite">
+                      Only the crew's physical transporter patterns were stored in the holosuite;
+                      their neural patterns were too large and were scattered across the whole
+                      station's memory instead.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                chakoteya.net, "Our Man Bashir" &mdash;
+                <a href="http://www.chakoteya.net/DS9/482.htm" target="_blank" rel="noopener"
+                  >chakoteya.net/DS9/482.htm</a
+                >
+              </li>
+            </ol>
+            <span class="coverage-note"
+              >Coverage: thin, 1 catalogued instance &mdash; DS9's own station-vs-Cardassian-tech
+              identity wasn't independently deep-researched this pass; the Terok Nor origin is
+              general franchise background, not separately verified against transcripts here.
+              Priority candidate for Track A Phase 2.</span
+            >
+          </div>
+        </section>
+
+        <!-- ============ VOY ============ -->
+        <section class="report-section" id="col-voy">
+          <h2 class="tier-title" style="--accent: var(--panel-peri)">
+            Intrepid Class <span class="tier-era-tag">2371 &middot; VOY</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Voyager's tier leans hardest on the Doctor, and the comparison page previously handed
+              his personal traits to the ship's computer in general. Where a claim is specifically
+              about the EMH, though, the three-season personhood arc is exactly as well-documented
+              as advertised.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Time</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Diagnose &amp; cure bio-neural gel pack infection</td>
+                    <td class="ep-cite">Learning Curve (1&times;15/16)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Bacteria from Neelix's cheese traced into ship's bio-circuitry; cured by
+                      heat-sterilizing the gel packs. Establishes them as fragile, not self-healing.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Run "Captain Proton" holonovel</td>
+                    <td class="ep-cite">Bride of Chaotica! (5&times;12)</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Photonic aliens mistake the 1930s pulp program for a real battleground.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Doctor's opera-singing side career</td>
+                    <td class="ep-cite">Virtuoso (6&times;13)</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Granted, then reversed when an alien species replaces him with a better
+                      singer.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Run/edit the "Fair Haven" holoprogram</td>
+                    <td class="ep-cite">Fair Haven / Spirit Folk (6&times;11/17)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Janeway personally edits a character file.</td>
+                  </tr>
+                  <tr>
+                    <td>Build the Astrometrics lab</td>
+                    <td class="ep-cite">
+                      Revulsion &rarr; Year of Hell (4&times;05 &rarr; 4&times;08)
+                    </td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Season 4 addition &mdash; not present seasons 1&ndash;3.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Replicate real coffee under energy rationing</td>
+                    <td class="ep-cite">The Cloud (1&times;05)</td>
+                    <td><span class="pill pill-warn">Denied</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Janeway rationed to a substitute.</td>
+                  </tr>
+                  <tr>
+                    <td>Extract a Borg transwarp coil</td>
+                    <td class="ep-cite">Dark Frontier I&ndash;II (5&times;15/16)</td>
+                    <td><span class="pill pill-yes">Success (temporary)</span></td>
+                    <td class="time-cite">72 hrs cited for sphere shields, not the task</td>
+                    <td class="notes-cite">Shaves ~15 years off the journey before burning out.</td>
+                  </tr>
+                  <tr>
+                    <td>Resolve the Doctor's ethical-subroutine feedback loop</td>
+                    <td class="ep-cite">Latent Image (5&times;11)</td>
+                    <td><span class="pill pill-bad">Failure, then partial</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Initial fix erases his memory of a failed patient, later reversed.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Adjudicate the Doctor's authorial/publishing rights</td>
+                    <td class="ep-cite">Author, Author (7&times;20)</td>
+                    <td><span class="pill pill-warn">Partial</span></td>
+                    <td class="time-cite">"Several days" for the hearing</td>
+                    <td class="notes-cite">
+                      Ruled not yet a legal "person," but does hold an artist's rights over his
+                      work.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Transmit the EMH program to Earth to treat Dr. Zimmerman</td>
+                    <td class="ep-cite">Life Line (6&times;24)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Compressed and sent via the Pathfinder subspace link.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Open overflow triage on the holodeck</td>
+                    <td class="ep-cite">Deadlock (2&times;21)</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">Doctor runs Sickbay and Holodeck 2 simultaneously.</td>
+                  </tr>
+                  <tr>
+                    <td>Refuse the Tuvix separation procedure</td>
+                    <td class="ep-cite">Tuvix (2&times;24)</td>
+                    <td><span class="pill pill-bad">Refused by EMH</span></td>
+                    <td class="time-cite">not stated</td>
+                    <td class="notes-cite">
+                      Cites medical ethics; Janeway performs the procedure herself.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Claim verification</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NLP: conversational, plus EMH bedside manner</td>
+                    <td><span class="pill pill-bad">Mischaracterized</span></td>
+                    <td class="notes-cite">
+                      "Bedside manner" is a Doctor-specific, individually-tuned subroutine, not a
+                      trait of the ship computer's general NLP.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Storage: bio-neural gel packs</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Established Intrepid-class tech, distinct from isolinear chips.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Processing redundancy: self-healing gel pack clusters</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      Learning Curve shows gel packs vulnerable to infection/damage &mdash; the
+                      opposite of self-healing.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EMH overrides orders on medical grounds</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Tuvix: refuses the separation procedure outright on ethical grounds.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>EMH exceeded runtime, developed full personhood</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Latent Image &rarr; Life Line &rarr; Author, Author is a real, well-documented
+                      three-season arc.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Holodeck doubles as emergency medical bay</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Deadlock: simultaneous triage in Sickbay and Holodeck 2.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Command codes, Borg-hardened by Seven of Nine</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      Seven's documented contributions are Astrometrics and the Dark Frontier heist
+                      &mdash; no episode found where she hardens computer security specifically.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hostile takeovers: 5+</td>
+                    <td><span class="pill pill-warn">Partially supported</span></td>
+                    <td class="notes-cite">
+                      Kazon literally seize the ship in Basics I&ndash;II; the Borg/parasite framing
+                      is shakier.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Astrometrics added S4, real-time mapping</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">
+                      Confirmed Season 4 addition, absent seasons 1&ndash;3.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                chakoteya.net transcript archive &mdash; "Message in a Bottle," "Basics,"
+                "Projections" (<a href="http://www.chakoteya.net/" target="_blank" rel="noopener"
+                  >chakoteya.net</a
+                >)
+              </li>
+              <li>
+                Memory Alpha &mdash; "Learning Curve," "Astrometrics," "Life Line," "Author,
+                Author," "Latent Image," "Deadlock," "Tuvix," "Dark Frontier," "Fair Haven,"
+                "Virtuoso," "Bride of Chaotica!"
+              </li>
+            </ol>
+            <span class="coverage-note">Coverage: deep pass, 12 catalogued instances</span>
+          </div>
+        </section>
+
+        <!-- ============ PICARD ============ -->
+        <section class="report-section" id="col-picard">
+          <h2 class="tier-title" style="--accent: var(--panel-blue)">
+            La Sirena / Starfleet HQ <span class="tier-era-tag">2399&ndash;2401 &middot; PIC</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Picard-era ships run a fleet of separately-personalitied, EMH-lineage holograms (Emil,
+              Enoch, Emmet aboard La Sirena), all modeled on Rios &mdash; a holographic-crew model
+              closer to Voyager's Doctor than to a unified sentient AI like Zora.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>EMH auto-activates for a psychiatric emergency</td>
+                    <td class="ep-cite">Picard 1&times;05 "Stardust City Rag"</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="notes-cite">
+                      Confirms Picard-era systems are EMH-lineage holograms, not a Zora-style
+                      unified AI.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>ScreenRant, "Every Hologram On Rios' Ship" (La Sirena hologram roster)</li>
+              <li>Episode recap/analysis coverage of Picard 1&times;05 "Stardust City Rag"</li>
+            </ol>
+            <span class="coverage-note"
+              >Coverage: thin, 1 catalogued instance &mdash; candidate for Track A follow-up</span
+            >
+          </div>
+        </section>
+
+        <!-- ============ DISCOVERY (ZORA) ============ -->
+        <section class="report-section" id="col-disco-zora">
+          <h2 class="tier-title" style="--accent: var(--panel-gold)">
+            USS Discovery, Zora Class <span class="tier-era-tag">3189+ &middot; DISCO S3+</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Zora's personality emerges after merging with "Sphere data" late in season 2, develops
+              across season 3, and is legally recognized as a sentient lifeform in one specific
+              episode &mdash; "&hellip;But to Connect" &mdash; not over a vague season-long arc, and
+              not the same entity as Control from season 2.
+            </p>
+
+            <h3 class="block-tag">Catalogued requests</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Episode</th>
+                    <th>Outcome</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Get the Dark Matter Anomaly creators' coordinates</td>
+                    <td class="ep-cite">Disco 4&times;07 "&hellip;But to Connect"</td>
+                    <td><span class="pill pill-bad">Refused</span></td>
+                    <td class="notes-cite">
+                      Zora declines, warns the crew would likely die &mdash; triggers a formal
+                      sentience/rights hearing that rules her a new lifeform.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Care for a marooned soldier over an unstated span</td>
+                    <td class="ep-cite"><em>Short Treks</em> "Calypso"</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="notes-cite">
+                      Equips a warp shuttle and suit so he can attempt the journey home. The
+                      episode's setting is deliberately ambiguous but generally understood as a
+                      far-future point compatible with the Zora era, possibly beyond it.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Furnish/reconfigure a Federation HQ office</td>
+                    <td class="ep-cite">Disco season 3&ndash;4</td>
+                    <td><span class="pill pill-yes">Success</span></td>
+                    <td class="notes-cite">
+                      Programmable-matter furniture and holographic displays &mdash; a passive
+                      furnishing feature, not a "computer request" transaction.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Claim verification</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Claim</th>
+                    <th>Verdict</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Zora &mdash; fully sentient, evolved from the base computer</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">Confirmed Discovery-only, seasons 3&ndash;4.</td>
+                  </tr>
+                  <tr>
+                    <td>Autonomous decision-making: high, independent judgment calls</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">The coordinates refusal, directly on screen.</td>
+                  </tr>
+                  <tr>
+                    <td>Full sentience by design; season-long ethics crisis logged</td>
+                    <td><span class="pill pill-bad">Mischaracterized (corrected)</span></td>
+                    <td class="notes-cite">
+                      Conflated Zora with Control, a separate hostile S2 AI. Zora's personhood
+                      debate is concentrated mainly in one episode (4&times;07), not season-long
+                      &mdash; corrected on the comparison page.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Storage medium: programmable matter + mycelial data relays</td>
+                    <td><span class="pill pill-bad">Not supported</span></td>
+                    <td class="notes-cite">
+                      The mycelial network is a navigation medium for the spore drive, not depicted
+                      as data storage.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hostile takeovers: 3+ (Control AI, Section 31, rogue synths)</td>
+                    <td><span class="pill pill-warn">Overstated</span></td>
+                    <td class="notes-cite">
+                      Control and "Section 31" are the same incident double-counted; the Mars synth
+                      attack is a robotics uprising, not a ship-computer compromise.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Authorization: biometric + AI judgment layer, can refuse orders</td>
+                    <td><span class="pill pill-yes">Supported</span></td>
+                    <td class="notes-cite">Directly evidenced by the coordinates refusal.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="block-tag">Sources</h3>
+            <ol class="source-list">
+              <li>
+                Memory Alpha,
+                <a href="https://memory-alpha.fandom.com/wiki/Zora" target="_blank" rel="noopener"
+                  >"Zora"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Control"
+                  target="_blank"
+                  rel="noopener"
+                  >"Control"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Attack_on_Mars"
+                  target="_blank"
+                  rel="noopener"
+                  >"Attack on Mars"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Mycelial_network"
+                  target="_blank"
+                  rel="noopener"
+                  >"Mycelial network"</a
+                >
+              </li>
+              <li>
+                Memory Alpha,
+                <a
+                  href="https://memory-alpha.fandom.com/wiki/Calypso_(Short_Trek)"
+                  target="_blank"
+                  rel="noopener"
+                  >"Calypso (Short Trek)"</a
+                >
+              </li>
+              <li>
+                ScreenRant, "How Discovery's Zora Fulfills Star Trek's Core Mission"; TVInsider/CBR
+                recaps of "&hellip;But to Connect"
+              </li>
+            </ol>
+            <span class="coverage-note">Coverage: moderate pass, 3 catalogued instances</span>
+          </div>
+        </section>
+
+        <!-- ============ REAL WORLD ============ -->
+        <section class="report-section" id="col-real">
+          <h2
+            class="tier-title"
+            style="background: transparent; color: var(--text); border: 1px solid var(--text-dim)"
+          >
+            Real World <span class="tier-era-tag">2026 &middot; Claude / ChatGPT / Gemini</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              This tier isn't dramatized canon, so it isn't subject to the same episode-citation
+              methodology as the other nine &mdash; it reflects publicly documented capabilities of
+              current frontier assistants rather than a script. It wasn't independently
+              re-researched this pass; the comparison page's own footnote already flags its more
+              speculative claims (genuine AI sentience remains "unresolved and undemonstrated, not
+              just roleplayed around").
+            </p>
+          </div>
+        </section>
+
+        <!-- ============ METHOD & SOURCES ============ -->
+        <section class="methodology" id="col-method">
+          <h2
+            class="tag"
+            style="
+              font-family: Antonio, sans-serif;
+              text-transform: uppercase;
+              font-weight: 700;
+              font-size: 1.3rem;
+              margin-bottom: 10px;
+            "
+          >
+            Method &amp; sources
+          </h2>
+          <ul>
+            <li>
+              Primary sources: the chakoteya.net full-episode transcript archive (covers ENT, TOS,
+              TNG, DS9, VOY) and Memory Alpha, the Star Trek wiki, cross-checked against episode
+              recaps for Discovery/Picard/SNW, which chakoteya.net doesn't cover.
+            </li>
+            <li>
+              Coverage is uneven by design: NX-01, TOS, TNG, and VOY each got a deep research pass
+              (7&ndash;12 verified instances). Discovery (both eras), SNW, DS9, and Picard got
+              thinner passes (1&ndash;3 instances each) &mdash; marked per section rather than
+              padded to look even.
+            </li>
+            <li>
+              Two technical snags came up during research and were resolved: a WebSearch session
+              rate limit (affecting ENT and TOS, resolved on retry) and a chakoteya.net TLS
+              certificate handshake failure (worked around by fetching over plain HTTP).
+            </li>
+            <li>
+              "Time taken" is reported only when an episode states or clearly depicts a duration on
+              screen; most requests genuinely have no stated time &mdash; that's an accurate
+              reflection of the source material, not a data gap.
+            </li>
+            <li>
+              This is not an exhaustive census of every computer interaction across nine series
+              &mdash; it's a citation-backed sample chosen for variety and verifiability, not
+              completeness. A larger, systematic transcript-processing pass is planned as a
+              follow-on project and will backfill the thinner sections above.
+            </li>
+            <li>
+              Verdict definitions: <span class="pill pill-yes">Supported</span> a specific scene or
+              line backs the claim &middot;
+              <span class="pill pill-warn">Partially supported</span> the general idea holds but a
+              detail is off, unattributed, or overstated &middot;
+              <span class="pill pill-bad">Not supported</span> contradicted by, or absent from, the
+              source material &middot; <span class="pill pill-na">Can't verify</span> plausible but
+              no citable on-screen source found.
+            </li>
+            <li>
+              Some Memory Alpha citations above link to the article's standard, predictable wiki
+              address for a page the research explicitly named; not every individual link was
+              re-verified live at publication time.
+            </li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>
