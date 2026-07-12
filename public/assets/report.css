@@ -1,0 +1,257 @@
+/* Report-only components. Loaded alongside styles.css; shares its tokens
+   (--bg, --panel-*, --text*, --hairline) so the report reads as the same
+   terminal as the comparison page, not a bolted-on document. */
+
+.report-main {
+  padding: 0 0 100px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.report-hero {
+  padding: 48px 40px 28px;
+  max-width: 780px;
+}
+
+.report-hero .sub + .sub {
+  margin-top: 10px;
+}
+
+.report-section {
+  padding: 0 40px;
+  margin: 54px 0;
+  scroll-margin-top: 20px;
+}
+
+.report-section h2.tier-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: Antonio, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+  margin: 0 0 4px;
+  padding: 16px 20px;
+  border-radius: 14px 14px 0 0;
+  background: var(--accent, var(--panel-orange));
+  color: var(--text-dark);
+}
+
+.report-section h2.tier-title .tier-era-tag {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.report-body {
+  background: var(--row-alt);
+  border: 1px solid var(--hairline);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  padding: 22px 24px 30px;
+}
+
+.report-body p.summary {
+  max-width: 720px;
+  color: var(--text-dim);
+  margin: 0 0 20px;
+  font-size: 0.94rem;
+}
+
+.report-body h3.block-tag {
+  font-family: Antonio, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--accent, var(--panel-orange));
+  margin: 30px 0 8px;
+}
+
+.report-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  margin: 8px 0 4px;
+}
+
+table.report-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 620px;
+  font-size: 0.84rem;
+}
+
+table.report-table thead th {
+  text-align: left;
+  font-family: "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+table.report-table tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+  color: var(--text);
+}
+
+table.report-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table.report-table tbody tr:nth-child(even) {
+  background: rgb(255 255 255 / 1.5%);
+}
+
+td.ep-cite {
+  font-family: "Space Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+td.time-cite {
+  font-family: "Space Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+td.notes-cite {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  max-width: 280px;
+}
+
+.pill {
+  display: inline-block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.pill-yes {
+  background: rgb(143 214 148 / 14%);
+  color: #8fd694;
+  border: 1px solid rgb(143 214 148 / 40%);
+}
+
+.pill-warn {
+  background: rgb(245 196 81 / 14%);
+  color: var(--panel-gold);
+  border: 1px solid rgb(245 196 81 / 40%);
+}
+
+.pill-bad {
+  background: rgb(198 102 102 / 16%);
+  color: #e08d8d;
+  border: 1px solid rgb(224 141 141 / 40%);
+}
+
+.pill-na {
+  background: rgb(169 166 206 / 10%);
+  color: var(--text-dim);
+  border: 1px solid rgb(169 166 206 / 30%);
+}
+
+ol.source-list {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+ol.source-list a {
+  color: var(--panel-blue);
+}
+
+ol.source-list a:hover,
+ol.source-list a:focus-visible {
+  color: var(--panel-orange);
+}
+
+.coverage-note {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 4px 10px;
+}
+
+.notability-tag {
+  display: inline-block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.notability-tag.notable {
+  color: var(--panel-orange);
+  border: 1px solid rgb(255 156 84 / 40%);
+  background: rgb(255 156 84 / 12%);
+}
+
+.notability-tag.routine {
+  color: var(--text-dim);
+  border: 1px solid var(--hairline);
+  background: rgb(255 255 255 / 3%);
+}
+
+.methodology {
+  padding: 0 40px;
+  margin: 60px 0 0;
+}
+
+.methodology ul {
+  font-family: "Space Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  line-height: 1.9;
+  border-top: 1px solid var(--hairline);
+  padding-top: 22px;
+}
+
+.methodology li {
+  margin-bottom: 6px;
+}
+
+.methodology a {
+  color: var(--panel-blue);
+}
+
+@media (max-width: 900px) {
+  .report-hero {
+    padding: 32px 20px;
+  }
+
+  .report-section,
+  .methodology {
+    padding: 0 20px;
+  }
+}

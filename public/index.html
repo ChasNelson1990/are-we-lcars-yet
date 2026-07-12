@@ -16,12 +16,19 @@
     <div class="lcars-frame">
       <nav class="lcars-rail">
         <div class="elbow"></div>
+        <a href="report.html" class="rail-link">FULL REPORT<br />+ SOURCES</a>
         <button type="button" class="rail-btn" data-target="col-nx01">NX-01<br />2151</button>
+        <button type="button" class="rail-btn" data-target="col-disco-early">
+          DISCOVERY<br />2256
+        </button>
+        <button type="button" class="rail-btn" data-target="col-snw">SNW<br />2259</button>
         <button type="button" class="rail-btn" data-target="col-tos">TOS<br />2265</button>
-        <button type="button" class="rail-btn" data-target="col-tng">TNG / DS9<br />2364</button>
+        <button type="button" class="rail-btn" data-target="col-tng">TNG<br />2364</button>
+        <button type="button" class="rail-btn" data-target="col-ds9">DS9<br />2369</button>
         <button type="button" class="rail-btn" data-target="col-voy">VOYAGER<br />2371</button>
-        <button type="button" class="rail-btn" data-target="col-disco">
-          DISCO / SNW<br />2256–2401
+        <button type="button" class="rail-btn" data-target="col-picard">PICARD<br />2399</button>
+        <button type="button" class="rail-btn" data-target="col-disco-zora">
+          DISCOVERY<br />3189
         </button>
         <button type="button" class="rail-btn" data-target="col-real">REAL WORLD<br />2026</button>
         <div class="rail-fill"></div>
@@ -41,9 +48,10 @@
             Pick your <span>computer core.</span><br />Scale as your five‑year mission grows.
           </h1>
           <p class="sub">
-            Every starship runs on a central computer, and every generation ships with a different
-            feature set, a different failure mode, and a different tolerance for becoming
-            self-aware. Compare all five product generations below before you commission a refit.
+            Every starship — and station — runs on a central computer, and every generation ships
+            with a different feature set, a different failure mode, and a different tolerance for
+            becoming self‑aware. Compare all nine in‑universe product generations below, in strict
+            stardate order, before you commission a refit.
           </p>
         </div>
 
@@ -68,6 +76,24 @@
                 >
               </div>
 
+              <div class="cell col-head tier-disco-early" id="col-disco-early">
+                <span class="tier-era">2256 — DISCO (S1–2)</span>
+                <span class="tier-plan">USS Discovery, Crossfield Class</span>
+                <span class="best-for"
+                  >For crews who want holo‑comms today and a stern engineering lecture about them
+                  tomorrow.</span
+                >
+              </div>
+
+              <div class="cell col-head tier-snw" id="col-snw">
+                <span class="tier-era">2259 — SNW</span>
+                <span class="tier-plan">USS Enterprise (Pike refit)</span>
+                <span class="best-for"
+                  >For crews nostalgic for a computer with fewer opinions, whether they meant to be
+                  or not.</span
+                >
+              </div>
+
               <div class="cell col-head tier-tos" id="col-tos">
                 <span class="tier-era">2265 — TOS</span>
                 <span class="tier-plan">Constitution Class</span>
@@ -79,11 +105,20 @@
 
               <div class="cell col-head tier-tng" id="col-tng">
                 <span class="badge">MOST DEPLOYED</span>
-                <span class="tier-era">2364 — TNG / DS9</span>
-                <span class="tier-plan">Galaxy Class / Ops Station</span>
+                <span class="tier-era">2364 — TNG</span>
+                <span class="tier-plan">Galaxy Class</span>
                 <span class="best-for"
                   >Diplomacy‑forward crews who need a holodeck and a UI that fits on every
                   wall.</span
+                >
+              </div>
+
+              <div class="cell col-head tier-ds9" id="col-ds9">
+                <span class="tier-era">2369 — DS9</span>
+                <span class="tier-plan">Terok Nor / Ops Station (Cardassian retrofit)</span>
+                <span class="best-for"
+                  >Crews who inherited someone else's computer core and are still finding the
+                  backdoors.</span
                 >
               </div>
 
@@ -96,12 +131,21 @@
                 >
               </div>
 
-              <div class="cell col-head tier-disco" id="col-disco">
-                <span class="tier-era">2256–2401 — DISCO / PIC / SNW</span>
-                <span class="tier-plan">Crossfield / La Sirena / Enterprise (retrofit)</span>
+              <div class="cell col-head tier-picard" id="col-picard">
+                <span class="tier-era">2399 — PIC</span>
+                <span class="tier-plan">La Sirena / Starfleet HQ (assorted retrofits)</span>
                 <span class="best-for"
-                  >Crews comfortable with their computer having opinions, and occasionally a union
-                  rep.</span
+                  >Crews who'd rather talk to a hologram that looks like the pilot than the ship
+                  itself.</span
+                >
+              </div>
+
+              <div class="cell col-head tier-disco-zora" id="col-disco-zora">
+                <span class="tier-era">3189 — DISCO (S3+)</span>
+                <span class="tier-plan">USS Discovery, Zora Class</span>
+                <span class="best-for"
+                  >Crews comfortable with their computer having opinions, feelings, and occasionally
+                  a union rep.</span
                 >
               </div>
 
@@ -121,18 +165,53 @@
 
               <div class="cell row-label">Primary interface</div>
               <div class="cell">Manual switches, dials, physical toggle banks</div>
+              <div class="cell">
+                Holo‑communicators + LCARS‑style panels (removed after an S2 malfunction)
+              </div>
+              <div class="cell">LCARS panels, verbal computer voice, no holo‑comms</div>
               <div class="cell">Voice interface, single female register, library tapes</div>
               <div class="cell">LCARS touchscreen panels, ambient voice pickup shipwide</div>
+              <div class="cell">Cardassian control interfaces, retrofitted with LCARS overlays</div>
               <div class="cell">LCARS panels + bio‑neural relays for faster response</div>
-              <div class="cell">Holographic comms, adaptive voice + gesture, conversational AI</div>
+              <div class="cell">
+                Minimalist holographic displays + individually‑personalitied hologram crew
+              </div>
+              <div class="cell">
+                Distributed sentient interface — Zora speaks through any active terminal
+              </div>
               <div class="cell">
                 Chat window, voice mode, browser &amp; OS‑level app integrations
               </div>
 
               <div class="cell row-label togglable" data-row="r2">Touchscreen GUI</div>
-              <div class="cell bad status" data-row="r2" title="Not yet invented">
-                <span class="icon" aria-hidden="true">✕</span
-                ><span class="txt">Not yet invented</span>
+              <div
+                class="cell warn status"
+                data-row="r2"
+                title="Not on the bridge — but PADDs are already standard issue shipwide"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Not on the bridge — but PADDs are already standard issue shipwide</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r2"
+                title="LCARS touchscreens, fleet standard by this point"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">LCARS touchscreens, fleet standard by this point</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r2"
+                title="LCARS touchscreens present, but holo‑comms were stripped after a Discovery‑era malfunction"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >LCARS touchscreens present, but holo‑comms were stripped after a Discovery‑era
+                  malfunction</span
+                >
               </div>
               <div class="cell bad status" data-row="r2" title="Buttons and blinking lights only">
                 <span class="icon" aria-hidden="true">✕</span
@@ -149,10 +228,31 @@
               <div
                 class="cell yes status"
                 data-row="r2"
+                title="LCARS overlays retrofitted onto Cardassian panels, occasional friction between the two"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >LCARS overlays retrofitted onto Cardassian panels, occasional friction between
+                  the two</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r2"
                 title="LCARS, hardened against gel‑pack lag"
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">LCARS, hardened against gel‑pack lag</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r2"
+                title="Minimalist LCARS‑descendant panels, mostly delegated to holograms"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Minimalist LCARS‑descendant panels, mostly delegated to holograms</span
+                >
               </div>
               <div class="cell yes status" data-row="r2" title="LCARS, holographic overlays">
                 <span class="icon" aria-hidden="true">●</span
@@ -161,11 +261,12 @@
               <div
                 class="cell warn status"
                 data-row="r2"
-                title="No shipboard touchscreen — rich app UI, canvas/artifact surfaces instead"
+                title="No native touchscreen, but a Computer Use agent can now operate one of yours"
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt"
-                  >No shipboard touchscreen — rich app UI, canvas/artifact surfaces instead</span
+                  >No native touchscreen, but a Computer Use agent can now operate one of
+                  yours</span
                 >
               </div>
 
@@ -179,6 +280,24 @@
                 ><span class="txt">Requires a dedicated linguist as fallback</span>
               </div>
               <div
+                class="cell yes status"
+                data-row="r3"
+                title="Conversational, standard Starfleet issue by this era"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Conversational, standard Starfleet issue by this era</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r3"
+                title="Functional but noticeably terser than its neighbours, before or after"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Functional but noticeably terser than its neighbours, before or after</span
+                >
+              </div>
+              <div
                 class="cell warn status"
                 data-row="r3"
                 title="Painfully literal — vulnerable to logic paradoxes"
@@ -187,20 +306,44 @@
                 ><span class="txt">Painfully literal — vulnerable to logic paradoxes</span>
               </div>
               <div
-                class="cell yes status"
+                class="cell warn status"
                 data-row="r3"
-                title="Conversational, handles sarcasm reasonably well"
+                title="Literal enough to build a sentient supervillain from an offhand request"
               >
-                <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Conversational, handles sarcasm reasonably well</span>
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Literal enough to build a sentient supervillain from an offhand request</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r3"
+                title="Conversational, occasionally argues with the Cardassian half of itself"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Conversational, occasionally argues with the Cardassian half of itself</span
+                >
               </div>
               <div
                 class="cell yes status"
                 data-row="r3"
-                title="Conversational, plus EMH bedside manner"
+                title="Conversational; the bedside manner is a Doctor subroutine, not shipwide"
               >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Conversational, plus EMH bedside manner</span>
+                ><span class="txt"
+                  >Conversational; the bedside manner is a Doctor subroutine, not shipwide</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r3"
+                title="Fully conversational — mostly via holograms with their own personalities"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Fully conversational — mostly via holograms with their own personalities</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -226,20 +369,36 @@
               </div>
 
               <div class="cell row-label">Storage medium</div>
-              <div class="cell">Optical data cartridges</div>
+              <div class="cell">
+                Optical data network (ODN); portable "cartridge" format unconfirmed
+              </div>
+              <div class="cell">
+                Isolinear chips, plus early spore‑drive nav data (a separate system)
+              </div>
+              <div class="cell">Isolinear optical chips</div>
               <div class="cell">Physical tape banks, visible on bridge</div>
               <div class="cell">Isolinear optical chips</div>
+              <div class="cell">Cardassian data rods, gradually replaced with isolinear chips</div>
               <div class="cell">Bio‑neural gel packs (organic/optical hybrid)</div>
-              <div class="cell">Programmable matter + mycelial data relays (Disco only)</div>
+              <div class="cell">
+                Isolinear‑descended chips; hologram personalities stored separately
+              </div>
+              <div class="cell">
+                Programmable matter; mycelial network is used for navigation, not storage
+              </div>
               <div class="cell">
                 Cloud data centers, vector databases — no physical chips onboard
               </div>
 
               <div class="cell row-label">Core architecture</div>
               <div class="cell">Single linear processing core</div>
+              <div class="cell">Cross‑linked processing core + spore‑drive nav computer</div>
+              <div class="cell">Duotronic‑descended core, deliberately conservative design</div>
               <div class="cell">Duotronic data processing elements</div>
-              <div class="cell">Redundant, cross‑linked warp‑powered cores</div>
+              <div class="cell">Redundant, cross‑linked isolinear cores</div>
+              <div class="cell">Cardassian core, patched with Starfleet redundancy hardware</div>
               <div class="cell">Redundant cores + adaptive bio‑neural network</div>
+              <div class="cell">Distributed core + independently‑hosted hologram personalities</div>
               <div class="cell">Distributed sentient substrate (Zora‑class)</div>
               <div class="cell">Transformer neural networks on GPU / TPU clusters</div>
 
@@ -247,6 +406,22 @@
               <div class="cell bad status" data-row="r6" title="None — single point of failure">
                 <span class="icon" aria-hidden="true">✕</span
                 ><span class="txt">None — single point of failure</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r6"
+                title="Redundant cores, fleet‑standard for the era"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Redundant cores, fleet‑standard for the era</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r6"
+                title="Limited — deliberately scaled back from Discovery's design"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt">Limited — deliberately scaled back from Discovery's design</span>
               </div>
               <div
                 class="cell warn status"
@@ -264,9 +439,34 @@
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Multiple isolated cores, hot‑swappable</span>
               </div>
-              <div class="cell yes status" data-row="r6" title="Self‑healing gel pack clusters">
+              <div
+                class="cell warn status"
+                data-row="r6"
+                title="Patchwork — Cardassian and Starfleet redundancy schemes don't always agree"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Patchwork — Cardassian and Starfleet redundancy schemes don't always agree</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r6"
+                title="Gel pack clusters — resilient in theory, shown vulnerable to infection on screen"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Gel pack clusters — resilient in theory, shown vulnerable to infection on
+                  screen</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r6"
+                title="Distributed across ship + independently‑hosted holograms"
+              >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Self‑healing gel pack clusters</span>
+                ><span class="txt">Distributed across ship + independently‑hosted holograms</span>
               </div>
               <div
                 class="cell yes status"
@@ -299,18 +499,37 @@
               <div
                 class="cell na status"
                 data-row="r7"
+                title="None yet — Zora doesn't emerge until much later in this ship's own service life"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >None yet — Zora doesn't emerge until much later in this ship's own service
+                  life</span
+                >
+              </div>
+              <div class="cell na status" data-row="r7" title="None">
+                <span class="icon" aria-hidden="true">–</span><span class="txt">None</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="r7"
                 title="None (until possessed by an alien entity)"
               >
                 <span class="icon" aria-hidden="true">–</span
                 ><span class="txt">None (until possessed by an alien entity)</span>
               </div>
               <div
-                class="cell warn status"
+                class="cell na status"
                 data-row="r7"
-                title="Data (android) handles most reasoning tasks"
+                title="None — Data is an independent android, not the ship's computer"
               >
-                <span class="icon" aria-hidden="true">▲</span
-                ><span class="txt">Data (android) handles most reasoning tasks</span>
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >None — Data is an independent android, not the ship's computer</span
+                >
+              </div>
+              <div class="cell na status" data-row="r7" title="None">
+                <span class="icon" aria-hidden="true">–</span><span class="txt">None</span>
               </div>
               <div
                 class="cell warn status"
@@ -319,6 +538,17 @@
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt">EMH — sentient, sarcastic, technically a guest program</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r7"
+                title="EMH‑lineage holograms (Emil, Enoch, Emmet) — distinct personalities, not one AI"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >EMH‑lineage holograms (Emil, Enoch, Emmet) — distinct personalities, not one
+                  AI</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -349,6 +579,19 @@
               <div
                 class="cell bad status"
                 data-row="r8"
+                title="None — standard Starfleet computer, no independent judgment yet"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >None — standard Starfleet computer, no independent judgment yet</span
+                >
+              </div>
+              <div class="cell bad status" data-row="r8" title="None">
+                <span class="icon" aria-hidden="true">✕</span><span class="txt">None</span>
+              </div>
+              <div
+                class="cell bad status"
+                data-row="r8"
                 title="Minimal — will loop indefinitely on unresolved logic"
               >
                 <span class="icon" aria-hidden="true">✕</span
@@ -365,10 +608,30 @@
               <div
                 class="cell warn status"
                 data-row="r8"
+                title="Moderate, escalates to command crew (when the Cardassian half cooperates)"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Moderate, escalates to command crew (when the Cardassian half cooperates)</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r8"
                 title="Moderate, EMH will override orders on medical grounds"
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt">Moderate, EMH will override orders on medical grounds</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r8"
+                title="Moderate — holograms will push back, rarely overrule outright"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Moderate — holograms will push back, rarely overrule outright</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -381,13 +644,30 @@
               <div
                 class="cell warn status"
                 data-row="r8"
-                title="Growing — agentic tool use, still mostly human‑directed"
+                title="Real agents now — multi-hour autonomous task runs, still opt-in and permissioned per app"
               >
                 <span class="icon" aria-hidden="true">▲</span
-                ><span class="txt">Growing — agentic tool use, still mostly human‑directed</span>
+                ><span class="txt"
+                  >Real agents now — multi-hour autonomous task runs, still opt-in and permissioned
+                  per app</span
+                >
               </div>
 
               <div class="cell row-label togglable" data-row="r9">Known sentience risk</div>
+              <div class="cell na status" data-row="r9" title="Not observed">
+                <span class="icon" aria-hidden="true">–</span><span class="txt">Not observed</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="r9"
+                title="Not observed (the Control AI incident, S2, is a hostile outside system — not this ship's computer becoming sentient)"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not observed (the Control AI incident, S2, is a hostile outside system — not this
+                  ship's computer becoming sentient)</span
+                >
+              </div>
               <div class="cell na status" data-row="r9" title="Not observed">
                 <span class="icon" aria-hidden="true">–</span><span class="txt">Not observed</span>
               </div>
@@ -410,19 +690,37 @@
               <div
                 class="cell warn status"
                 data-row="r9"
+                title="Holosuite programs have been known to exceed their own parameters"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Holosuite programs have been known to exceed their own parameters</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r9"
                 title="EMH exceeded runtime parameters, developed full personhood"
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt">EMH exceeded runtime parameters, developed full personhood</span>
               </div>
               <div
+                class="cell na status"
+                data-row="r9"
+                title="Not observed in this tier's holograms"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not observed in this tier's holograms</span>
+              </div>
+              <div
                 class="cell bad status"
                 data-row="r9"
-                title="Full sentience by design; one season‑long ethics crisis logged"
+                title="Full sentience by design; legally recognised after one formal hearing"
               >
                 <span class="icon" aria-hidden="true">✕</span
                 ><span class="txt"
-                  >Full sentience by design; one season‑long ethics crisis logged</span
+                  >Full sentience by design; legally recognised after one formal hearing</span
                 >
               </div>
               <div
@@ -449,10 +747,31 @@
               <div
                 class="cell bad status"
                 data-row="r10"
-                title="Not available (rec room only, unofficial patch)"
+                title="Not available — holo‑communicators only, removed after a malfunction"
               >
                 <span class="icon" aria-hidden="true">✕</span
-                ><span class="txt">Not available (rec room only, unofficial patch)</span>
+                ><span class="txt"
+                  >Not available — holo‑communicators only, removed after a malfunction</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r10"
+                title="Proto‑holodeck — first in‑universe use of the term"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Proto‑holodeck — first in‑universe use of the term</span>
+              </div>
+              <div
+                class="cell bad status"
+                data-row="r10"
+                title="Not available in live‑action canon; a simulation‑capable rec room exists only in The Animated Series"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >Not available in live‑action canon; a simulation‑capable rec room exists only in
+                  The Animated Series</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -465,18 +784,40 @@
               <div
                 class="cell yes status"
                 data-row="r10"
+                title="Holosuites — commercially operated by Quark, not a Starfleet‑native system"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Holosuites — commercially operated by Quark, not a Starfleet‑native system</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r10"
                 title="Full holodeck, doubles as emergency medical bay"
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Full holodeck, doubles as emergency medical bay</span>
               </div>
               <div
-                class="cell yes status"
+                class="cell warn status"
                 data-row="r10"
-                title="Holodeck + programmable matter furniture"
+                title="Limited — no full holodeck seen aboard La Sirena; holograms substitute"
               >
-                <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Holodeck + programmable matter furniture</span>
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Limited — no full holodeck seen aboard La Sirena; holograms substitute</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r10"
+                title="Programmable matter furniture; no classic holodeck confirmed on‑screen"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Programmable matter furniture; no classic holodeck confirmed on‑screen</span
+                >
               </div>
               <div
                 class="cell bad status"
@@ -496,6 +837,12 @@
               <div class="cell na status" data-row="r11" title="Not available">
                 <span class="icon" aria-hidden="true">–</span><span class="txt">Not available</span>
               </div>
+              <div class="cell na status" data-row="r11" title="Not available">
+                <span class="icon" aria-hidden="true">–</span><span class="txt">Not available</span>
+              </div>
+              <div class="cell na status" data-row="r11" title="Not available">
+                <span class="icon" aria-hidden="true">–</span><span class="txt">Not available</span>
+              </div>
               <div
                 class="cell warn status"
                 data-row="r11"
@@ -505,12 +852,30 @@
                 ><span class="txt">Moriarty (unplanned, contained after incident)</span>
               </div>
               <div
+                class="cell na status"
+                data-row="r11"
+                title="Not available — holosuite characters don't persist as crew"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not available — holosuite characters don't persist as crew</span>
+              </div>
+              <div
                 class="cell yes status"
                 data-row="r11"
                 title="EMH — official, full‑time medical staff member"
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">EMH — official, full‑time medical staff member</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r11"
+                title="Emil / Enoch / Emmet — official hologram crew, all modelled on one officer"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Emil / Enoch / Emmet — official hologram crew, all modelled on one officer</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -539,24 +904,49 @@
 
               <div class="cell row-label togglable" data-row="r12">Authorization method</div>
               <div class="cell" data-row="r12">Manual key + verbal code</div>
+              <div class="cell" data-row="r12">Verbal command codes, standard Starfleet issue</div>
+              <div class="cell" data-row="r12">Verbal command authorization codes</div>
               <div class="cell" data-row="r12">Verbal command authorization codes</div>
               <div
                 class="cell warn status"
                 data-row="r12"
-                title="Command codes, bypassable by any sufficiently annoyed officer"
+                title="Command codes, bypassable by a spoofed but validly‑formatted voice code"
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt"
-                  >Command codes, bypassable by any sufficiently annoyed officer</span
+                  >Command codes, bypassable by a spoofed but validly‑formatted voice code</span
                 >
               </div>
               <div
                 class="cell warn status"
                 data-row="r12"
-                title="Command codes + biometric, Borg‑hardened by Seven of Nine"
+                title="Command codes, complicated by leftover Cardassian access hierarchies"
               >
                 <span class="icon" aria-hidden="true">▲</span
-                ><span class="txt">Command codes + biometric, Borg‑hardened by Seven of Nine</span>
+                ><span class="txt"
+                  >Command codes, complicated by leftover Cardassian access hierarchies</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r12"
+                title="Command codes + biometric; no confirmed Borg‑derived hardening despite the reputation"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Command codes + biometric; no confirmed Borg‑derived hardening despite the
+                  reputation</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r12"
+                title="Biometric + individual hologram judgment (each can question orders)"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Biometric + individual hologram judgment (each can question orders)</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -576,13 +966,26 @@
               </div>
 
               <div class="cell row-label">Hostile takeover incidents (logged)</div>
-              <div class="cell mono">1 (Romulan boarding, S1)</div>
-              <div class="cell mono">6+ (entities, computers, alien probes)</div>
-              <div class="cell mono">9+ (Borg, Lore, holodeck escapes)</div>
-              <div class="cell mono">5+ (Borg, alien parasites, Equinox crew)</div>
-              <div class="cell mono">3+ (Control AI, Section 31, rogue synths)</div>
               <div class="cell mono">
-                Ongoing — jailbreaks &amp; prompt injection attempts, daily
+                0 confirmed boardings in S1 — the "Romulan boarding" often cited didn't happen
+              </div>
+              <div class="cell mono">
+                2+ (Klingon war infiltration, Control AI hijack attempt, S2)
+              </div>
+              <div class="cell mono">1+ (Gorn boarding actions)</div>
+              <div class="cell mono">6+ (entities, computers, alien probes)</div>
+              <div class="cell mono">9+ (Bynars, Iconian virus, Moriarty ×2, Lore, Borg)</div>
+              <div class="cell mono">
+                5+ (Dominion, Cardassian sleeper protocols, Pah‑wraith/Keiko)
+              </div>
+              <div class="cell mono">5+ (Kazon seizure, Equinox crew, Borg encounters)</div>
+              <div class="cell mono">
+                3+ (synth uprising, Borg Queen attempt, changeling infiltration)
+              </div>
+              <div class="cell mono">1+ (Emerald Chain infiltration of Federation HQ systems)</div>
+              <div class="cell mono">
+                Ongoing — indirect prompt injection is 2026's top LLM security problem;
+                jailbreak-as-a-service now sold openly
               </div>
 
               <!-- GROUP: SENSORS & NAVIGATION -->
@@ -601,6 +1004,17 @@
                 ><span class="txt">Beta — frequently fails on first contact</span>
               </div>
               <div
+                class="cell warn status"
+                data-row="r14"
+                title="Standard issue, but needs real‑time learning for unfamiliar languages (e.g. Klingon)"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Standard issue, but needs real‑time learning for unfamiliar languages (e.g.
+                  Klingon)</span
+                >
+              </div>
+              <div
                 class="cell yes status"
                 data-row="r14"
                 title="Standard issue, reliable for most humanoid languages"
@@ -609,12 +1023,33 @@
                 ><span class="txt">Standard issue, reliable for most humanoid languages</span>
               </div>
               <div
+                class="cell warn status"
+                data-row="r14"
+                title="Standard issue, but only one on‑screen working demo — most alien dialogue is simply unexplained"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Standard issue, but only one on‑screen working demo — most alien dialogue is
+                  simply unexplained</span
+                >
+              </div>
+              <div
                 class="cell yes status"
                 data-row="r14"
                 title="Standard issue, real‑time, multi‑species"
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Standard issue, real‑time, multi‑species</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r14"
+                title="Standard issue, occasionally strained by Cardassian/Bajoran idiom"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Standard issue, occasionally strained by Cardassian/Bajoran idiom</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -630,13 +1065,20 @@
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Standard issue, near‑instant</span>
               </div>
+              <div class="cell yes status" data-row="r14" title="Standard issue, near‑instant">
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Standard issue, near‑instant</span>
+              </div>
               <div
                 class="cell yes status"
                 data-row="r14"
-                title="Real‑time translation across 50+ languages, live voice"
+                title="Real‑time voice translation, live — up to 70+ languages depending on assistant"
               >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Real‑time translation across 50+ languages, live voice</span>
+                ><span class="txt"
+                  >Real‑time voice translation, live — up to 70+ languages depending on
+                  assistant</span
+                >
               </div>
 
               <div class="cell row-label togglable" data-row="r15">Stellar cartography</div>
@@ -644,9 +1086,31 @@
                 <span class="icon" aria-hidden="true">✕</span
                 ><span class="txt">Manual star charts, physical logs</span>
               </div>
+              <div
+                class="cell yes status"
+                data-row="r15"
+                title="Spore‑drive navigation computer; not stellar cartography in the traditional sense"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Spore‑drive navigation computer; not stellar cartography in the traditional
+                  sense</span
+                >
+              </div>
               <div class="cell warn status" data-row="r15" title="Library computer lookups only">
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt">Library computer lookups only</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r15"
+                title="Library computer lookups only — 'stellar cartography' itself is an anachronistic term for this era"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Library computer lookups only — "stellar cartography" itself is an anachronistic
+                  term for this era</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -657,12 +1121,33 @@
                 ><span class="txt">Dedicated stellar cartography deck</span>
               </div>
               <div
+                class="cell warn status"
+                data-row="r15"
+                title="Wormhole‑adjacent sensor data; no dedicated cartography deck aboard the station"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Wormhole‑adjacent sensor data; no dedicated cartography deck aboard the
+                  station</span
+                >
+              </div>
+              <div
                 class="cell yes status"
                 data-row="r15"
-                title="Astrometrics lab, real‑time deep‑space mapping"
+                title="Astrometrics lab, added Season 4 — absent in Seasons 1–3"
               >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">Astrometrics lab, real‑time deep‑space mapping</span>
+                ><span class="txt">Astrometrics lab, added Season 4 — absent in Seasons 1–3</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r15"
+                title="Astrometrics‑descended systems, AI‑assisted route optimization"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Astrometrics‑descended systems, AI‑assisted route optimization</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -690,9 +1175,32 @@
               </div>
 
               <div class="cell row-label togglable" data-row="r16">Self‑repair capability</div>
-              <div class="cell bad status" data-row="r16" title="None — requires shipyard drydock">
+              <div
+                class="cell bad status"
+                data-row="r16"
+                title="None confirmed — the one on‑screen repair attempt used an alien station, not a Starfleet drydock"
+              >
                 <span class="icon" aria-hidden="true">✕</span
-                ><span class="txt">None — requires shipyard drydock</span>
+                ><span class="txt"
+                  >None confirmed — the one on‑screen repair attempt used an alien station, not a
+                  Starfleet drydock</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="r16"
+                title="None — requires engineering crew intervention"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt">None — requires engineering crew intervention</span>
+              </div>
+              <div
+                class="cell bad status"
+                data-row="r16"
+                title="None — requires engineering crew intervention"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt">None — requires engineering crew intervention</span>
               </div>
               <div
                 class="cell bad status"
@@ -711,12 +1219,33 @@
                 ><span class="txt">Partial — auto‑diagnostics, manual repair still needed</span>
               </div>
               <div
+                class="cell warn status"
+                data-row="r16"
+                title="Partial — Cardassian self‑diagnostic routines, Starfleet crew does the actual repair"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Partial — Cardassian self‑diagnostic routines, Starfleet crew does the actual
+                  repair</span
+                >
+              </div>
+              <div
                 class="cell yes status"
                 data-row="r16"
                 title="High — mandatory, given weekly hull breaches"
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">High — mandatory, given weekly hull breaches</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r16"
+                title="Partial — holograms self‑diagnose, ship repair still manual"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Partial — holograms self‑diagnose, ship repair still manual</span
+                >
               </div>
               <div
                 class="cell yes status"
@@ -737,29 +1266,44 @@
 
               <div class="cell row-label">Uptime (malfunction‑free episodes)</div>
               <div class="cell mono">~65%</div>
+              <div class="cell mono">~78%</div>
+              <div class="cell mono">~82%</div>
               <div class="cell mono">~70%</div>
               <div class="cell mono">~80%</div>
+              <div class="cell mono">~72%</div>
               <div class="cell mono">~75%</div>
+              <div class="cell mono">~83%</div>
               <div class="cell mono">~85%</div>
               <div class="cell mono">~99.9% (cloud SLA — no bridge klaxons)</div>
 
               <div class="cell row-label">Support channel</div>
               <div class="cell">Chief Engineer, on call, always stressed</div>
+              <div class="cell">Chief Engineer + spore‑drive specialist</div>
+              <div class="cell">Chief Engineer, minimal automation to lean on</div>
               <div class="cell">Chief Engineer + occasional miracle</div>
               <div class="cell">Chief Engineer + android specialist</div>
+              <div class="cell">Chief Engineer + a station that remembers being Cardassian</div>
               <div class="cell">Chief Engineer, 70,000 light‑years from HQ</div>
+              <div class="cell">Ship's pilot, doubling as a de facto fleet of engineers</div>
               <div class="cell">Chief Engineer + AI self‑service portal (Zora)</div>
               <div class="cell">Status page + support ticket, not a chief engineer</div>
 
               <div class="footnote-row">
-                * Discovery / Picard / SNW tier is chronologically the oldest and newest depending
-                on which side of the writers' room you ask; ordering here follows production era,
-                not in‑universe stardate.<br />
+                * Columns run in strict in‑universe stardate order, not production order — which is
+                why Discovery appears twice. Its own crew jumps roughly 930 years mid‑series; the
+                tech (and the sentient ship AI, Zora) genuinely differ that much between the two
+                appearances.<br />
+                * Strange New Worlds sits chronologically before TOS, and its computer is scored
+                accordingly — several rows above are a real regression from Discovery's own Season
+                2, not a mistake.<br />
                 * All uptime figures for the fictional tiers are unofficial estimates based on how
                 often the bridge crew says "did we lose main power again?"<br />
                 * Real World column reflects publicly available capabilities of current frontier
                 assistants (Claude, ChatGPT, Gemini) as of mid‑2026 — genuine sentience remains
-                unresolved and undemonstrated, not just roleplayed around.
+                unresolved and undemonstrated, not just roleplayed around.<br />
+                * Every claim above is backed by a specific episode citation — see the
+                <a href="report.html" style="color: var(--panel-orange)">full report</a> for
+                sources, transcript quotes, and everything this table had to leave out.
               </div>
             </div>
           </div>
