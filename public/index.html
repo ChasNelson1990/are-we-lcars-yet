@@ -30,7 +30,12 @@
         <button type="button" class="rail-btn" data-target="col-disco-zora">
           DISCOVERY<br />3189
         </button>
-        <button type="button" class="rail-btn" data-target="col-real">REAL WORLD<br />2026</button>
+        <button type="button" class="rail-btn" data-target="col-real-closed">
+          CLOSED SRC<br />2026
+        </button>
+        <button type="button" class="rail-btn" data-target="col-real-open">
+          OPEN SRC<br />2026
+        </button>
         <div class="rail-fill"></div>
         <div class="stardate" id="stardate">STARDATE —</div>
       </nav>
@@ -149,11 +154,20 @@
                 >
               </div>
 
-              <div class="cell col-head tier-real" id="col-real">
-                <span class="tier-era">2026 — REAL WORLD</span>
-                <span class="tier-plan">Claude / ChatGPT / Gemini</span>
+              <div class="cell col-head tier-real" id="col-real-closed">
+                <span class="tier-era">2026 — REAL WORLD (CLOSED)</span>
+                <span class="tier-plan">Apple + Frontier LLM Subscriptions</span>
                 <span class="best-for"
-                  >For crews who actually exist, reading this on a laptop instead of a bridge.</span
+                  >For crews who buy the whole ecosystem and expense the subscriptions.</span
+                >
+              </div>
+
+              <div class="cell col-head tier-real" id="col-real-open">
+                <span class="tier-era">2026 — REAL WORLD (OPEN)</span>
+                <span class="tier-plan">Framework + Fairphone + Open‑Weight LLMs</span>
+                <span class="best-for"
+                  >For crews who want root access, spare parts, and weights they can actually
+                  read.</span
                 >
               </div>
 
@@ -180,7 +194,10 @@
                 Distributed sentient interface — Zora speaks through any active terminal
               </div>
               <div class="cell">
-                Chat window, voice mode, browser &amp; OS‑level app integrations
+                Chat window, voice mode, deep OS‑level integration across phone, watch &amp; laptop
+              </div>
+              <div class="cell">
+                Terminal, self‑hosted web UIs (Open WebUI), Home Assistant voice for ambient pickup
               </div>
 
               <div class="cell row-label togglable" data-row="r2">Touchscreen GUI</div>
@@ -267,6 +284,17 @@
                 ><span class="txt"
                   >No native touchscreen, but a Computer Use agent can now operate one of
                   yours</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r2"
+                title="Linux touch support is real but patchy — and open computer‑use agents can drive a screen too"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Linux touch support is real but patchy — and open computer‑use agents can drive a
+                  screen too</span
                 >
               </div>
 
@@ -360,6 +388,17 @@
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Fully conversational, handles nuance and ambiguity well</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r3"
+                title="Open‑weight models are genuinely conversational — a step behind frontier on the hardest reasoning"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Open‑weight models are genuinely conversational — a step behind frontier on the
+                  hardest reasoning</span
+                >
               </div>
 
               <!-- GROUP: PERSONAL & FIELD HARDWARE -->
@@ -463,11 +502,23 @@
               <div
                 class="cell warn status"
                 data-row="r17"
-                title="No fixed terminal — everything's a browser tab or app window"
+                title="No fixed terminal — though a Mac Studio + Studio Display makes a convincing ops station"
               >
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt"
-                  >No fixed terminal — everything's a browser tab or app window</span
+                  >No fixed terminal — though a Mac Studio + Studio Display makes a convincing ops
+                  station</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r17"
+                title="Framework laptop or desktop — modular, repairable, upgradeable; still no fixed bridge console"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Framework laptop or desktop — modular, repairable, upgradeable; still no fixed
+                  bridge console</span
                 >
               </div>
 
@@ -554,9 +605,21 @@
                 <span class="icon" aria-hidden="true">▲</span
                 ><span class="txt">No standalone PADD — folded into the tricom/delta badge</span>
               </div>
-              <div class="cell yes status" data-row="r18" title="It's a smartphone or tablet app">
+              <div
+                class="cell yes status"
+                data-row="r18"
+                title="iPhone / iPad — polished, locked down, glued shut"
+              >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">It's a smartphone or tablet app</span>
+                ><span class="txt">iPhone / iPad — polished, locked down, glued shut</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r18"
+                title="Fairphone — a user‑replaceable battery beats a PADD"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Fairphone — a user‑replaceable battery beats a PADD</span>
               </div>
 
               <div class="cell row-label togglable" data-row="r19">Handheld sensor device</div>
@@ -638,10 +701,23 @@
               <div
                 class="cell warn status"
                 data-row="r19"
-                title="Phone sensors + health apps — no dedicated scanner"
+                title="iPhone + Apple Watch sensors — health tracking, LiDAR, no dedicated scanner"
               >
                 <span class="icon" aria-hidden="true">▲</span
-                ><span class="txt">Phone sensors + health apps — no dedicated scanner</span>
+                ><span class="txt"
+                  >iPhone + Apple Watch sensors — health tracking, LiDAR, no dedicated scanner</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r19"
+                title="Open hardware boards + SDR + thermal cams — more tricorder‑like, more assembly required"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Open hardware boards + SDR + thermal cams — more tricorder‑like, more assembly
+                  required</span
+                >
               </div>
 
               <div class="cell row-label togglable" data-row="r20">Personal communicator</div>
@@ -731,10 +807,21 @@
               <div
                 class="cell yes status"
                 data-row="r20"
-                title="It's a smartphone — calls, messaging, the works"
+                title="iPhone + Apple Watch — tap your wrist and talk"
               >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">It's a smartphone — calls, messaging, the works</span>
+                ><span class="txt">iPhone + Apple Watch — tap your wrist and talk</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r20"
+                title="Fairphone on /e/OS + Signal — E2E‑encrypted comms on hardware you can open with a screwdriver"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Fairphone on /e/OS + Signal — E2E‑encrypted comms on hardware you can open with a
+                  screwdriver</span
+                >
               </div>
 
               <!-- GROUP: DATA STORAGE & PROCESSING -->
@@ -762,7 +849,11 @@
                 Programmable matter; mycelial network is used for navigation, not storage
               </div>
               <div class="cell">
-                Cloud data centers, vector databases — no physical chips onboard
+                Cloud data centers, vector databases — your data on someone else's chips
+              </div>
+              <div class="cell">
+                Self‑hosted NAS or E2E‑encrypted cloud (Proton Drive) — either way, only you hold
+                the keys
               </div>
 
               <div class="cell row-label">Core architecture</div>
@@ -775,7 +866,11 @@
               <div class="cell">Redundant cores + adaptive bio‑neural network</div>
               <div class="cell">Distributed core + independently‑hosted hologram personalities</div>
               <div class="cell">Distributed sentient substrate (Zora‑class)</div>
-              <div class="cell">Transformer neural networks on GPU / TPU clusters</div>
+              <div class="cell">Transformer neural networks on hyperscaler GPU / TPU clusters</div>
+              <div class="cell">
+                Same transformers, quantized (GGUF) onto a consumer GPU or unified‑memory mini PC at
+                home
+              </div>
 
               <div class="cell row-label togglable" data-row="r6">Processing redundancy</div>
               <div class="cell bad status" data-row="r6" title="None — single point of failure">
@@ -859,6 +954,17 @@
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Multi‑region cloud redundancy, load‑balanced datacenters</span>
               </div>
+              <div
+                class="cell warn status"
+                data-row="r6"
+                title="Whatever redundancy you build — RAID and a second box, or it's a single point of failure"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Whatever redundancy you build — RAID and a second box, or it's a single point of
+                  failure</span
+                >
+              </div>
 
               <!-- GROUP: AI & AUTONOMY -->
               <div class="group-head">
@@ -940,6 +1046,14 @@
               >
                 <span class="icon" aria-hidden="true">●</span
                 ><span class="txt">Yes — distinct assistant personas (Claude, GPT, Gemini)</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r7"
+                title="Any persona you like — the system prompt is yours to edit"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Any persona you like — the system prompt is yours to edit</span>
               </div>
 
               <div class="cell row-label togglable" data-row="r8">Autonomous decision‑making</div>
@@ -1027,6 +1141,16 @@
                   per app</span
                 >
               </div>
+              <div
+                class="cell warn status"
+                data-row="r8"
+                title="Open agent stacks run locally — capable, but you're the safety team"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Open agent stacks run locally — capable, but you're the safety team</span
+                >
+              </div>
 
               <div class="cell row-label togglable" data-row="r9">Known sentience risk</div>
               <div class="cell na status" data-row="r9" title="Not observed">
@@ -1105,6 +1229,14 @@
               >
                 <span class="icon" aria-hidden="true">–</span
                 ><span class="txt">Debated, not established — no verified sentience to date</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="r9"
+                title="Same open question — but at least you can read the weights"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Same open question — but at least you can read the weights</span>
               </div>
 
               <!-- GROUP: SIMULATION & HOLOGRAPHY -->
@@ -1197,11 +1329,22 @@
               <div
                 class="cell bad status"
                 data-row="r10"
-                title="Not available — VR/AR exists, no forcefield‑generated matter"
+                title="Not available — Vision Pro is the closest ticket, still no forcefield‑generated matter"
               >
                 <span class="icon" aria-hidden="true">✕</span
                 ><span class="txt"
-                  >Not available — VR/AR exists, no forcefield‑generated matter</span
+                  >Not available — Vision Pro is the closest ticket, still no forcefield‑generated
+                  matter</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="r10"
+                title="Not available — SteamVR on Linux exists, still no photons with mass"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >Not available — SteamVR on Linux exists, still no photons with mass</span
                 >
               </div>
 
@@ -1270,6 +1413,16 @@
                   >No literal holograms — persistent AI personas across every app</span
                 >
               </div>
+              <div
+                class="cell warn status"
+                data-row="r11"
+                title="Self‑hosted personas persist exactly as long as your backups do"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Self‑hosted personas persist exactly as long as your backups do</span
+                >
+              </div>
 
               <!-- GROUP: SECURITY & ACCESS CONTROL -->
               <div class="group-head">
@@ -1334,10 +1487,21 @@
               <div
                 class="cell yes status"
                 data-row="r12"
-                title="OAuth, API keys, device biometrics"
+                title="Face ID, passkeys, OAuth — smooth and proprietary"
               >
                 <span class="icon" aria-hidden="true">●</span
-                ><span class="txt">OAuth, API keys, device biometrics</span>
+                ><span class="txt">Face ID, passkeys, OAuth — smooth and proprietary</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="r12"
+                title="Passkeys, FIDO2 hardware keys, Bitwarden / Proton Pass — auditable end to end"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Passkeys, FIDO2 hardware keys, Bitwarden / Proton Pass — auditable end to
+                  end</span
+                >
               </div>
 
               <div class="cell row-label">Hostile takeover incidents (logged)</div>
@@ -1361,6 +1525,10 @@
               <div class="cell mono">
                 Ongoing — indirect prompt injection is 2026's top LLM security problem;
                 jailbreak-as-a-service now sold openly
+              </div>
+              <div class="cell mono">
+                Same prompt‑injection problem, and you're your own security team — but the attack
+                surface is inspectable
               </div>
 
               <!-- GROUP: SENSORS & NAVIGATION -->
@@ -1455,6 +1623,17 @@
                   assistant</span
                 >
               </div>
+              <div
+                class="cell warn status"
+                data-row="r14"
+                title="Whisper + open translation models run locally — near‑real‑time, fewer languages, no cloud required"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Whisper + open translation models run locally — near‑real‑time, fewer languages,
+                  no cloud required</span
+                >
+              </div>
 
               <div class="cell row-label togglable" data-row="r15">Stellar cartography</div>
               <div class="cell bad status" data-row="r15" title="Manual star charts, physical logs">
@@ -1540,6 +1719,17 @@
                 <span class="icon" aria-hidden="true">–</span
                 ><span class="txt"
                   >Not applicable — but excellent at analyzing any dataset you give it</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="r15"
+                title="Stellarium + open sky‑survey data — the actual star charts are already open source"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Stellarium + open sky‑survey data — the actual star charts are already open
+                  source</span
                 >
               </div>
 
@@ -1638,6 +1828,17 @@
                 <span class="icon" aria-hidden="true">✕</span
                 ><span class="txt">None — requires human engineers to patch and redeploy</span>
               </div>
+              <div
+                class="cell warn status"
+                data-row="r16"
+                title="The system can't fix itself, but you can — schematics, parts, and source are all published"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >The system can't fix itself, but you can — schematics, parts, and source are all
+                  published</span
+                >
+              </div>
 
               <div class="cell row-label">Uptime (malfunction‑free episodes)</div>
               <div class="cell mono">~65%</div>
@@ -1650,6 +1851,7 @@
               <div class="cell mono">~83%</div>
               <div class="cell mono">~85%</div>
               <div class="cell mono">~99.9% (cloud SLA — no bridge klaxons)</div>
+              <div class="cell mono">Your homelab, your SLA — exactly as good as your backups</div>
 
               <div class="cell row-label">Support channel</div>
               <div class="cell">Chief Engineer, on call, always stressed</div>
@@ -1662,6 +1864,9 @@
               <div class="cell">Ship's pilot, doubling as a de facto fleet of engineers</div>
               <div class="cell">Chief Engineer + AI self‑service portal (Zora)</div>
               <div class="cell">Status page + support ticket, not a chief engineer</div>
+              <div class="cell">
+                You <em>are</em> the chief engineer — plus forums, Matrix rooms, and GitHub issues
+              </div>
 
               <div class="footnote-row">
                 * Columns run in strict in‑universe stardate order, not production order — which is
@@ -1673,9 +1878,15 @@
                 2, not a mistake.<br />
                 * All uptime figures for the fictional tiers are unofficial estimates based on how
                 often the bridge crew says "did we lose main power again?"<br />
-                * Real World column reflects publicly available capabilities of current frontier
-                assistants (Claude, ChatGPT, Gemini) as of mid‑2026 — genuine sentience remains
-                unresolved and undemonstrated, not just roleplayed around.<br />
+                * The two Real World columns reflect publicly available capabilities as of mid‑2026.
+                Closed Source assumes you buy the whole proprietary stack — Apple hardware plus
+                frontier assistant subscriptions (Claude, ChatGPT, Gemini). Open Source assumes
+                repairable‑first hardware, open‑weight models run on your own machines, and
+                privacy‑first E2E‑encrypted services with open clients (Proton, Signal) — hosted
+                open‑weight endpoints count only as caveats. Both columns may include paid products;
+                the dividing line is who holds the keys and whether you can read the code. Genuine
+                sentience remains unresolved and undemonstrated in both, not just roleplayed
+                around.<br />
                 * Every claim above is backed by a specific episode citation — see the
                 <a href="report.html" style="color: var(--panel-orange)">full report</a> for
                 sources, transcript quotes, and everything this table had to leave out.

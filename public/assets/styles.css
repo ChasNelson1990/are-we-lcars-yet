@@ -141,7 +141,8 @@ body {
   background: var(--panel-gold);
 }
 
-.rail-btn[data-target="col-real"] {
+.rail-btn[data-target="col-real-closed"],
+.rail-btn[data-target="col-real-open"] {
   background: transparent;
   border: 1px solid var(--text-dim);
   color: var(--text);
@@ -269,12 +270,12 @@ h1.display span {
 }
 
 .grid-inner {
-  min-width: 2200px;
+  min-width: 2420px;
 }
 
 .tier-grid {
   display: grid;
-  grid-template-columns: 220px repeat(10, 1fr);
+  grid-template-columns: 220px repeat(11, 1fr);
   gap: 2px;
   align-items: stretch;
 }
