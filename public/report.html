@@ -31,7 +31,12 @@
         <button type="button" class="rail-btn" data-target="col-disco-zora">
           DISCOVERY<br />3189
         </button>
-        <button type="button" class="rail-btn" data-target="col-real">REAL WORLD<br />2026</button>
+        <button type="button" class="rail-btn" data-target="col-real-closed">
+          CLOSED SRC<br />2026
+        </button>
+        <button type="button" class="rail-btn" data-target="col-real-open">
+          OPEN SRC<br />2026
+        </button>
         <button type="button" class="rail-btn" data-target="col-method">
           METHOD<br />&amp; SOURCES
         </button>
@@ -3307,22 +3312,165 @@
           </div>
         </section>
 
-        <!-- ============ REAL WORLD ============ -->
-        <section class="report-section" id="col-real">
+        <!-- ============ REAL WORLD (CLOSED SOURCE) ============ -->
+        <section class="report-section" id="col-real-closed">
           <h2
             class="tier-title"
             style="background: transparent; color: var(--text); border: 1px solid var(--text-dim)"
           >
-            Real World <span class="tier-era-tag">2026 &middot; Claude / ChatGPT / Gemini</span>
+            Real World &mdash; Closed Source
+            <span class="tier-era-tag">2026 &middot; Apple + Frontier LLM Subscriptions</span>
           </h2>
           <div class="report-body">
             <p class="summary">
-              This tier isn't dramatized canon, so it isn't subject to the same episode-citation
-              methodology as the other nine &mdash; it reflects publicly documented capabilities of
-              current frontier assistants rather than a script. It wasn't independently
-              re-researched this pass; the comparison page's own footnote already flags its more
-              speculative claims (genuine AI sentience remains "unresolved and undemonstrated, not
-              just roleplayed around").
+              This tier isn't dramatized canon, so it isn't subject to the episode-citation
+              methodology used for the nine fictional tiers &mdash; it reflects publicly documented
+              capabilities rather than a script. It represents the "just buy everything" strategy:
+              the full proprietary ecosystem plus simultaneous top-tier subscriptions to the
+              frontier assistants (Claude, ChatGPT, Gemini). Genuine AI sentience remains
+              "unresolved and undemonstrated, not just roleplayed around".
+            </p>
+            <h3 class="block-tag">Best case as of mid-2026 &mdash; the maxed-out card</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Station</th>
+                    <th>Pick</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Main computer core</td>
+                    <td>Mac Studio (M3 Ultra, 256 GB unified memory) + Studio Display</td>
+                    <td class="notes-cite">
+                      The 512 GB memory option quietly vanished from the configurator in March 2026
+                      &mdash; even at this tier, the vendor decides what you're allowed to buy.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bridge console</td>
+                    <td>MacBook Pro (M5 generation, maxed)</td>
+                    <td class="notes-cite">
+                      Superb hardware; battery and RAM are glued and soldered, respectively.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Away-team kit</td>
+                    <td>iPhone Pro + Apple Watch Ultra + Vision Pro</td>
+                    <td class="notes-cite">
+                      The closest 2026 gets to a tricorder, a comm badge, and a holodeck ticket.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ship's computer voice</td>
+                    <td>Claude Max + ChatGPT Pro + Google AI Ultra, all at once</td>
+                    <td class="notes-cite">
+                      Frontier-grade reasoning, multi-hour agents, real-time translation &mdash;
+                      metered monthly, revocable at any time, weights never leave the datacenter.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary" style="margin-top: 16px">
+              What this stack can't buy at any price: root access, schematics, a user-replaceable
+              battery, or your data staying under keys you hold. The subscription is the product
+              &mdash; cancel it and the ship's computer stops answering hails.
+            </p>
+          </div>
+        </section>
+
+        <!-- ============ REAL WORLD (OPEN SOURCE) ============ -->
+        <section class="report-section" id="col-real-open">
+          <h2
+            class="tier-title"
+            style="background: transparent; color: var(--text); border: 1px solid var(--text-dim)"
+          >
+            Real World &mdash; Open Source
+            <span class="tier-era-tag">2026 &middot; Framework + Fairphone + Open-Weight LLMs</span>
+          </h2>
+          <div class="report-body">
+            <p class="summary">
+              Also not canon, also exempt from the episode-citation methodology. This tier
+              represents the open, repairable, privacy-first strategy: open-weight models run
+              local-first on hardware you can open with a screwdriver, plus paid E2E-encrypted
+              services with open-source clients (Proton, Signal). The dividing line from the closed
+              column isn't price &mdash; both columns spend real money &mdash; it's who holds the
+              keys and whether you can read the code. Hosted open-weight API endpoints exist and are
+              cheap, but they count here only as a caveat: the moment your tokens leave the
+              building, you're back to trusting someone else's datacenter.
+            </p>
+            <h3 class="block-tag">Best case as of mid-2026 &mdash; the flagship refit</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Station</th>
+                    <th>Pick</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Main computer core</td>
+                    <td>
+                      Framework Desktop (Ryzen AI Max+ 395, 128 GB unified memory) as an always-on
+                      local LLM server
+                    </td>
+                    <td class="notes-cite">
+                      Up to ~96 GB assignable as VRAM &mdash; runs 70&ndash;120B-class open-weight
+                      models (Qwen3 / GPT-OSS / Llama family, Q4&ndash;Q5 GGUF) at genuinely usable
+                      speeds via llama.cpp or Ollama.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bridge console</td>
+                    <td>Framework Laptop 13 (Ryzen AI 9 HX 370, 96 GB), Arch Linux + i3</td>
+                    <td class="notes-cite">
+                      Every board, port, and panel is a published, orderable part; the mainboard
+                      upgrades in place instead of becoming e-waste.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Personal communicator</td>
+                    <td>Fairphone (Gen. 6) with /e/OS factory-installed + Signal</td>
+                    <td class="notes-cite">
+                      Five-year warranty, software support to 2033, and a battery that swaps without
+                      a heat gun.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ship's library &amp; comms</td>
+                    <td>
+                      Self-hosted NAS + Proton Unlimited (Mail / Drive / Pass / VPN, E2E-encrypted)
+                    </td>
+                    <td class="notes-cite">
+                      Paid, not self-hosted &mdash; but zero-knowledge encryption and open-source
+                      clients keep the keys on your side of the airlock.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Security &amp; ambient voice</td>
+                    <td>
+                      FIDO2 hardware key (Nitrokey-class, open hardware) + Home Assistant with a
+                      local Whisper voice pipeline
+                    </td>
+                    <td class="notes-cite">
+                      "Computer, lights" works entirely on-LAN &mdash; no cloud wake word, no
+                      transcript leaves the ship.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary" style="margin-top: 16px">
+              Where it honestly lands: the local models are a step behind the frontier on the
+              hardest reasoning, the voice pipeline adds a beat of latency the closed stack doesn't,
+              and the integration polish is yours to build. In exchange, nothing in this loadout can
+              be remotely bricked, silently retrained, or discontinued out from under you &mdash;
+              and every claim it makes about privacy is auditable rather than promised.
             </p>
           </div>
         </section>
