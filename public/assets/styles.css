@@ -606,6 +606,140 @@ h1.display span {
   color: #5c5a6e;
 }
 
+/* ---------- MOBILE TIER CAROUSEL ---------- */
+.tier-carousel {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 0 0;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  padding: 0 20px 4px;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  scroll-snap-align: center;
+  background: var(--row-alt);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+}
+
+.carousel-card-body {
+  padding: 4px 20px 20px;
+  border-radius: 0 0 14px 14px;
+}
+
+.carousel-group {
+  font-family: Antonio, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--panel-orange);
+  margin: 20px 0 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.carousel-card-body > .carousel-group:first-child {
+  margin-top: 16px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.carousel-field {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.carousel-field:last-child {
+  border-bottom: none;
+}
+
+.carousel-field .field-label {
+  font-family: Antonio, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.carousel-value {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.carousel-value.mono {
+  font-family: "Space Mono", monospace;
+  font-size: 0.78rem;
+}
+
+.carousel-value .pill {
+  margin-right: 6px;
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.carousel-arrow {
+  background: var(--panel-lilac);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.carousel-arrow:focus-visible {
+  outline: 2px solid var(--panel-orange);
+  outline-offset: 2px;
+}
+
+.carousel-indicator {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.carousel-footnote {
+  padding: 4px 20px 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.66rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.carousel-footnote a {
+  color: var(--panel-orange);
+}
+
+.rail-btn.active {
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+}
+
 @media (max-width: 900px) {
   .lcars-frame {
     grid-template-columns: 1fr;
@@ -637,8 +771,16 @@ h1.display span {
     padding: 36px 20px;
   }
 
+  .legend {
+    display: none;
+  }
+
   .grid-wrap {
-    padding: 16px 20px 0;
+    display: none;
+  }
+
+  .tier-carousel {
+    display: flex;
   }
 
   .cta-strip {
