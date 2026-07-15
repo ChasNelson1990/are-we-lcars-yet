@@ -14,10 +14,14 @@ function updateStardate() {
 updateStardate();
 setInterval(updateStardate, 60000);
 
+let scrollCarouselToTier = null;
+
 document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
   btn.addEventListener("click", function () {
-    const target = document.getElementById(btn.getAttribute("data-target"));
+    const targetId = btn.getAttribute("data-target");
+    const target = document.getElementById(targetId);
     if (target) target.scrollIntoView({ inline: "center", block: "nearest" });
+    if (scrollCarouselToTier) scrollCarouselToTier(targetId);
   });
 });
 
@@ -55,8 +59,6 @@ if (tierGrid) {
     toggleRow(target.getAttribute("data-row"));
   });
 }
-
-let scrollCarouselToTier = null;
 
 const tierCarousel = document.getElementById("tier-carousel");
 if (tierGrid && tierCarousel) {
@@ -175,10 +177,63 @@ if (tierGrid && tierCarousel) {
       track.appendChild(card);
     });
 
-    return { tierIds: tierIds, cards: cards };
+    return { tierIds: tierIds, cards: cards, track: track };
   };
 
   const built = buildCarousel();
-  window.__tierCarouselCards = built.cards;
-  window.__tierCarouselTierIds = built.tierIds;
+  const cards = built.cards;
+  const tierIds = built.tierIds;
+  const track = built.track;
+
+  const prevBtn = document.getElementById("carousel-prev");
+  const nextBtn = document.getElementById("carousel-next");
+  const indicator = document.getElementById("carousel-indicator");
+  const railButtons = Array.from(document.querySelectorAll(".rail-btn[data-target]"));
+
+  let activeIndex = 0;
+
+  const updateNav = function (index) {
+    activeIndex = index;
+    indicator.textContent = index + 1 + " / " + cards.length;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === cards.length - 1;
+    railButtons.forEach(function (btn) {
+      btn.classList.toggle("active", btn.getAttribute("data-target") === tierIds[index]);
+    });
+  };
+
+  const scrollToIndex = function (index) {
+    const clamped = Math.max(0, Math.min(cards.length - 1, index));
+    cards[clamped].scrollIntoView({ inline: "center", block: "nearest" });
+  };
+
+  scrollCarouselToTier = function (tierId) {
+    const index = tierIds.indexOf(tierId);
+    if (index !== -1) scrollToIndex(index);
+  };
+
+  prevBtn.addEventListener("click", function () {
+    scrollToIndex(activeIndex - 1);
+  });
+  nextBtn.addEventListener("click", function () {
+    scrollToIndex(activeIndex + 1);
+  });
+
+  if (cards.length > 0) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const index = cards.indexOf(entry.target);
+            if (index !== -1) updateNav(index);
+          }
+        });
+      },
+      { root: track, threshold: 0.6 }
+    );
+    cards.forEach(function (card) {
+      observer.observe(card);
+    });
+    updateNav(0);
+  }
 }
