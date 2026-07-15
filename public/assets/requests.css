@@ -1,0 +1,49 @@
+/* Request Log page-only components. Loaded alongside styles.css; shares its
+   tokens (--bg, --panel-*, --text*, --hairline) rather than redefining them,
+   so this page reads as the same terminal as the other two. */
+
+.request-toc {
+  padding: 20px 40px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.request-toc a {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--panel-orange);
+  text-decoration: none;
+  border: 1px solid var(--panel-orange);
+  border-radius: 14px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  transition: filter 0.15s ease;
+}
+
+.request-toc a:hover,
+.request-toc a:focus-visible {
+  filter: brightness(1.25);
+}
+
+/* Sticky group headers give orientation on this page's long vertical scroll.
+   Scoped here rather than on the shared .group-head rule so index.html's
+   existing groups render unchanged. Needs an opaque background since
+   .group-head is transparent by default and would otherwise let scrolling
+   cells show through underneath the pinned label.
+
+   Note: .grid-wrap sets overflow-x: auto with no explicit overflow-y, which
+   per spec makes overflow-y compute to auto too — meaning this sticky value
+   resolves against .grid-wrap's own box, not the viewport. That's harmless
+   here because .grid-wrap never constrains its own height (it grows to fit
+   its content), so there's nothing for it to scroll internally — but verify
+   this visually in a browser, since neither of the other two pages uses
+   sticky positioning inside the scrollable grid area today. */
+.group-head.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg);
+  scroll-margin-top: 0;
+}

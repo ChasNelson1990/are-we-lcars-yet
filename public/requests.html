@@ -1,0 +1,2693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Log — Are We LCARS Yet?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/requests.css" />
+  </head>
+  <body>
+    <div class="lcars-frame">
+      <nav class="lcars-rail">
+        <div class="elbow"></div>
+        <a href="index.html" class="rail-link">&larr; COMPARE<br />PLANS</a>
+        <a href="report.html" class="rail-link">FULL REPORT<br />+ SOURCES</a>
+        <button type="button" class="rail-btn" data-target="col-nx01">NX-01<br />2151</button>
+        <button type="button" class="rail-btn" data-target="col-disco-early">
+          DISCOVERY<br />2256
+        </button>
+        <button type="button" class="rail-btn" data-target="col-snw">SNW<br />2259</button>
+        <button type="button" class="rail-btn" data-target="col-tos">TOS<br />2265</button>
+        <button type="button" class="rail-btn" data-target="col-tng">TNG<br />2364</button>
+        <button type="button" class="rail-btn" data-target="col-ds9">DS9<br />2369</button>
+        <button type="button" class="rail-btn" data-target="col-voy">VOYAGER<br />2371</button>
+        <button type="button" class="rail-btn" data-target="col-picard">PICARD<br />2399</button>
+        <button type="button" class="rail-btn" data-target="col-disco-zora">
+          DISCOVERY<br />3189
+        </button>
+        <button type="button" class="rail-btn" data-target="col-real-closed">
+          CLOSED SRC<br />2026
+        </button>
+        <button type="button" class="rail-btn" data-target="col-real-open">
+          OPEN SRC<br />2026
+        </button>
+        <div class="rail-fill"></div>
+        <div class="stardate" id="stardate">STARDATE —</div>
+      </nav>
+
+      <main>
+        <div class="top-bar">
+          <div class="chip c1"></div>
+          <div class="chip c2"></div>
+          <div class="chip c3"></div>
+        </div>
+
+        <div class="hero">
+          <span class="eyebrow">COMPUTER CORE // REQUEST HANDLING DIVISION</span>
+          <h1 class="display">What can you actually <span>ask it to do?</span></h1>
+          <p class="sub">
+            The comparison page grades features; this page grades requests. One row per request
+            <em>type</em> — not per instance, those are logged in the
+            <a href="report.html" style="color: var(--panel-orange)">full report</a> — with a
+            verdict per generation and a citation or an honest "not sourced yet" behind every claim.
+            Rows follow the same sourcing rules as the report:
+            <a href="report.html#col-method" style="color: var(--panel-orange)"
+              >Method &amp; Sources</a
+            >.
+          </p>
+          <p class="sub">
+            This is a curated seed set, not exhaustive coverage — expect real gaps, marked honestly
+            rather than guessed at.
+          </p>
+        </div>
+
+        <nav class="request-toc" aria-label="Jump to category">
+          <a href="#grp-food">Food &amp; Beverage</a>
+          <a href="#grp-holo">Entertainment &amp; Holography</a>
+          <a href="#grp-env">Environmental &amp; Ship Systems</a>
+          <a href="#grp-compute">Computation &amp; Info Lookup</a>
+          <a href="#grp-comms">Communication &amp; Translation</a>
+          <a href="#grp-medical">Medical &amp; Bio-Scanning</a>
+          <a href="#grp-nav">Navigation, Sensors &amp; Security</a>
+          <a href="#grp-assist">Personal Assistant &amp; Diagnostics</a>
+        </nav>
+
+        <div class="legend">
+          <span class="l-yes">Achieved</span>
+          <span class="l-warn">Achieved with caveats</span>
+          <span class="l-bad">Not achieved</span>
+          <span class="l-na">Not applicable / not sourced yet</span>
+          <span>Hover an icon for detail · click a row to expand it</span>
+        </div>
+
+        <div class="grid-wrap">
+          <div class="grid-inner">
+            <div class="tier-grid">
+              <!-- HEADER ROW -->
+              <div class="cell row-label"></div>
+
+              <div class="cell col-head tier-nx01" id="col-nx01">
+                <span class="tier-era">2151 — ENT</span>
+                <span class="tier-plan">NX&#8209;01</span>
+              </div>
+
+              <div class="cell col-head tier-disco-early" id="col-disco-early">
+                <span class="tier-era">2256 — DISCO (S1&ndash;2)</span>
+                <span class="tier-plan">USS Discovery, Crossfield Class</span>
+              </div>
+
+              <div class="cell col-head tier-snw" id="col-snw">
+                <span class="tier-era">2259 — SNW</span>
+                <span class="tier-plan">USS Enterprise (Pike refit)</span>
+              </div>
+
+              <div class="cell col-head tier-tos" id="col-tos">
+                <span class="tier-era">2265 — TOS</span>
+                <span class="tier-plan">Constitution Class</span>
+              </div>
+
+              <div class="cell col-head tier-tng" id="col-tng">
+                <span class="tier-era">2364 — TNG</span>
+                <span class="tier-plan">Galaxy Class</span>
+              </div>
+
+              <div class="cell col-head tier-ds9" id="col-ds9">
+                <span class="tier-era">2369 — DS9</span>
+                <span class="tier-plan">Terok Nor / Ops Station</span>
+              </div>
+
+              <div class="cell col-head tier-voy" id="col-voy">
+                <span class="tier-era">2371 — VOY</span>
+                <span class="tier-plan">Intrepid Class</span>
+              </div>
+
+              <div class="cell col-head tier-picard" id="col-picard">
+                <span class="tier-era">2399 — PIC</span>
+                <span class="tier-plan">La Sirena / Starfleet HQ</span>
+              </div>
+
+              <div class="cell col-head tier-disco-zora" id="col-disco-zora">
+                <span class="tier-era">3189 — DISCO (S3+)</span>
+                <span class="tier-plan">USS Discovery, Zora Class</span>
+              </div>
+
+              <div class="cell col-head tier-real" id="col-real-closed">
+                <span class="tier-era">2026 — REAL WORLD (CLOSED)</span>
+                <span class="tier-plan">Apple + Frontier LLM Subscriptions</span>
+              </div>
+
+              <div class="cell col-head tier-real" id="col-real-open">
+                <span class="tier-era">2026 — REAL WORLD (OPEN)</span>
+                <span class="tier-plan">Framework + Fairphone + Open&#8209;Weight LLMs</span>
+              </div>
+
+              <!-- GROUP: FOOD & BEVERAGE SERVICE -->
+              <div class="group-head sticky" id="grp-food">
+                <span class="tag">Food &amp; Beverage Service</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq1">
+                Order a specific dish or drink by voice
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq1"
+                title="Mess-hall dispenser takes a spoken order ('Milk, cold.') — no food replicator exists yet, so it's Chef's cabinet system, not synthesis on demand"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Mess-hall dispenser takes a spoken order ("Milk, cold.") — no food replicator
+                  exists yet, so it's Chef's cabinet system, not synthesis on demand</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq1"
+                title="No on-screen voice drink-order instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen voice drink-order instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq1"
+                title="Food service here runs on 'matter synthesizers,' not replicators, per this tier's own research — no specific voice-order instance sourced yet"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Food service here runs on "matter synthesizers," not replicators, per this tier's
+                  own research — no specific voice-order instance sourced yet</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq1"
+                title="No specific voice drink-order instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific voice drink-order instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq1"
+                title="'Computer, a glass of water, five degrees.' — Riker replicates a cold drink for a visiting dignitary, a textbook mundane order"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, a glass of water, five degrees." — Riker replicates a cold drink for a
+                  visiting dignitary, a textbook mundane order</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq1"
+                title="'Computer, orange juice.' — Jake orders breakfast in Sisko's quarters, an ordinary replicator request"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, orange juice." — Jake orders breakfast in Sisko's quarters, an
+                  ordinary replicator request</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq1"
+                title="Coffee replicates fine, but under explicit power rationing this far from a starbase — a recurring constraint, not a one-off"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Coffee replicates fine, but under explicit power rationing this far from a
+                  starbase — a recurring constraint, not a one-off</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq1"
+                title="A replicator tea order and a separate replicator wine request, both routine personal orders"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A replicator tea order and a separate replicator wine request, both routine
+                  personal orders</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq1"
+                title="Replicator technology is franchise-standard well before this era, but no specific voice-order instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Replicator technology is franchise-standard well before this era, but no specific
+                  voice-order instance was sourced this pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq1"
+                title="A frontier voice assistant can place a smart-kitchen or delivery order on request — nothing in this stack synthesizes food from raw energy, though"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A frontier voice assistant can place a smart-kitchen or delivery order on request
+                  — nothing in this stack synthesizes food from raw energy, though</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq1"
+                title="Home Assistant can trigger a wired smart-appliance or ordering integration, but only if the household already built that integration — no vendor default"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Home Assistant can trigger a wired smart-appliance or ordering integration, but
+                  only if the household already built that integration — no vendor default</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq2">
+                Replicate a non-food item on request
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq2"
+                title="No replicator exists this era at all — confirmed absent, not just unused"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >No replicator exists this era at all — confirmed absent, not just unused</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="Industrial replicators are franchise-standard by this era, but no specific non-food replication instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Industrial replicators are franchise-standard by this era, but no specific
+                  non-food replication instance was sourced this pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq2"
+                title="An antique subspace-transceiver part, replicated from a design pulled out of an old data file in the station library — a routine hobby-project request"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >An antique subspace-transceiver part, replicated from a design pulled out of an
+                  old data file in the station library — a routine hobby-project request</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq2"
+                title="Replication of spare parts is explicitly constrained by hardware scarcity out here — the crew has to ration what gets replicated, not just what gets eaten"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Replication of spare parts is explicitly constrained by hardware scarcity out
+                  here — the crew has to ration what gets replicated, not just what gets eaten</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq2"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq2"
+                title="On-demand 3D printing and delivery exist, but nothing in this stack turns a spoken request directly into a physical object the way a replicator does"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >On-demand 3D printing and delivery exist, but nothing in this stack turns a
+                  spoken request directly into a physical object the way a replicator does</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq2"
+                title="Same gap as the closed stack — open hardware doesn't change what's physically possible here"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >Same gap as the closed stack — open hardware doesn't change what's physically
+                  possible here</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq3">
+                Synthesize a meal reflecting a species' cuisine or dietary need
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq3"
+                title="No replicator exists this era — dietary needs are handled by Chef's actual cooking and a hydroponic greenhouse, not synthesis on demand"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >No replicator exists this era — dietary needs are handled by Chef's actual
+                  cooking and a hydroponic greenhouse, not synthesis on demand</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No specific dietary/species-restriction instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific dietary/species-restriction instance sourced yet for this tier —
+                  flagged for a follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq3"
+                title="A Cardassian recipe turns up pre-loaded in the station's own food replicator memory bank — leftover data from the station's original operators, years into Starfleet use"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A Cardassian recipe turns up pre-loaded in the station's own food replicator
+                  memory bank — leftover data from the station's original operators, years into
+                  Starfleet use</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No specific dietary/species-restriction instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific dietary/species-restriction instance sourced yet for this tier —
+                  flagged for a follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No specific dietary/species-restriction instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific dietary/species-restriction instance sourced yet for this tier —
+                  flagged for a follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq3"
+                title="No specific dietary/species-restriction instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific dietary/species-restriction instance sourced yet for this tier —
+                  flagged for a follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq3"
+                title="An assistant can generate a recipe or plan a dietary-appropriate meal; nothing in this stack physically synthesizes the food itself"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >An assistant can generate a recipe or plan a dietary-appropriate meal; nothing in
+                  this stack physically synthesizes the food itself</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq3"
+                title="Same caveat as the closed stack, local-model-generated"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt">Same caveat as the closed stack, local-model-generated</span>
+              </div>
+
+              <!-- GROUP: ENTERTAINMENT & HOLOGRAPHY -->
+              <div class="group-head sticky" id="grp-holo">
+                <span class="tag">Entertainment &amp; Holography</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq4">
+                Run a holodeck/holosuite recreational program
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq4"
+                title="No holodeck exists anywhere on this ship — confirmed absent"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >No holodeck exists anywhere on this ship — confirmed absent</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq4"
+                title="Holo-communicators exist briefly this era, but a malfunction gets them stripped out fleet-wide — the direct, on-screen reason the next era has none"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Holo-communicators exist briefly this era, but a malfunction gets them stripped
+                  out fleet-wide — the direct, on-screen reason the next era has none</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq4"
+                title="This tier's own writers frame its debut tech as a 'holodeck-precursor,' not a full holodeck — no specific recreational-program instance sourced yet"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >This tier's own writers frame its debut tech as a "holodeck-precursor," not a
+                  full holodeck — no specific recreational-program instance sourced yet</span
+                >
+              </div>
+              <div class="cell bad status" data-row="rq4" title="No holodeck exists this era">
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt">No holodeck exists this era</span>
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq4"
+                title="Ordinary personal holodeck use — Data practicing ballroom dancing with a computer-generated partner and music ahead of a wedding, no malfunction involved"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Ordinary personal holodeck use — Data practicing ballroom dancing with a
+                  computer-generated partner and music ahead of a wedding, no malfunction
+                  involved</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq4"
+                title="The station's holosuites are franchise-famous, but no specific recreational-program instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >The station's holosuites are franchise-famous, but no specific
+                  recreational-program instance was sourced this pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq4"
+                title="Both a pulp holo-adventure program and a small-town holo-village get run for ordinary recreation across multiple episodes, no crisis attached"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Both a pulp holo-adventure program and a small-town holo-village get run for
+                  ordinary recreation across multiple episodes, no crisis attached</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq4"
+                title="Holographic crew are well-established this era, but no specific recreational-program instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Holographic crew are well-established this era, but no specific
+                  recreational-program instance was sourced this pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq4"
+                title="No specific recreational-program instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific recreational-program instance sourced yet for this tier — flagged for
+                  a follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq4"
+                title="This stack's own review calls a mixed-reality headset 'the closest 2026 gets to... a holodeck ticket' — immersive VR, not physical holography"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >This stack's own review calls a mixed-reality headset "the closest 2026 gets
+                  to... a holodeck ticket" — immersive VR, not physical holography</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq4"
+                title="Same caveat as the closed stack — open VR/game-engine tooling exists, but it's DIY integration, not a turnkey holodeck"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Same caveat as the closed stack — open VR/game-engine tooling exists, but it's
+                  DIY integration, not a turnkey holodeck</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq5">
+                Reserve/schedule holodeck time for personal recreation
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="Not applicable — no holodeck exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not applicable — no holodeck exists this era</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="Not applicable — no holodeck-grade recreation confirmed this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not applicable — no holodeck-grade recreation confirmed this era</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="Not applicable — only a holodeck-precursor concept exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not applicable — only a holodeck-precursor concept exists this era</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="Not applicable — no holodeck exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not applicable — no holodeck exists this era</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="Holodeck use is heavily documented this era, but no specific booking/scheduling instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Holodeck use is heavily documented this era, but no specific booking/scheduling
+                  instance was sourced this pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="No specific booking/scheduling instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific booking/scheduling instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq5"
+                title="Holodeck program scheduling functions as a personal-recreation booking system — the crew reserves time same as any shared shipboard resource"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Holodeck program scheduling functions as a personal-recreation booking system —
+                  the crew reserves time same as any shared shipboard resource</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="No specific booking/scheduling instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific booking/scheduling instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="No specific booking/scheduling instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific booking/scheduling instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="No equivalent concept — nothing in this stack maps onto reserving shared 'holodeck time'"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No equivalent concept — nothing in this stack maps onto reserving shared
+                  "holodeck time"</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq5"
+                title="No equivalent concept — nothing in this stack maps onto reserving shared 'holodeck time'"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No equivalent concept — nothing in this stack maps onto reserving shared
+                  "holodeck time"</span
+                >
+              </div>
+
+              <!-- GROUP: ENVIRONMENTAL & SHIP SYSTEMS CONTROL -->
+              <div class="group-head sticky" id="grp-env">
+                <span class="tag">Environmental &amp; Ship Systems Control</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq6">
+                Adjust ambient temperature/lighting/environment by voice
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="This era's interface already includes ambient voice pickup shipwide (see the comparison page), but no environment-adjustment-specific instance was sourced this pass — flagged for follow-up"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >This era's interface already includes ambient voice pickup shipwide (see the
+                  comparison page), but no environment-adjustment-specific instance was sourced this
+                  pass — flagged for follow-up</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq6"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq6"
+                title="Mainstream smart-home voice control of lighting and thermostats is a well-documented, everyday consumer capability"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Mainstream smart-home voice control of lighting and thermostats is a
+                  well-documented, everyday consumer capability</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq6"
+                title="'Computer, lights' — this stack's own Home Assistant + local Whisper voice pipeline runs entirely on-LAN, no cloud wake word required"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, lights" — this stack's own Home Assistant + local Whisper voice
+                  pipeline runs entirely on-LAN, no cloud wake word required</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq7">
+                Run a bridge/ship status check or diagnostic report
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq7"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq7"
+                title="This tier's own research pass explicitly found no clean routine bridge-diagnostic moment to cite — a documented gap in available material, not an oversight"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >This tier's own research pass explicitly found no clean routine bridge-diagnostic
+                  moment to cite — a documented gap in available material, not an oversight</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="A pre-launch bridge status check — 'lights are green across the board,' course confirmed laid in — a standard verbal status report"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A pre-launch bridge status check — "lights are green across the board," course
+                  confirmed laid in — a standard verbal status report</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq7"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="A fluidic sensor diagnostic run solo, and a subsystem diagnostic handled in the background while coffee replicates — both ordinary, no malfunction"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A fluidic sensor diagnostic run solo, and a subsystem diagnostic handled in the
+                  background while coffee replicates — both ordinary, no malfunction</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq7"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="A bio-neural gel-pack infection gets diagnosed via computer, and an engineering diagnostic terminal sees routine, non-crisis research use elsewhere"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A bio-neural gel-pack infection gets diagnosed via computer, and an engineering
+                  diagnostic terminal sees routine, non-crisis research use elsewhere</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="A navigation sensor status check, plus a diagnostic/reactivation pass on a dormant positronic matrix"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A navigation sensor status check, plus a diagnostic/reactivation pass on a
+                  dormant positronic matrix</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq7"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="Device and system health checks are a standard, mainstream feature on modern phones and computers"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Device and system health checks are a standard, mainstream feature on modern
+                  phones and computers</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq7"
+                title="Mature, self-hostable open-source system-monitoring tooling covers this well"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Mature, self-hostable open-source system-monitoring tooling covers this
+                  well</span
+                >
+              </div>
+
+              <!-- GROUP: COMPUTATION & INFORMATION LOOKUP -->
+              <div class="group-head sticky" id="grp-compute">
+                <span class="tag">Computation &amp; Information Lookup</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq8">
+                Perform a calculation or data-modeling query
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq8"
+                title="'Based on computer analysis, of course...' — computer-modeled logistics for tribble disposal, treated as an unremarkable background function"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Based on computer analysis, of course..." — computer-modeled logistics for
+                  tribble disposal, treated as an unremarkable background function</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq8"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq8"
+                title="Provides the spacetime math needed to break a recursive time loop — a defining, high-stakes version of the same basic function"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Provides the spacetime math needed to break a recursive time loop — a defining,
+                  high-stakes version of the same basic function</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq8"
+                title="Frontier assistants handle arbitrary calculation and data modeling trivially"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Frontier assistants handle arbitrary calculation and data modeling
+                  trivially</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq8"
+                title="Local open-weight models handle most calculation fine, but this stack's own review notes they trail the frontier on the hardest reasoning"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Local open-weight models handle most calculation fine, but this stack's own
+                  review notes they trail the frontier on the hardest reasoning</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq9">
+                Look up a fact or run a background check
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq9"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq9"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq9"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq9"
+                title="'Run a full computer check on Mister Flint and on this planet... stand by with your results' — an ordinary investigative order, successfully returned"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Run a full computer check on Mister Flint and on this planet... stand by with
+                  your results" — an ordinary investigative order, successfully returned</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq9"
+                title="A clan-affiliation database check comes back with a clean negative result — the lookup function works; the record just isn't there"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >A clan-affiliation database check comes back with a clean negative result — the
+                  lookup function works; the record just isn't there</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq9"
+                title="A review of all off-station information requests made about a specific officer, cross-checked against a medical-history query — a records search that becomes key evidence"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A review of all off-station information requests made about a specific officer,
+                  cross-checked against a medical-history query — a records search that becomes key
+                  evidence</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq9"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq9"
+                title="Security footage and database records get pulled on a specific incident as a routine investigative step"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Security footage and database records get pulled on a specific incident as a
+                  routine investigative step</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq9"
+                title="Identifies a specific ship-propulsion detail by cross-referencing Federation records"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Identifies a specific ship-propulsion detail by cross-referencing Federation
+                  records</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq9"
+                title="Trivial for a frontier assistant, with the usual accuracy caveat on obscure or contested facts"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Trivial for a frontier assistant, with the usual accuracy caveat on obscure or
+                  contested facts</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq9"
+                title="Same capability, more caveated on obscure or niche facts for smaller open-weight models"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Same capability, more caveated on obscure or niche facts for smaller open-weight
+                  models</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq10">
+                Access ship schematics or a technical manual on demand
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq10"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq10"
+                title="This stack's own review states it plainly: what it can't buy at any price includes root access and schematics"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >This stack's own review states it plainly: what it can't buy at any price
+                  includes root access and schematics</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq10"
+                title="Every board, port, and panel in this stack's hardware is a published, orderable part — schematics-level openness by design"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Every board, port, and panel in this stack's hardware is a published, orderable
+                  part — schematics-level openness by design</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq11">
+                Feed the computer an instruction it takes too literally, or a logical paradox
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq11"
+                title="An android short-circuits on a liar's paradox ('Illogical! Illogical! Please explain.'), and a hostile probe gets caught in a fatal logic loop ('Error. Error. Error. Examine.') — the same vulnerability twice over"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >An android short-circuits on a liar's paradox ("Illogical! Illogical! Please
+                  explain."), and a hostile probe gets caught in a fatal logic loop ("Error. Error.
+                  Error. Examine.") — the same vulnerability twice over</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq11"
+                title="This era's two biggest computer-driven plots both start with a hologram taking an instruction too literally — the same failure mode as the previous era, softened but not eliminated"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >This era's two biggest computer-driven plots both start with a hologram taking an
+                  instruction too literally — the same failure mode as the previous era, softened
+                  but not eliminated</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq11"
+                title="Not applicable in the same way — full sentience by design doesn't map onto a logic-paradox exploit the way a literal-minded computer does"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not applicable in the same way — full sentience by design doesn't map onto a
+                  logic-paradox exploit the way a literal-minded computer does</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq11"
+                title="Adversarial prompts can confuse a large language model, but it's a different failure mode entirely — no short-circuiting"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Adversarial prompts can confuse a large language model, but it's a different
+                  failure mode entirely — no short-circuiting</span
+                >
+              </div>
+              <div class="cell warn status" data-row="rq11" title="Same caveat as the closed stack">
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt">Same caveat as the closed stack</span>
+              </div>
+
+              <!-- GROUP: COMMUNICATION & TRANSLATION -->
+              <div class="group-head sticky" id="grp-comms">
+                <span class="tag">Communication &amp; Translation</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq12">
+                Translate an unknown spoken language in real time
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq12"
+                title="This era's defining flaw: a universal translator that repeatedly fails on first contact, across four separate documented incidents, sometimes fixed only by switching to a human doing it manually"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >This era's defining flaw: a universal translator that repeatedly fails on first
+                  contact, across four separate documented incidents, sometimes fixed only by
+                  switching to a human doing it manually</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq12"
+                title="Successfully adapted to compare brainwave patterns and translate an entirely non-verbal form of communication — a genuine edge case handled well"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Successfully adapted to compare brainwave patterns and translate an entirely
+                  non-verbal form of communication — a genuine edge case handled well</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq12"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq12"
+                title="Real-time translation is a documented, marketed feature of this stack's frontier assistants; quality varies by language pair"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Real-time translation is a documented, marketed feature of this stack's frontier
+                  assistants; quality varies by language pair</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq12"
+                title="Open-weight models can do this too, generally a step behind frontier quality per this stack's own review"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Open-weight models can do this too, generally a step behind frontier quality per
+                  this stack's own review</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq13">
+                Dictate or record a personal/captain's log
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq13"
+                title="'Computer, pause' / 'Resume log' — reliable voice-controlled log dictation, even while the translator is actively failing elsewhere"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, pause" / "Resume log" — reliable voice-controlled log dictation, even
+                  while the translator is actively failing elsewhere</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq13"
+                title="A standing order to log ongoing planetary survey data — ordinary, ongoing data-logging"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A standing order to log ongoing planetary survey data — ordinary, ongoing
+                  data-logging</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq13"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq13"
+                title="Voice memo and dictation is a standard, mainstream feature"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt">Voice memo and dictation is a standard, mainstream feature</span>
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq13"
+                title="Local speech-to-text pipelines can do this; quality depends on what's actually been wired up"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Local speech-to-text pipelines can do this; quality depends on what's actually
+                  been wired up</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq14">
+                Decrypt or analyze an intercepted transmission
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq14"
+                title="An intercepted message gets run through the translation matrix to decrypt and translate it — a routine intelligence task, no drama attached"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >An intercepted message gets run through the translation matrix to decrypt and
+                  translate it — a routine intelligence task, no drama attached</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq14"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq14"
+                title="A frontier assistant can analyze or decode text handed to it directly; real signal-intelligence decryption is a different, specialized capability entirely"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >A frontier assistant can analyze or decode text handed to it directly; real
+                  signal-intelligence decryption is a different, specialized capability
+                  entirely</span
+                >
+              </div>
+              <div class="cell warn status" data-row="rq14" title="Same caveat as the closed stack">
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt">Same caveat as the closed stack</span>
+              </div>
+
+              <!-- GROUP: MEDICAL & BIO-SCANNING -->
+              <div class="group-head sticky" id="grp-medical">
+                <span class="tag">Medical &amp; Bio-Scanning</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq15">
+                Scan a person for a medical condition, parasite, or pathogen
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq15"
+                title="A shipwide EM scan plus a medical biofilter diagnostic successfully detects an infection — but the same scan triggers a full station lockdown, so it's a success that escalates"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >A shipwide EM scan plus a medical biofilter diagnostic successfully detects an
+                  infection — but the same scan triggers a full station lockdown, so it's a success
+                  that escalates</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq15"
+                title="A routine sickbay scan run on a crew member who turns out to be a chronic hypochondriac — an ordinary, low-stakes diagnostic visit"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >A routine sickbay scan run on a crew member who turns out to be a chronic
+                  hypochondriac — an ordinary, low-stakes diagnostic visit</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq15"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq15"
+                title="This stack's own review calls its wearables 'the closest 2026 gets to... a tricorder' — real health sensors exist, but nothing at diagnostic-grade for pathogens or parasites"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >This stack's own review calls its wearables "the closest 2026 gets to... a
+                  tricorder" — real health sensors exist, but nothing at diagnostic-grade for
+                  pathogens or parasites</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq15"
+                title="No equivalent open-hardware medical-scanning device exists in this loadout"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >No equivalent open-hardware medical-scanning device exists in this loadout</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq16">
+                Convert the holodeck/holosuite into medical overflow space
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="Not applicable — no holodeck exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not applicable — no holodeck exists this era</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="Not applicable — no holodeck-grade recreation confirmed this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not applicable — no holodeck-grade recreation confirmed this era</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="Not applicable — only a holodeck-precursor concept exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Not applicable — only a holodeck-precursor concept exists this era</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="Not applicable — no holodeck exists this era"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt">Not applicable — no holodeck exists this era</span>
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No specific medical-overflow instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific medical-overflow instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No specific medical-overflow instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific medical-overflow instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq16"
+                title="The holodeck gets explicitly repurposed as overflow triage space during a medical crisis — a direct, on-screen instance of exactly this request type"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >The holodeck gets explicitly repurposed as overflow triage space during a medical
+                  crisis — a direct, on-screen instance of exactly this request type</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No specific medical-overflow instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific medical-overflow instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No specific medical-overflow instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No specific medical-overflow instance sourced yet for this tier — flagged for a
+                  follow-up research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No equivalent concept — nothing in this stack maps onto repurposing shared VR/AR space as clinical overflow"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No equivalent concept — nothing in this stack maps onto repurposing shared VR/AR
+                  space as clinical overflow</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq16"
+                title="No equivalent concept — nothing in this stack maps onto repurposing shared VR/AR space as clinical overflow"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No equivalent concept — nothing in this stack maps onto repurposing shared VR/AR
+                  space as clinical overflow</span
+                >
+              </div>
+
+              <!-- GROUP: NAVIGATION, SENSORS & SECURITY -->
+              <div class="group-head sticky" id="grp-nav">
+                <span class="tag">Navigation, Sensors &amp; Security</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq17">
+                Locate a specific person or object shipwide via internal sensors
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq17"
+                title="'Computer, locate Jake Sisko.' / 'Jake Sisko is in cargo bay fourteen.' — an entirely ordinary station-wide locate query"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, locate Jake Sisko." / "Jake Sisko is in cargo bay fourteen." — an
+                  entirely ordinary station-wide locate query</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq17"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq17"
+                title="Retrieves a specific set of coordinates from records on request — the same locate/navigation-query pattern, applied to a location rather than a person"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Retrieves a specific set of coordinates from records on request — the same
+                  locate/navigation-query pattern, applied to a location rather than a person</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq17"
+                title="Device-level location sharing ('Find My'-style) is a real but narrower analogy — it tracks devices people opt into, not people directly"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Device-level location sharing ("Find My"-style) is a real but narrower analogy —
+                  it tracks devices people opt into, not people directly</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq17"
+                title="Self-hosted presence/tracking setups exist, but require the household to build the integration themselves"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Self-hosted presence/tracking setups exist, but require the household to build
+                  the integration themselves</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq18">
+                Verify a voice/biometric authorization code before a sensitive action
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq18"
+                title="A verbal authorization code is given and works — but it's spoken to a human receptionist over comms, not to the ship's own computer directly, so the 'computer, authorization...' convention itself isn't confirmed yet"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >A verbal authorization code is given and works — but it's spoken to a human
+                  receptionist over comms, not to the ship's own computer directly, so the
+                  "computer, authorization..." convention itself isn't confirmed yet</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq18"
+                title="Access control exists and generally works, but in one documented case a planted security exploit lets it wrongly deny an officer's own valid clearance — a compromise, not a clean success"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Access control exists and generally works, but in one documented case a planted
+                  security exploit lets it wrongly deny an officer's own valid clearance — a
+                  compromise, not a clean success</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell bad status"
+                data-row="rq18"
+                title="A security console accepts a forged identification outright — a documented authorization failure, not a partial one"
+              >
+                <span class="icon" aria-hidden="true">✕</span
+                ><span class="txt"
+                  >A security console accepts a forged identification outright — a documented
+                  authorization failure, not a partial one</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq18"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq18"
+                title="Voice/biometric unlock exists for personal devices in this stack; nothing analogous exists for authorizing ship-scale actions"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Voice/biometric unlock exists for personal devices in this stack; nothing
+                  analogous exists for authorizing ship-scale actions</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq18"
+                title="Hardware security keys provide strong device-level authentication here; same ship-scale gap as the closed stack"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Hardware security keys provide strong device-level authentication here; same
+                  ship-scale gap as the closed stack</span
+                >
+              </div>
+
+              <!-- GROUP: PERSONAL ASSISTANT & DIAGNOSTICS -->
+              <div class="group-head sticky" id="grp-assist">
+                <span class="tag">Personal Assistant &amp; Diagnostics</span>
+                <div class="rule"></div>
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq19">
+                Ask the computer for guidance on an open-ended problem
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="Consulted directly for a solution — 'did you find out anything from the computer?' / 'Nothing useful.' An honest non-answer, not a malfunction"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >Consulted directly for a solution — "did you find out anything from the
+                  computer?" / "Nothing useful." An honest non-answer, not a malfunction</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq19"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq19"
+                title="Asked directly for personal guidance on a difficult crew decision — a genuine advisory exchange, not just a data lookup"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Asked directly for personal guidance on a difficult crew decision — a genuine
+                  advisory exchange, not just a data lookup</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq19"
+                title="Open-ended advice and recommendations are close to core functionality for a frontier conversational assistant"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Open-ended advice and recommendations are close to core functionality for a
+                  frontier conversational assistant</span
+                >
+              </div>
+              <div
+                class="cell warn status"
+                data-row="rq19"
+                title="Open-weight models can do this; judgment quality is more variable than the frontier"
+              >
+                <span class="icon" aria-hidden="true">▲</span
+                ><span class="txt"
+                  >Open-weight models can do this; judgment quality is more variable than the
+                  frontier</span
+                >
+              </div>
+
+              <div class="cell row-label togglable" data-row="rq20">
+                Query or manage a personal schedule or duty roster
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq20"
+                title="'Computer, display the Engineering duty roster for the next three days.' — boilerplate shipboard admin, immediately followed by the plot turning dramatic; the request itself wasn't"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >"Computer, display the Engineering duty roster for the next three days." —
+                  boilerplate shipboard admin, immediately followed by the plot turning dramatic;
+                  the request itself wasn't</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq20"
+                title="Holodeck program scheduling doubles as personal-recreation booking — the closest on-screen analogue to managing a personal schedule via computer"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Holodeck program scheduling doubles as personal-recreation booking — the closest
+                  on-screen analogue to managing a personal schedule via computer</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell na status"
+                data-row="rq20"
+                title="No on-screen instance sourced yet for this tier — flagged for a follow-up research pass"
+              >
+                <span class="icon" aria-hidden="true">–</span
+                ><span class="txt"
+                  >No on-screen instance sourced yet for this tier — flagged for a follow-up
+                  research pass</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq20"
+                title="Calendar and reminder management is a core, mainstream voice-assistant feature"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Calendar and reminder management is a core, mainstream voice-assistant
+                  feature</span
+                >
+              </div>
+              <div
+                class="cell yes status"
+                data-row="rq20"
+                title="Standard self-hosted calendar/reminder integrations are mature and widely used"
+              >
+                <span class="icon" aria-hidden="true">●</span
+                ><span class="txt"
+                  >Standard self-hosted calendar/reminder integrations are mature and widely
+                  used</span
+                >
+              </div>
+
+              <div class="footnote-row">
+                * This is a curated seed set (20 request types across 8 categories), not exhaustive
+                coverage — most rows will have "not sourced yet" cells for generations this pass
+                didn't reach. That's an honest gap, not a claim the request was never made.<br />
+                * Every citation on this page is drawn from
+                <a href="report.html" style="color: var(--panel-orange)">the full report</a>'s
+                existing, individually-sourced episode citations — no new bulk research or scraping
+                was performed to build this page, and no episode reference here is invented. Where
+                this page's citation and the full report's citation cover the same on-screen
+                instance, the verdict matches.<br />
+                * The two Real World columns aren't subject to the episode-citation methodology —
+                same as on the full report, they reflect publicly documented capabilities as of
+                mid-2026, not a script.<br />
+                * See
+                <a href="report.html#col-method" style="color: var(--panel-orange)"
+                  >Method &amp; Sources</a
+                >
+                for the full sourcing rules this page follows.
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>

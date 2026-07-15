@@ -3,19 +3,22 @@
 A tongue-in-cheek feature comparison of nine Star Trek computer generations, in strict
 in-universe stardate order — NX-01, Discovery (2256), Strange New Worlds, Constitution Class,
 Galaxy Class, Deep Space Nine, Intrepid Class, Picard-era, and Discovery (3189) — benchmarked
-against what Claude, ChatGPT, and Gemini can actually do today. Every claim is backed by an
-episode citation in the companion report page.
+against the real world today, split into a closed-source tier (Apple hardware + frontier
+assistant subscriptions) and an open-source tier (repairable hardware + open-weight models).
+Every claim is backed by an episode citation in the companion report page.
 
 **Live site:** https://chasnelson1990.github.io/are-we-lcars-yet/
 
 ## What's here
 
-Two static pages (`public/index.html`, `public/report.html` + `public/assets/`) styled after
-LCARS, the _Star Trek: The Next Generation_ interface language. No build step, no framework —
-just HTML, CSS, and a little vanilla JS for the stardate clock and the icon/text row toggle.
-`index.html` is the comparison table; `report.html` is the full citation trail behind it —
-catalogued on-screen requests per era, claim-by-claim verification against primary transcripts,
-and a sources list.
+Three static pages (`public/index.html`, `public/report.html`, `public/requests.html` +
+`public/assets/`) styled after LCARS, the _Star Trek: The Next Generation_ interface language.
+No build step, no framework — just HTML, CSS, and a little vanilla JS for the stardate clock and
+the icon/text row toggle. `index.html` is the feature comparison table; `report.html` is the
+full citation trail behind it — catalogued on-screen requests per era, claim-by-claim
+verification against primary transcripts, and a sources list; `requests.html` is a
+request-type-by-request-type log (a curated seed set, not exhaustive) of what you can actually
+ask each generation's computer to do.
 
 ## Local development
 
