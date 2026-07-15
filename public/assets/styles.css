@@ -735,12 +735,12 @@ h1.display span {
   color: var(--panel-orange);
 }
 
-.rail-btn.active {
-  outline: 2px solid var(--text);
-  outline-offset: -2px;
-}
-
 @media (max-width: 900px) {
+  .rail-btn.active {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+  }
+
   .lcars-frame {
     grid-template-columns: 1fr;
   }

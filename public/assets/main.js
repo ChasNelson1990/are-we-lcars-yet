@@ -152,6 +152,9 @@ if (tierGrid && tierCarousel) {
       }
 
       if (child.classList.contains("row-label")) {
+        // The empty header row-label (before any col-head is seen) hits this
+        // branch too, but cards.length is still 0 there, so the slice below
+        // is empty and this is a no-op advance past it.
         const labelText = child.textContent.trim();
         const rowCells = children.slice(i + 1, i + 1 + cards.length);
         rowCells.forEach(function (cell, index) {
