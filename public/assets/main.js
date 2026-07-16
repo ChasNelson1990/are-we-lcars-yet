@@ -190,6 +190,21 @@ if (tierGrid && tierCarousel) {
   // the first time the viewport is resized down into it).
   let carouselInitialized = false;
 
+  // Rail buttons exist regardless of carousel init state, and their active
+  // state needs clearing on desktop even before the carousel has ever been
+  // built once, so this lives outside initCarousel().
+  const railButtons = Array.from(document.querySelectorAll(".rail-btn[data-target]"));
+  const clearRailActiveState = function () {
+    railButtons.forEach(function (btn) {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-pressed", "false");
+    });
+  };
+  // Reassigned once initCarousel() has run, so re-entering mobile can
+  // reapply the carousel's current position instead of leaving the rail
+  // buttons in whatever state clearRailActiveState() last left them.
+  let syncRailActiveState = function () {};
+
   const initCarousel = function () {
     if (carouselInitialized) return;
     carouselInitialized = true;
@@ -202,7 +217,6 @@ if (tierGrid && tierCarousel) {
     const prevBtn = document.getElementById("carousel-prev");
     const nextBtn = document.getElementById("carousel-next");
     const indicator = document.getElementById("carousel-indicator");
-    const railButtons = Array.from(document.querySelectorAll(".rail-btn[data-target]"));
 
     let activeIndex = 0;
 
@@ -216,6 +230,10 @@ if (tierGrid && tierCarousel) {
         btn.classList.toggle("active", isActive);
         btn.setAttribute("aria-pressed", String(isActive));
       });
+    };
+
+    syncRailActiveState = function () {
+      updateNav(activeIndex);
     };
 
     const scrollToIndex = function (index) {
@@ -260,6 +278,11 @@ if (tierGrid && tierCarousel) {
     initCarousel();
   }
   mobileMediaQuery.addEventListener("change", function (e) {
-    if (e.matches) initCarousel();
+    if (e.matches) {
+      initCarousel();
+      syncRailActiveState();
+    } else {
+      clearRailActiveState();
+    }
   });
 }
