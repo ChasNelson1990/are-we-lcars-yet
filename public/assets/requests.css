@@ -26,24 +26,3 @@
 .request-toc a:focus-visible {
   filter: brightness(1.25);
 }
-
-/* Sticky group headers give orientation on this page's long vertical scroll.
-   Scoped here rather than on the shared .group-head rule so index.html's
-   existing groups render unchanged. Needs an opaque background since
-   .group-head is transparent by default and would otherwise let scrolling
-   cells show through underneath the pinned label.
-
-   Note: .grid-wrap sets overflow-x: auto with no explicit overflow-y, which
-   per spec makes overflow-y compute to auto too — meaning this sticky value
-   resolves against .grid-wrap's own box, not the viewport. That's harmless
-   here because .grid-wrap never constrains its own height (it grows to fit
-   its content), so there's nothing for it to scroll internally — but verify
-   this visually in a browser, since neither of the other two pages uses
-   sticky positioning inside the scrollable grid area today. */
-.group-head.sticky {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--bg);
-  scroll-margin-top: 0;
-}
