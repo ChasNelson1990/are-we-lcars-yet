@@ -197,7 +197,7 @@ if (tierGrid && tierCarousel) {
   const clearRailActiveState = function () {
     railButtons.forEach(function (btn) {
       btn.classList.remove("active");
-      btn.setAttribute("aria-pressed", "false");
+      btn.removeAttribute("aria-pressed");
     });
   };
   // Reassigned once initCarousel() has run, so re-entering mobile can
