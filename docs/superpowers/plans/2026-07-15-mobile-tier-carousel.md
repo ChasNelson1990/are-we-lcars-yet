@@ -43,10 +43,10 @@ to:
 
 ```html
     <link rel="stylesheet" href="assets/styles.css" />
-    <link rel="stylesheet" href="assets/report.css" />
+    <link rel="stylesheet" href="assets/report.css" media="(max-width: 900px)" />
 ```
 
-(`report.css` already documents itself as "loaded alongside styles.css" and defines the `.pill-yes` / `.pill-warn` / `.pill-bad` / `.pill-na` classes this task reuses for status values.)
+(`report.css` already documents itself as "loaded alongside styles.css" and defines the `.pill-yes` / `.pill-warn` / `.pill-bad` / `.pill-na` classes this task reuses for status values. The `media` attribute keeps it from being fetched/applied on the desktop grid, where none of its selectors are used.)
 
 Then, find this in `public/index.html` (currently lines 1894–1898):
 
