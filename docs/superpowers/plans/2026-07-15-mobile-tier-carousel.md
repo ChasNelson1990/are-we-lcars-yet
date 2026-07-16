@@ -295,7 +295,7 @@ if (tierGrid && tierCarousel) {
       pill.textContent = pillInfo[1];
       const txt = cell.querySelector(".txt");
       value.appendChild(pill);
-      value.appendChild(document.createTextNode(" " + (txt ? txt.textContent.trim() : "")));
+      value.appendChild(document.createTextNode(txt ? txt.textContent.trim() : ""));
     } else {
       value.className = "carousel-value" + (cell.classList.contains("mono") ? " mono" : "");
       value.innerHTML = cell.innerHTML.trim();
