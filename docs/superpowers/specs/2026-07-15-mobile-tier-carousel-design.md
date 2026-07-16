@@ -46,7 +46,8 @@ underlying facts in a different shape.
 
 ### Structure
 
-On `DOMContentLoaded`, `main.js` walks `.tier-grid`'s children once (it is a
+Once the DOM is available (`main.js` is loaded at the end of `<body>`, so no
+`DOMContentLoaded` listener is needed), `main.js` walks `.tier-grid`'s children once (it is a
 flat list: one `.col-head` per tier, then repeating `.group-head` /
 `.row-label` + 11 data-cell groups) and builds, per tier, an ordered list of
 `{ groupTag?, rowLabel, cellNode }` entries by picking out that tier's cell
