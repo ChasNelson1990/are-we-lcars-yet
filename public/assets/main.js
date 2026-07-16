@@ -211,7 +211,9 @@ if (tierGrid && tierCarousel) {
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === cards.length - 1;
       railButtons.forEach(function (btn) {
-        btn.classList.toggle("active", btn.getAttribute("data-target") === tierIds[index]);
+        const isActive = btn.getAttribute("data-target") === tierIds[index];
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", String(isActive));
       });
     };
 
