@@ -83,7 +83,8 @@ viewport.
   scrolling — no custom gesture/drag JS.
 - Small prev/next arrow buttons and a "3 / 11" position indicator sit below
   the card for non-swipe navigation (and keyboard/assistive tech users).
-  They call `scrollTo`/`scrollBy` on the carousel container.
+  They call `scrollIntoView()` on the target card, composing naturally with
+  the container's `scroll-snap-type`.
 - The existing rail buttons (already a horizontal tab strip on mobile) are
   reused as tier tabs: tapping one scrolls the carousel to that tier's card.
   This replaces their current mobile behavior of `scrollIntoView`-ing the
