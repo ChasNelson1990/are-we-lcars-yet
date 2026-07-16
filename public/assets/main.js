@@ -218,6 +218,7 @@ if (tierGrid && tierCarousel) {
     const scrollToIndex = function (index) {
       if (cards.length === 0) return;
       const clamped = Math.max(0, Math.min(cards.length - 1, index));
+      updateNav(clamped);
       cards[clamped].scrollIntoView({ inline: "center", block: "nearest" });
     };
 
