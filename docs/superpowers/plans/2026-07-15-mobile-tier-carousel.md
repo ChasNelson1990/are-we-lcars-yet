@@ -226,11 +226,6 @@ In `public/assets/styles.css`, insert this new section immediately after the `.l
 .carousel-footnote a {
   color: var(--panel-orange);
 }
-
-.rail-btn.active {
-  outline: 2px solid var(--text);
-  outline-offset: -2px;
-}
 ```
 
 Then edit the existing `@media (max-width: 900px)` block (currently lines 604–643) to hide the desktop grid/legend and show the carousel. Change:
@@ -244,6 +239,11 @@ Then edit the existing `@media (max-width: 900px)` block (currently lines 604–
 to:
 
 ```css
+  .rail-btn.active {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+  }
+
   .legend {
     display: none;
   }
@@ -256,6 +256,8 @@ to:
     display: flex;
   }
 ```
+
+(`.rail-btn.active` must live inside this media block, not the global section above — it's only ever applied by `updateNav(0)`, which now only runs on mobile, but keeping the rule itself scoped to the breakpoint too avoids any desktop-visible outline if that ever changes.)
 
 (The legend's copy — "Hover an icon for detail · click a row to expand it" — describes desktop-only interactions that don't exist in the carousel, so it's hidden rather than shown incorrectly.)
 
