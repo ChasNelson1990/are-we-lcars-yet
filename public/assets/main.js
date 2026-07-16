@@ -15,13 +15,14 @@ updateStardate();
 setInterval(updateStardate, 60000);
 
 let scrollCarouselToTier = null;
+const mobileMediaQuery = window.matchMedia("(max-width: 900px)");
 
 document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     const targetId = btn.getAttribute("data-target");
     const target = document.getElementById(targetId);
     if (target) target.scrollIntoView({ inline: "center", block: "nearest" });
-    if (scrollCarouselToTier) scrollCarouselToTier(targetId);
+    if (mobileMediaQuery.matches && scrollCarouselToTier) scrollCarouselToTier(targetId);
   });
 });
 
@@ -255,7 +256,6 @@ if (tierGrid && tierCarousel) {
     }
   };
 
-  const mobileMediaQuery = window.matchMedia("(max-width: 900px)");
   if (mobileMediaQuery.matches) {
     initCarousel();
   }
