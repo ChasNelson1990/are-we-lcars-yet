@@ -601,6 +601,11 @@ h1.display span {
   color: var(--panel-red);
 }
 
+.legend .l-na::before {
+  content: "–";
+  color: #5c5a6e;
+}
+
 @media (max-width: 900px) {
   .lcars-frame {
     grid-template-columns: 1fr;
