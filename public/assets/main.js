@@ -14,10 +14,15 @@ function updateStardate() {
 updateStardate();
 setInterval(updateStardate, 60000);
 
+let scrollCarouselToTier = null;
+const mobileMediaQuery = window.matchMedia("(max-width: 900px)");
+
 document.querySelectorAll(".rail-btn[data-target]").forEach(function (btn) {
   btn.addEventListener("click", function () {
-    const target = document.getElementById(btn.getAttribute("data-target"));
+    const targetId = btn.getAttribute("data-target");
+    const target = document.getElementById(targetId);
     if (target) target.scrollIntoView({ inline: "center", block: "nearest" });
+    if (mobileMediaQuery.matches && scrollCarouselToTier) scrollCarouselToTier(targetId);
   });
 });
 
@@ -53,5 +58,231 @@ if (tierGrid) {
     if (!target) return;
     e.preventDefault();
     toggleRow(target.getAttribute("data-row"));
+  });
+}
+
+const tierCarousel = document.getElementById("tier-carousel");
+if (tierGrid && tierCarousel) {
+  const STATUS_PILLS = {
+    yes: ["pill-yes", "YES"],
+    warn: ["pill-warn", "CAVEAT"],
+    bad: ["pill-bad", "NO"],
+    na: ["pill-na", "N/A"],
+  };
+
+  const cellToValueNode = function (cell) {
+    const value = document.createElement("div");
+    if (cell.classList.contains("status")) {
+      value.className = "carousel-value";
+      const statusKey = ["yes", "warn", "bad", "na"].find(function (key) {
+        return cell.classList.contains(key);
+      });
+      const pillInfo = STATUS_PILLS[statusKey] || STATUS_PILLS.na;
+      const pill = document.createElement("span");
+      pill.className = "pill " + pillInfo[0];
+      pill.textContent = pillInfo[1];
+      const txt = cell.querySelector(".txt");
+      value.appendChild(pill);
+      value.appendChild(document.createTextNode(txt ? txt.textContent.trim() : ""));
+    } else {
+      value.className = "carousel-value" + (cell.classList.contains("mono") ? " mono" : "");
+      value.innerHTML = cell.innerHTML.trim();
+    }
+    return value;
+  };
+
+  const buildCarousel = function () {
+    const children = Array.from(tierGrid.children);
+    const tierIds = [];
+    const cards = [];
+    let i = 0;
+
+    while (i < children.length) {
+      const child = children[i];
+
+      if (child.classList.contains("col-head")) {
+        const header = child.cloneNode(true);
+        header.removeAttribute("id");
+
+        const card = document.createElement("div");
+        card.className = "carousel-card";
+        card.setAttribute("data-tier", child.id);
+        card.setAttribute("role", "group");
+        const eraEl = child.querySelector(".tier-era");
+        const planEl = child.querySelector(".tier-plan");
+        card.setAttribute(
+          "aria-label",
+          [planEl, eraEl]
+            .filter(Boolean)
+            .map(function (el) {
+              return el.textContent.trim();
+            })
+            .join(", ")
+        );
+
+        const body = document.createElement("div");
+        body.className = "carousel-card-body";
+
+        card.appendChild(header);
+        card.appendChild(body);
+        tierIds.push(child.id);
+        cards.push(card);
+        i += 1;
+        continue;
+      }
+
+      if (child.classList.contains("group-head")) {
+        const tagEl = child.querySelector(".tag");
+        const tagText = tagEl ? tagEl.textContent.trim() : "";
+        cards.forEach(function (card) {
+          const body = card.querySelector(".carousel-card-body");
+          const groupEl = document.createElement("div");
+          groupEl.className = "carousel-group";
+          groupEl.textContent = tagText;
+          body.appendChild(groupEl);
+        });
+        i += 1;
+        continue;
+      }
+
+      if (child.classList.contains("footnote-row")) {
+        const footnote = document.getElementById("carousel-footnote");
+        if (footnote) footnote.innerHTML = child.innerHTML;
+        i += 1;
+        continue;
+      }
+
+      if (child.classList.contains("row-label")) {
+        // The empty header row-label (before any col-head is seen) hits this
+        // branch too, but cards.length is still 0 there, so the slice below
+        // is empty and this is a no-op advance past it.
+        const labelText = child.textContent.trim();
+        const rowCells = children.slice(i + 1, i + 1 + cards.length);
+        rowCells.forEach(function (cell, index) {
+          const body = cards[index].querySelector(".carousel-card-body");
+          const field = document.createElement("div");
+          field.className = "carousel-field";
+          const fieldLabel = document.createElement("div");
+          fieldLabel.className = "field-label";
+          fieldLabel.textContent = labelText;
+          field.appendChild(fieldLabel);
+          field.appendChild(cellToValueNode(cell));
+          body.appendChild(field);
+        });
+        i += 1 + cards.length;
+        continue;
+      }
+
+      i += 1;
+    }
+
+    const track = document.getElementById("carousel-track");
+    cards.forEach(function (card) {
+      track.appendChild(card);
+    });
+
+    return { tierIds: tierIds, cards: cards, track: track };
+  };
+
+  // Building the carousel transposes the whole comparison grid into extra
+  // DOM and wires up an observer -- none of it is ever shown on desktop, so
+  // defer it until the mobile breakpoint actually matches (either now, or
+  // the first time the viewport is resized down into it).
+  let carouselInitialized = false;
+
+  // Rail buttons exist regardless of carousel init state, and their active
+  // state needs clearing on desktop even before the carousel has ever been
+  // built once, so this lives outside initCarousel().
+  const railButtons = Array.from(document.querySelectorAll(".rail-btn[data-target]"));
+  const clearRailActiveState = function () {
+    railButtons.forEach(function (btn) {
+      btn.classList.remove("active");
+      btn.removeAttribute("aria-pressed");
+    });
+  };
+  // Reassigned once initCarousel() has run, so re-entering mobile can
+  // reapply the carousel's current position instead of leaving the rail
+  // buttons in whatever state clearRailActiveState() last left them.
+  let syncRailActiveState = function () {};
+
+  const initCarousel = function () {
+    if (carouselInitialized) return;
+    carouselInitialized = true;
+
+    const built = buildCarousel();
+    const cards = built.cards;
+    const tierIds = built.tierIds;
+    const track = built.track;
+
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
+    const indicator = document.getElementById("carousel-indicator");
+
+    let activeIndex = 0;
+
+    const updateNav = function (index) {
+      activeIndex = index;
+      indicator.textContent = index + 1 + " / " + cards.length;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === cards.length - 1;
+      railButtons.forEach(function (btn) {
+        const isActive = btn.getAttribute("data-target") === tierIds[index];
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+
+    syncRailActiveState = function () {
+      updateNav(activeIndex);
+    };
+
+    const scrollToIndex = function (index) {
+      if (cards.length === 0) return;
+      const clamped = Math.max(0, Math.min(cards.length - 1, index));
+      updateNav(clamped);
+      cards[clamped].scrollIntoView({ inline: "center", block: "nearest" });
+    };
+
+    scrollCarouselToTier = function (tierId) {
+      const index = tierIds.indexOf(tierId);
+      if (index !== -1) scrollToIndex(index);
+    };
+
+    prevBtn.addEventListener("click", function () {
+      scrollToIndex(activeIndex - 1);
+    });
+    nextBtn.addEventListener("click", function () {
+      scrollToIndex(activeIndex + 1);
+    });
+
+    if (cards.length > 0) {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              const index = cards.indexOf(entry.target);
+              if (index !== -1) updateNav(index);
+            }
+          });
+        },
+        { root: track, threshold: 0.6 }
+      );
+      cards.forEach(function (card) {
+        observer.observe(card);
+      });
+      updateNav(0);
+    }
+  };
+
+  if (mobileMediaQuery.matches) {
+    initCarousel();
+  }
+  mobileMediaQuery.addEventListener("change", function (e) {
+    if (e.matches) {
+      initCarousel();
+      syncRailActiveState();
+    } else {
+      clearRailActiveState();
+    }
   });
 }
