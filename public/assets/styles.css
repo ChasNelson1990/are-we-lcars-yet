@@ -603,7 +603,7 @@ h1.display span {
 
 .legend .l-na::before {
   content: "–";
-  color: var(--text-dim);
+  color: #5c5a6e;
 }
 
 @media (max-width: 900px) {
