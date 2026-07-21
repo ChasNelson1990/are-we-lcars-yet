@@ -139,7 +139,19 @@ one consumer GPU and its multimodal support covers the vision-agent use case
 below without a second model. It's served by **Ollama** (Core architecture,
 `#row-core-architecture`) as a GGUF-quantized local endpoint speaking an
 OpenAI-compatible HTTP API — the same endpoint every other tool in this stack
-points at, so there is one model server, not several. **CrewAI** and
+points at, so there is one model server, not several. That same Ollama
+instance carries the household's persona via a Modelfile `SYSTEM` directive
+(Onboard AI personality, `#row-onboard-ai-personality`) — the identical
+mechanism Stack 1 uses, reused rather than reinvented, since it's the same
+Ollama install either way. The day-to-day human interface to it is
+**oterm** (Primary interface, `#row-primary-interface`), a terminal client
+built specifically to talk to Ollama and other OpenAI-compatible local
+servers with no browser or web server required, matching this stack's
+no-GUI-overhead ethos better than Open WebUI's browser front end does. All
+of it — the model weights, oterm's local SQLite chat history, and Letta's
+memory database (below) — lives on **TrueNAS Community Edition** (Storage
+medium, `#row-storage-medium`), the same ZFS-backed box whose OpenZFS layer
+(Processing redundancy, below) actually protects it. **CrewAI** and
 **OpenHands** (Autonomous decision-making,
 `#row-autonomous-decision-making`) orchestrate agentic work — CrewAI for
 multi-step planning/delegation, OpenHands specifically for real
@@ -184,9 +196,11 @@ sharing its 10M+-IP community blocklist (Hostile takeover incidents,
 `#row-hostile-takeover-incidents`) — three layers feeding a stream of
 inspectable log lines rather than a fictional boarding count. **Uptime
 Kuma** watches service availability and **Healthchecks.io** watches whether
-scheduled backup jobs actually ran (Uptime, `#row-uptime`), which matters
-because none of the storage/redundancy picks elsewhere in this report
-(TrueNAS, OpenZFS, restic) protect anyone who silently stopped running them.
+scheduled backup jobs actually ran (Uptime, `#row-uptime`) — watching, not
+owning, Stacks 1 and 3's own Storage medium and Processing redundancy picks
+(TrueNAS, OpenZFS, restic), since neither protects anyone who silently
+stopped running them, and Stack 4 doesn't introduce a separate storage or
+redundancy architecture of its own to replace them.
 When self-repair is needed, **Framework**'s published schematics/EC firmware
 and **iFixit**'s crowd-documented repair guides (Self-repair capability,
 `#row-self-repair-capability`) cover, respectively, the report's own hardware
@@ -206,10 +220,10 @@ report, not unique to this one.
 | Personal access device | — | Fairphone 6 | — | — |
 | Handheld sensor device | — | — | — | M5Stack Units / HackRF One + PortaPack Mayhem |
 | Personal communicator | — | /e/OS + Signal | — | — |
-| Storage medium | TrueNAS Community Edition | Nextcloud Hub (E2EE folder sync) | TrueNAS (model weights, chat/RAG data) | TrueNAS |
+| Storage medium | TrueNAS Community Edition | Nextcloud Hub (E2EE folder sync) | TrueNAS (model weights, oterm chat history, Letta's memory DB) | — (monitors Stack 1/3's TrueNAS; not Stack 4's own pick) |
 | Core architecture | Ollama | — | Ollama | — |
-| Processing redundancy | — | — | OpenZFS snapshots + restic (backing Letta's memory DB) | OpenZFS + restic |
-| Onboard AI personality | Ollama Modelfile `SYSTEM` directive | — | Ollama Modelfile `SYSTEM` directive | — |
+| Processing redundancy | — | — | OpenZFS snapshots + restic (backing Letta's memory DB) | — (monitors Stack 3's OpenZFS/restic; not Stack 4's own pick) |
+| Onboard AI personality | Ollama Modelfile `SYSTEM` directive | — | Ollama Modelfile `SYSTEM` directive (same instance as Core architecture) | — |
 | Autonomous decision-making | CrewAI | — | CrewAI / OpenHands | — |
 | Known sentience risk | NeMo Guardrails | — | NeMo Guardrails + garak/PyRIT | — |
 | Holodeck / holo-environments | — | — | — | — |
