@@ -3236,9 +3236,11 @@
               fictional boarding count. Stack 2's <strong>Headscale</strong> mesh (<a
                 href="#row-secure-networking"
                 >Secure device networking</a
-              >) sits behind this same OPNsense edge, so remote-access traffic is still subject to
-              the perimeter's IDS/IPS rules before it ever reaches the coordination server.
-              <strong>Uptime Kuma</strong> watches service availability and
+              >) sits behind this same OPNsense edge &mdash; OPNsense's firewall rules still gate
+              which sources can even reach the coordination server's port, and CrowdSec can watch
+              Headscale's own application logs for abuse, but the WireGuard tunnel itself is
+              encrypted, so Suricata's signature-based IDS/IPS cannot inspect traffic once it's
+              inside that tunnel. <strong>Uptime Kuma</strong> watches service availability and
               <strong>Healthchecks.io</strong> watches whether scheduled backup jobs actually ran
               (<a href="#row-uptime">Uptime</a>) &mdash; watching, not owning, Stacks 1 and 3's own
               Storage medium and Processing redundancy picks (TrueNAS, OpenZFS, restic), since
