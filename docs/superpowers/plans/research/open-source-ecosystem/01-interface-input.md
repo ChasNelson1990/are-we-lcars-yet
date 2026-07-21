@@ -4,15 +4,15 @@ Research date: 2026-07-21
 
 ## Row: Primary interface
 
-**index.html currently claims (verbatim, Open Source column):** "Terminal, self-hosted web UIs (Open WebUI), Home Assistant voice for ambient pickup"
+**index.html currently claims (verbatim, Open Source column):** "Terminal, self‑hosted web UIs (Open WebUI), Home Assistant voice for ambient pickup"
 
 ### Top 3 candidates
 
 1. **Open WebUI** — License: "Open WebUI License" (BSD-3-Clause base + mandatory branding-retention clause for deployments over 50 users, plus a CLA for contributions; code through v0.6.5 remains plain BSD-3-Clause and is freely forkable) · Status: actively maintained, latest release v0.10.2 (July 1, 2026), 166 releases, 17,201+ commits · Verified 2026-07-21: fetched the live GitHub repo page (not archived, ongoing commits) and cross-checked the April 2025 license-change discussion (GitHub Discussion #8467) and community coverage of the branding-clause backlash.
    Self-hosted, ChatGPT-style web front end for local or remote model backends (Ollama, OpenAI-compatible APIs). All chat data and RAG documents stay on your own server by default — nothing is sent to Open WebUI's maintainers. The 2025 license change is a real privacy-adjacent caveat for readers: it's no longer pure BSD-3 for new code, and large multi-tenant deployments must keep "Open WebUI" branding visible, though personal/family self-hosting (≤50 users) is unaffected.
    Source: <https://github.com/open-webui/open-webui>
-2. **Home Assistant Assist (voice pipeline)** — License: Apache-2.0 (Home Assistant Core) · Status: actively maintained, Home Assistant Core latest release 2026.7.2 (July 10, 2026), 113,000+ commits, 1,618 releases · Verified 2026-07-21: fetched the live GitHub repo page (not archived) and confirmed via multiple independent 2026 write-ups (Botmonster, InsiderLLM, personal blog posts) that the fully-local Assist stack (Wyoming protocol + Whisper STT + Piper TTS + Ollama) is a current, documented, actively-used setup.
-   Assist wires together wake-word detection, speech-to-text, a conversation agent, and text-to-speech entirely over the local network via the open Wyoming protocol (originating from the Rhasspy project). Run fully locally (faster-whisper + Piper + a local Ollama model), no audio or transcript ever needs to leave the home network — this is the closest real analogue to "ambient voice pickup shipwide" without a cloud dependency.
+2. **Home Assistant Assist (voice pipeline)** — License: Apache-2.0 (Home Assistant Core) · Status: actively maintained, Home Assistant Core latest release 2026.7.2 (July 10, 2026), 113,000+ commits, 1,618 releases · Verified 2026-07-21: fetched the live GitHub repo page (not archived) and confirmed via multiple independent 2026 write-ups (Botmonster, InsiderLLM, personal blog posts) that the fully-local Assist stack (Wyoming protocol + Whisper STT + Piper TTS + Ollama) is a current, documented, widely-used setup, with one caveat below.
+   Assist wires together wake-word detection, speech-to-text, a conversation agent, and text-to-speech entirely over the local network via the open Wyoming protocol (originating from the Rhasspy project). Run fully locally (faster-whisper + Piper + a local Ollama model), no audio or transcript ever needs to leave the home network — this is the closest real analogue to "ambient voice pickup shipwide" without a cloud dependency. Caveat: the Piper TTS component (`rhasspy/piper`) named in this pipeline is itself archived upstream (confirmed via `gh api repos/rhasspy/piper`: `archived: true`, last pushed 2025-08-26) — it no longer receives active development, but it remains functional and is still in wide community use as a Wyoming-protocol TTS add-on, so it's fine to run, just not a project to expect new releases from.
    Source: <https://www.home-assistant.io/voice_control/voice_remote_local_assistant/>
 3. **oterm** — License: MIT · Status: actively maintained, latest release v0.20.0 (June 30, 2026), 81 releases, 835+ commits · Verified 2026-07-21: fetched the live GitHub repo page directly (not archived, ongoing release cadence through mid-2026).
    A terminal UI client that talks to Ollama and any pydantic-ai-supported provider (OpenAI, Anthropic, local OpenAI-compatible servers like llama.cpp/vLLM/LM Studio) with no browser or web server required. Chat history and settings are stored locally in SQLite; when pointed at a local Ollama endpoint, nothing leaves the machine. This is the direct real-world match for the "Terminal" half of the index.html claim.
@@ -34,7 +34,7 @@ Agree — Open WebUI and Home Assistant's Assist voice pipeline are both real, c
 
 ## Row: Touchscreen GUI (`data-row="r2"`)
 
-**index.html currently claims (verbatim, Open Source column):** "Linux touch support is real but patchy — and open computer-use agents can drive a screen too" (status: caveat)
+**index.html currently claims (verbatim, Open Source column):** "Linux touch support is real but patchy — and open computer‑use agents can drive a screen too" (status: caveat)
 
 ### Top 3 candidates
 
@@ -64,7 +64,7 @@ Agree — Linux touchscreen support is genuinely inconsistent in current release
 
 ## Row: Natural language processing (`data-row="r3"`)
 
-**index.html currently claims (verbatim, Open Source column):** "Open-weight models are genuinely conversational — a step behind frontier on the hardest reasoning" (status: caveat)
+**index.html currently claims (verbatim, Open Source column):** "Open‑weight models are genuinely conversational — a step behind frontier on the hardest reasoning" (status: caveat)
 
 ### Top 3 candidates
 
