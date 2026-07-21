@@ -2798,7 +2798,379 @@
             Reference Stacks &amp; Compatibility Matrix
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 13 -->
+            <h3 class="block-tag">Stack 1: Home Assistant-centric smart home</h3>
+            <p class="summary">
+              The hub is Home Assistant Core with the <strong>Assist</strong> voice pipeline (<a
+                href="#row-primary-interface"
+                >Primary interface</a
+              >): wake-word detection, faster-whisper speech-to-text, the Assist conversation agent,
+              and Piper text-to-speech, wired together over the local network via the open
+              <strong>Wyoming protocol</strong>. Assist's conversation agent calls out to a local
+              model server &mdash; <strong>Ollama</strong> (<a href="#row-core-architecture"
+                >Core architecture</a
+              >) &mdash; over its OpenAI-compatible HTTP API, serving
+              <strong>Qwen3.6-27B</strong> (<a href="#row-nlp">Natural language processing</a>) as
+              the default self-hostable, single-consumer-GPU model. That same Ollama instance holds
+              the household's <strong>Onboard AI personality</strong> (<a
+                href="#row-onboard-ai-personality"
+                >Onboard AI personality</a
+              >) via a Modelfile <code>SYSTEM</code> directive, so the voice assistant, the persona,
+              and the model are one running process, not three. <strong>Open WebUI</strong> layers
+              on top as the shared browser front end for family members (also
+              <a href="#row-primary-interface">Primary interface</a>), inheriting the same backend.
+              For &ldquo;hands doing things, not just talking,&rdquo; <strong>CrewAI</strong> (<a
+                href="#row-autonomous-decision-making"
+                >Autonomous decision-making</a
+              >) orchestrates multi-step home-automation tasks against the same local model, wrapped
+              in <strong>NeMo Guardrails</strong> (<a href="#row-known-sentience-risk"
+                >Known sentience risk / guardrails</a
+              >) as the runtime policy layer &mdash; since nothing in CrewAI's open core stops it
+              from calling a destructive tool, guardrails are the operator-supplied safety net the
+              row's own honest framing calls for. <strong>whisper.cpp + Argos Translate</strong> (<a
+                href="#row-universal-translator"
+                >Universal translator</a
+              >) hangs off the same Wyoming/local-network pattern for translating incoming speech
+              before Assist ever sees it. The household runs
+              <strong>TrueNAS Community Edition</strong> (<a href="#row-storage-medium"
+                >Storage medium</a
+              >) as the box underneath all of this &mdash; HA's config, Open WebUI's chat/RAG
+              storage, and Ollama's model weights all live on the same ZFS-backed volume &mdash; and
+              <strong>Keycloak</strong> (<a href="#row-authorization-method">Authorization method</a
+              >) sits in front of Open WebUI and any other self-hosted dashboard as a single
+              WebAuthn/FIDO2 SSO login, rather than a separate password per app.
+              <strong>Uptime Kuma</strong> (<a href="#row-uptime">Uptime</a>) pings HA's own health
+              endpoint and the Ollama server; when something breaks, the fallback is
+              <strong>r/selfhosted</strong> and the
+              <strong>Home Assistant Community Forum</strong>
+              (<a href="#row-support-channel">Support channel</a>).
+            </p>
+
+            <h3 class="block-tag">Stack 2: Mobile / daily-driver privacy</h3>
+            <p class="summary">
+              The phone is a <strong>Fairphone 6</strong> (<a href="#row-personal-access-device"
+                >Personal access device</a
+              >) running <strong>/e/OS</strong> (<a href="#row-personal-communicator"
+                >Personal communicator</a
+              >) &mdash; the same hardware/software pairing both rows independently converge on,
+              since /e/OS is Murena's stock build for that device. Messaging and calls run over
+              <strong>Signal</strong>, whose AGPLv3/GPLv3 client and protocol keep both the
+              transport and the crypto auditable end to end &mdash; the Signal Protocol's
+              double-ratchet key exchange is the actual &ldquo;E2E-encrypted&rdquo; mechanism the
+              pricing table's claim gestures at. Credentials for everything else &mdash; Wi-Fi,
+              self-hosted service logins, any passkeys the phone holds for third-party sites &mdash;
+              live in <strong>Vaultwarden</strong> (<a href="#row-authorization-method"
+                >Authorization method</a
+              >), an unofficial Rust reimplementation of the Bitwarden API that the phone's
+              Bitwarden app talks to over the household's own server instead of Bitwarden's cloud;
+              WebAuthn/FIDO2 hardware keys back up the vault unlock itself. Files sync to
+              <strong>Nextcloud Hub</strong>'s folder-level end-to-end encryption (<a
+                href="#row-storage-medium"
+                >Storage medium</a
+              >) &mdash; chosen over Proton Drive here specifically because Nextcloud's server is
+              one you run, keeping the &ldquo;only you hold the keys&rdquo; property intact for the
+              mobile-daily-driver use case rather than trusting Proton's (open-client,
+              closed-server) infrastructure. A
+              <strong>Framework Laptop</strong>
+              (<a href="#row-ship-terminal">Ship terminal / console hardware</a>) is the
+              pairing/flashing workstation for the phone &mdash; ADB, /e/OS updates, and
+              Vaultwarden's desktop client all run from it &mdash; and its own repairability (<a
+                href="#row-self-repair-capability"
+                >Self-repair capability</a
+              >) mirrors the phone's user-replaceable-battery ethos. When something needs fixing or
+              explaining, the fallback is the same <strong>r/selfhosted</strong>/Matrix-room
+              community (<a href="#row-support-channel">Support channel</a>) as Stack 1.
+            </p>
+
+            <h3 class="block-tag">Stack 3: Self-hosted AI &amp; local-LLM</h3>
+            <p class="summary">
+              The model layer is <strong>Qwen3.6-27B</strong> (<a href="#row-nlp"
+                >Natural language processing</a
+              >), a 27B-parameter dense multimodal model chosen specifically because it fits on one
+              consumer GPU and its multimodal support covers the vision-agent use case below without
+              a second model. It's served by <strong>Ollama</strong> (<a
+                href="#row-core-architecture"
+                >Core architecture</a
+              >) as a GGUF-quantized local endpoint speaking an OpenAI-compatible HTTP API &mdash;
+              the same endpoint every other tool in this stack points at, so there is one model
+              server, not several. That same Ollama instance carries the household's persona via a
+              Modelfile <code>SYSTEM</code> directive (<a href="#row-onboard-ai-personality"
+                >Onboard AI personality</a
+              >) &mdash; the identical mechanism Stack 1 uses, reused rather than reinvented, since
+              it's the same Ollama install either way. The day-to-day human interface to it is
+              <strong>oterm</strong> (<a href="#row-primary-interface">Primary interface</a>), a
+              terminal client built specifically to talk to Ollama and other OpenAI-compatible local
+              servers with no browser or web server required, matching this stack's no-GUI-overhead
+              ethos better than Open WebUI's browser front end does. All of it &mdash; the model
+              weights, oterm's local SQLite chat history, and Letta's memory database (below)
+              &mdash; lives on <strong>TrueNAS Community Edition</strong> (<a
+                href="#row-storage-medium"
+                >Storage medium</a
+              >), the same ZFS-backed box whose OpenZFS layer (<a href="#row-processing-redundancy"
+                >Processing redundancy</a
+              >, below) actually protects it. <strong>CrewAI</strong> and
+              <strong>OpenHands</strong> (<a href="#row-autonomous-decision-making"
+                >Autonomous decision-making</a
+              >) orchestrate agentic work &mdash; CrewAI for multi-step planning/delegation,
+              OpenHands specifically for real terminal/file/browser tasks &mdash; both LLM-agnostic
+              and both pointed at the local Ollama endpoint rather than a hosted API key. Because
+              neither ships a safety reviewer, <strong>NeMo Guardrails</strong> wraps the runtime as
+              a policy layer (blocking unsafe tool calls before they execute), while
+              <strong>garak</strong> and <strong>PyRIT</strong> (<a href="#row-known-sentience-risk"
+                >Known sentience risk / adjacent-real-practice row</a
+              >) are run offline beforehand to probe the model/agent combination for jailbreaks and
+              prompt-injection weaknesses the guardrails might miss. For an agent that also needs to
+              <em>see and drive a screen</em> &mdash; the Touchscreen GUI row's actual computer-use
+              use case (<a href="#row-touchscreen-gui">Touchscreen GUI</a>) &mdash;
+              <strong>Cua</strong> provides the sandboxed virtual-desktop layer, and it's
+              Qwen3.6-27B's own multimodal capability (not a separate model) that gives Cua the
+              vision it needs. Persona continuity across restarts is handled by
+              <strong>Letta</strong> (<a href="#row-holographic-crew">Holographic crew</a>): its
+              Postgres/SQLite-backed core-memory blocks are literally what makes &ldquo;the
+              persona&rdquo; survive a process restart, exactly matching the pricing table's
+              &ldquo;persists exactly as long as your backups do&rdquo; framing &mdash; which is
+              also why <strong>OpenZFS</strong> snapshots plus <strong>restic</strong> off-site
+              backups (<a href="#row-processing-redundancy">Processing redundancy</a>) matter here
+              specifically: they're what makes that survival real rather than aspirational. Though
+              it sits outside this stack's home-network/local-LLM focus, this same Letta-backed
+              persona can be given a body: see the standalone
+              <a href="#row-holodeck">Holodeck / holo-environments</a> pairing below for readers who
+              want that persona actually populating a shared VR space.
+            </p>
+
+            <h3 class="block-tag">Stack 4: Field hardware, network hardening &amp; reliability</h3>
+            <p class="summary">
+              This stack covers the rows the first three don't reach: physical field equipment,
+              home-network defense, and the operational discipline that keeps any of the above
+              running. The field kit is built around <strong>M5Stack</strong>'s modular ESP32 sensor
+              &ldquo;Units&rdquo; (thermal, environmental) for the most literal &ldquo;open hardware
+              boards + thermal cams&rdquo; match, or
+              <strong>HackRF One + PortaPack Mayhem</strong> for RF-scanning priority (<a
+                href="#row-handheld-sensor-device"
+                >Handheld sensor device</a
+              >) &mdash; both flashed and developed from the same <strong>Framework</strong> laptop
+              named in Stack 2 (<a href="#row-ship-terminal">Ship terminal / console hardware</a>).
+              For sky/space work, <strong>Stellarium</strong> renders real Hipparcos/Gaia
+              star-survey data and ships a <code>NavStars</code> plugin of the 57 traditional
+              celestial-navigation stars, with <strong>KStars</strong>'s INDI-protocol backend added
+              when the goal is actually pointing a telescope rather than just viewing a chart (<a
+                href="#row-stellar-cartography"
+                >Stellar cartography</a
+              >). Perimeter defense is <strong>OPNsense</strong> as the edge firewall/router,
+              running <strong>Suricata</strong> in-line as IDS/IPS against known attack signatures,
+              with <strong>CrowdSec</strong> tailing service logs (SSH, reverse proxies) and sharing
+              its 10M+-IP community blocklist (<a href="#row-hostile-takeover-incidents"
+                >Hostile takeover incidents</a
+              >) &mdash; three layers feeding a stream of inspectable log lines rather than a
+              fictional boarding count. <strong>Uptime Kuma</strong> watches service availability
+              and <strong>Healthchecks.io</strong> watches whether scheduled backup jobs actually
+              ran (<a href="#row-uptime">Uptime</a>) &mdash; watching, not owning, Stacks 1 and 3's
+              own Storage medium and Processing redundancy picks (TrueNAS, OpenZFS, restic), since
+              neither protects anyone who silently stopped running them, and Stack 4 doesn't
+              introduce a separate storage or redundancy architecture of its own to replace them.
+              When self-repair is needed, <strong>Framework</strong>'s published schematics/EC
+              firmware and <strong>iFixit</strong>'s crowd-documented repair guides (<a
+                href="#row-self-repair-capability"
+                >Self-repair capability</a
+              >) cover, respectively, the report's own hardware picks and everything else a
+              household owns. <strong>r/selfhosted</strong>, project-specific Discourse forums, and
+              Matrix/Discord channels (<a href="#row-support-channel">Support channel</a>) are the
+              shared fallback across every stack in this report, not unique to this one.
+            </p>
+
+            <p class="summary">
+              <strong>Holodeck / holo-environments</strong>
+              (<a href="#row-holodeck">Holodeck / holo-environments</a>, Monado + WiVRn + Hubs)
+              doesn't fit cleanly into any of the four stacks above as a home-network,
+              mobile-privacy, or local-LLM component &mdash; it's a standalone XR/VR runtime stack
+              in its own right. Rather than force it into one of the four named stacks with a
+              stretched justification, it's presented here as an independent, self-contained
+              pairing: <strong>Monado + WiVRn</strong> for the runtime, and <strong>Hubs</strong>
+              for the shared-space content layer &mdash; cross-linked from Stack 3's
+              <a href="#row-holographic-crew">Holographic crew</a> entry (Letta) for readers who
+              want an AI persona actually populating a shared VR space.
+            </p>
+
+            <h3 class="block-tag">Compatibility matrix</h3>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Pricing-table row</th>
+                    <th>Stack 1: Home Assistant smart home</th>
+                    <th>Stack 2: Mobile / daily-driver privacy</th>
+                    <th>Stack 3: Self-hosted AI &amp; local-LLM</th>
+                    <th>Stack 4: Field hardware, network &amp; reliability</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a href="#row-primary-interface">Primary interface</a></td>
+                    <td>Home Assistant Assist + Open WebUI</td>
+                    <td>&mdash;</td>
+                    <td>oterm (terminal access to same model)</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-touchscreen-gui">Touchscreen GUI</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>Cua (computer-use agent, driven by Qwen3.6-27B's multimodal capability)</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-nlp">Natural language processing</a></td>
+                    <td>Qwen3.6-27B (served via Ollama)</td>
+                    <td>&mdash;</td>
+                    <td>Qwen3.6-27B</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-ship-terminal">Ship terminal / console hardware</a></td>
+                    <td>&mdash;</td>
+                    <td>Framework Laptop (phone pairing/flashing host)</td>
+                    <td>&mdash;</td>
+                    <td>Framework Laptop (field-device flashing host)</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-personal-access-device">Personal access device</a></td>
+                    <td>&mdash;</td>
+                    <td>Fairphone 6</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-handheld-sensor-device">Handheld sensor device</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>M5Stack Units / HackRF One + PortaPack Mayhem</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-personal-communicator">Personal communicator</a></td>
+                    <td>&mdash;</td>
+                    <td>/e/OS + Signal</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-storage-medium">Storage medium</a></td>
+                    <td>TrueNAS Community Edition</td>
+                    <td>Nextcloud Hub (E2EE folder sync)</td>
+                    <td>TrueNAS (model weights, oterm chat history, Letta's memory DB)</td>
+                    <td>&mdash; (monitors Stack 1/3's TrueNAS; not Stack 4's own pick)</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-core-architecture">Core architecture</a></td>
+                    <td>Ollama</td>
+                    <td>&mdash;</td>
+                    <td>Ollama</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-processing-redundancy">Processing redundancy</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>OpenZFS snapshots + restic (backing Letta's memory DB)</td>
+                    <td>&mdash; (monitors Stack 3's OpenZFS/restic; not Stack 4's own pick)</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-onboard-ai-personality">Onboard AI personality</a></td>
+                    <td>Ollama Modelfile <code>SYSTEM</code> directive</td>
+                    <td>&mdash;</td>
+                    <td>
+                      Ollama Modelfile <code>SYSTEM</code> directive (same instance as Core
+                      architecture)
+                    </td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-autonomous-decision-making">Autonomous decision-making</a>
+                    </td>
+                    <td>CrewAI</td>
+                    <td>&mdash;</td>
+                    <td>CrewAI / OpenHands</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-known-sentience-risk">Known sentience risk</a></td>
+                    <td>NeMo Guardrails</td>
+                    <td>&mdash;</td>
+                    <td>NeMo Guardrails + garak/PyRIT</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-holodeck">Holodeck / holo-environments</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-holographic-crew">Holographic crew</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>Letta</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-authorization-method">Authorization method</a></td>
+                    <td>Keycloak (SSO front door)</td>
+                    <td>Vaultwarden</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-hostile-takeover-incidents"
+                        >Hostile takeover incidents (logged)</a
+                      >
+                    </td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>OPNsense + Suricata + CrowdSec</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-universal-translator">Universal translator</a></td>
+                    <td>whisper.cpp + Argos Translate</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-stellar-cartography">Stellar cartography</a></td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>Stellarium + KStars</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-self-repair-capability">Self-repair capability</a></td>
+                    <td>&mdash;</td>
+                    <td>Framework Laptop repairability</td>
+                    <td>&mdash;</td>
+                    <td>Framework + iFixit</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-uptime">Uptime (malfunction-free episodes)</a>
+                    </td>
+                    <td>Uptime Kuma</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>Uptime Kuma + Healthchecks.io</td>
+                  </tr>
+                  <tr>
+                    <td><a href="#row-support-channel">Support channel</a></td>
+                    <td>r/selfhosted + HA Community Forum</td>
+                    <td>r/selfhosted</td>
+                    <td>&mdash;</td>
+                    <td>r/selfhosted + project Discourse/Discord</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
