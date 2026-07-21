@@ -2315,9 +2315,11 @@
                     <td>BSD-3-Clause</td>
                     <td>
                       A self-hosted, open-source reimplementation of Tailscale's coordination server
-                      &mdash; official Tailscale/WireGuard clients on every device connect to a
-                      control plane you run yourself instead of Tailscale's cloud, forming a private
-                      mesh network with MagicDNS, subnet routing, and exit nodes.
+                      &mdash; the official Tailscale client (which uses WireGuard as its underlying
+                      data-plane protocol) on every device connects to a control plane you run
+                      yourself instead of Tailscale's cloud, forming a private mesh network with
+                      MagicDNS, subnet routing, and exit nodes. Plain WireGuard clients don't speak
+                      the coordination protocol and can't connect to a Headscale server directly.
                     </td>
                     <td>
                       The actual encrypted traffic between devices is always WireGuard,
