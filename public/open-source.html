@@ -3721,7 +3721,15 @@
                 >Secure device networking</a
               >): the phone joins the same self-hosted WireGuard mesh as every other device in this
               project, so &ldquo;self-hosted&rdquo; doesn't quietly become &ldquo;only reachable on
-              the home Wi-Fi.&rdquo; A
+              the home Wi-Fi.&rdquo; On that mesh every request first lands on the household's
+              <strong>Caddy</strong> reverse proxy (<a href="#row-reverse-proxy"
+                >Reverse proxy &amp; TLS</a
+              >), so the phone always talks HTTPS to a valid certificate rather than dismissing a
+              self-signed warning, and the phone's DNS points at <strong>Pi-hole</strong> (<a
+                href="#row-dns"
+                >DNS &amp; network-level filtering</a
+              >), so ad and tracker domains are sinkholed network-wide &mdash; on the home Wi-Fi
+              and, via the tailnet's global nameserver, when the phone is out in the world too. A
               <strong>Framework Laptop</strong>
               (<a href="#row-ship-terminal">Ship terminal / console hardware</a>) is the
               pairing/flashing workstation for the phone &mdash; ADB, /e/OS updates, and
@@ -3763,7 +3771,19 @@
               >) as Stack 1, whose OpenZFS layer (<a href="#row-processing-redundancy"
                 >Processing redundancy</a
               >, below) actually protects it &mdash; one physical machine, shared by both stacks,
-              not a separate box per use case. <strong>CrewAI</strong> and
+              not a separate box per use case. Every piece of that service set &mdash; Ollama,
+              oterm, the agent stacks below, and Letta's Postgres &mdash; is brought up by
+              <strong>Docker Compose</strong> or, for OpenHands' agent sandbox specifically,
+              rootless <strong>Podman</strong> (<a href="#row-orchestration"
+                >Orchestration &amp; deployment</a
+              >), on a box a <strong>NUT</strong>-managed UPS (<a href="#row-power-ups"
+                >Power &amp; UPS</a
+              >) can shut down cleanly before a power cut corrupts a mid-write ZFS pool, with
+              <strong>Netdata</strong> or a <strong>Prometheus + Grafana</strong> stack (<a
+                href="#row-observability"
+                >Observability</a
+              >) watching GPU load and token throughput so &ldquo;why is inference slow
+              tonight&rdquo; has an answer. <strong>CrewAI</strong> and
               <strong>OpenHands</strong> (<a href="#row-autonomous-decision-making"
                 >Autonomous decision-making</a
               >) orchestrate agentic work &mdash; CrewAI for multi-step planning/delegation,
@@ -3817,7 +3837,13 @@
               its 10M+-IP community blocklist (<a href="#row-hostile-takeover-incidents"
                 >Hostile takeover incidents</a
               >) &mdash; three layers feeding a stream of inspectable log lines rather than a
-              fictional boarding count. Stack 2's <strong>Headscale</strong> mesh (<a
+              fictional boarding count. A fourth, cheaper layer sits in front of all of it:
+              <strong>Pi-hole</strong> with <strong>Unbound</strong> behind it (<a href="#row-dns"
+                >DNS &amp; network-level filtering</a
+              >) resolves the whole network's queries recursively &mdash; no public upstream
+              resolver trusted &mdash; and sinkholes command-and-control and telemetry domains at
+              the DNS layer, before a connection the packet-inspecting IDS would only catch
+              mid-flight ever opens. Stack 2's <strong>Headscale</strong> mesh (<a
                 href="#row-secure-networking"
                 >Secure device networking</a
               >) sits behind this same OPNsense edge &mdash; OPNsense's firewall rules still gate
@@ -3830,14 +3856,26 @@
               Storage medium and Processing redundancy picks (TrueNAS, OpenZFS, restic), since
               neither protects anyone who silently stopped running them, and Stack 4 doesn't
               introduce a separate storage or redundancy architecture of its own to replace them.
-              When self-repair is needed, <strong>Framework</strong>'s published schematics/EC
-              firmware and <strong>iFixit</strong>'s crowd-documented repair guides (<a
-                href="#row-self-repair-capability"
-                >Self-repair capability</a
-              >) cover, respectively, the report's own hardware picks and everything else a
-              household owns. <strong>r/selfhosted</strong>, project-specific Discourse forums, and
-              Matrix/Discord channels (<a href="#row-support-channel">Support channel</a>) are the
-              shared fallback across every stack in this report, not unique to this one.
+              The logs those three security layers emit don't review themselves:
+              <strong>Wazuh</strong> (<a href="#row-observability">Observability</a>) ingests
+              OPNsense, Suricata, and CrowdSec output into one correlated, searchable SIEM &mdash;
+              the &ldquo;something has to actually read these&rdquo; piece the Hostile-takeover row
+              leaves to the operator &mdash; with <strong>Netdata</strong> or
+              <strong>Prometheus + Grafana</strong> watching host and service metrics alongside it.
+              A <strong>NUT</strong>-managed UPS (<a href="#row-power-ups">Power &amp; UPS</a>)
+              signals every box on the network to shut down cleanly on power loss, the
+              physical-world complement to Stacks 1/3's OpenZFS-and-restic discipline, and the whole
+              assembly rides on <strong>Proxmox VE</strong> (<a href="#row-orchestration"
+                >Orchestration &amp; deployment</a
+              >) as the hypervisor beneath the shared box &mdash; the same reverse proxy CrowdSec is
+              already tailing being the <a href="#row-reverse-proxy">Caddy/Traefik</a> layer from
+              the security group. When self-repair is needed, <strong>Framework</strong>'s published
+              schematics/EC firmware and <strong>iFixit</strong>'s crowd-documented repair guides
+              (<a href="#row-self-repair-capability">Self-repair capability</a>) cover,
+              respectively, the report's own hardware picks and everything else a household owns.
+              <strong>r/selfhosted</strong>, project-specific Discourse forums, and Matrix/Discord
+              channels (<a href="#row-support-channel">Support channel</a>) are the shared fallback
+              across every stack in this report, not unique to this one.
             </p>
 
             <p class="summary">
