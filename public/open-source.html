@@ -1265,6 +1265,133 @@
               automatic &mdash; a reader who does nothing really is left with the single point of
               failure the claim warns about.
             </p>
+
+            <h3 class="block-tag" id="row-compute-core-hardware">Compute core hardware</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong>
+              <a href="#row-storage-medium">Storage medium</a>,
+              <a href="#row-core-architecture">Core architecture</a>, and
+              <a href="#row-ship-terminal">Ship terminal / console hardware</a> between them cover
+              the NAS software, the inference runtime, and the laptop you sit at &mdash; but none of
+              them names the actual box that runs TrueNAS and Ollama around the clock. This row
+              exists because the reference stacks below keep saying &ldquo;the household runs
+              TrueNAS as the box underneath all of this&rdquo; without ever saying what that box is.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Framework Desktop</td>
+                    <td>
+                      CC BY 4.0 (mainboard documentation and printable mechanical parts) &mdash; the
+                      same partial-openness caveat as the Framework laptop above, not a fully open
+                      board
+                    </td>
+                    <td>
+                      A Mini-ITX desktop built around AMD's Ryzen AI Max+ 395 APU with up to 128GB
+                      of unified memory &mdash; fast enough to run a 70B-parameter model at 20+
+                      tokens/second on one machine, with no discrete GPU required.
+                    </td>
+                    <td>
+                      Everything &mdash; model weights, NAS data, chat history &mdash; stays on
+                      hardware in the house; the unified-memory design means there's no separate GPU
+                      driver stack phoning home.
+                    </td>
+                    <td>
+                      Actively shipping &mdash;
+                      <code>FrameworkComputer/Framework-Desktop</code> repo pushed Jul 6, 2026, 308
+                      stars, not archived
+                    </td>
+                    <td>
+                      <a href="https://frame.work/desktop" target="_blank" rel="noopener"
+                        >frame.work/desktop</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>System76 Thelio</td>
+                    <td>
+                      Coreboot + <code>system76/firmware-open</code> (GPL-licensed) &mdash; the same
+                      open firmware already used for the Lemur Pro laptop above, now on a desktop
+                      chassis
+                    </td>
+                    <td>
+                      A Linux-first desktop/workstation line (redesigned Apr 2026 as Thelio Mira /
+                      Thelio Major) with room for a real discrete NVIDIA or AMD GPU, for readers who
+                      want dedicated inference hardware rather than a unified-memory APU.
+                    </td>
+                    <td>
+                      Open boot firmware plus a real GPU slot means both the software stack and the
+                      compute hardware itself are inspectable and swappable, not sealed to one
+                      vendor's silicon.
+                    </td>
+                    <td>Actively maintained &mdash; Thelio Major/Mira redesign shipped Apr 2026</td>
+                    <td>
+                      <a href="https://system76.com/desktops" target="_blank" rel="noopener"
+                        >system76.com/desktops</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Minisforum MS-02 Ultra</td>
+                    <td>
+                      Proprietary BIOS/firmware &mdash; the least open of the three, included anyway
+                      because it's the pick homelab communities actually reach for
+                    </td>
+                    <td>
+                      A sub-4-liter mini PC with dual 10GbE, three M.2 NVMe slots, and a PCIe 4.0
+                      slot for a discrete GPU &mdash; small enough to run TrueNAS and a
+                      passed-through GPU for Ollama in the exact same box the reference stacks
+                      describe.
+                    </td>
+                    <td>
+                      Closed firmware is a real trust gap the other two picks don't have; the
+                      trade-off is a single small box that genuinely combines NAS and GPU compute,
+                      which neither Framework Desktop nor Thelio does as compactly.
+                    </td>
+                    <td>
+                      Actively shipping as of 2026 &mdash; official successor to the now-dated MS-01
+                    </td>
+                    <td>
+                      <a href="https://store.minisforum.com/" target="_blank" rel="noopener"
+                        >store.minisforum.com</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Framework Desktop is the most complete match for the
+              &ldquo;consumer GPU or unified-memory mini PC&rdquo; framing this whole report is
+              built around &mdash; one box, one purchase, no GPU passthrough configuration required,
+              and it's already the same vendor as the laptop pick above. Choose System76 Thelio
+              instead if a discrete GPU with room to upgrade later matters more than compactness.
+              Reach for the Minisforum MS-02 Ultra specifically to combine NAS and GPU inference in
+              one small, cheap box &mdash; and go in accepting its firmware isn't open, unlike the
+              other two.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-storage-medium">Storage medium</a> and
+              <a href="#row-core-architecture">Core architecture</a> &mdash; this is the physical
+              hardware TrueNAS and Ollama actually run on, and
+              <a href="#row-processing-redundancy">Processing redundancy</a>'s OpenZFS pool lives on
+              its drives too. Distinct from
+              <a href="#row-ship-terminal">Ship terminal / console hardware</a>'s laptops: that row
+              is the machine a person sits at, this row is the machine that just runs, headless,
+              around the clock.
+            </p>
           </div>
         </section>
 
@@ -2158,6 +2285,131 @@
               taken over,&rdquo; but the self-hoster genuinely is their own security team, and the
               tooling above is what makes the attack surface inspectable rather than a black box.
             </p>
+
+            <h3 class="block-tag" id="row-secure-networking">Secure device networking</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong>
+              <a href="#row-authorization-method">Authorization method</a> covers who's allowed in,
+              and <a href="#row-hostile-takeover-incidents">Hostile takeover incidents</a> covers
+              watching the perimeter for attackers &mdash; neither answers how the
+              <a href="#row-personal-access-device">Fairphone in your pocket</a> actually reaches
+              the <a href="#row-compute-core-hardware">TrueNAS/Ollama box</a> at home once you've
+              left the building. <a href="#row-personal-communicator">Personal communicator</a>'s
+              Signal pick encrypts chat, not this. This row is that missing transport layer.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Headscale</td>
+                    <td>BSD-3-Clause</td>
+                    <td>
+                      A self-hosted, open-source reimplementation of Tailscale's coordination server
+                      &mdash; official Tailscale/WireGuard clients on every device connect to a
+                      control plane you run yourself instead of Tailscale's cloud, forming a private
+                      mesh network with MagicDNS, subnet routing, and exit nodes.
+                    </td>
+                    <td>
+                      The actual encrypted traffic between devices is always WireGuard,
+                      point-to-point; self-hosting the coordination server too means no third party
+                      ever brokers peer discovery for this household's devices.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v0.29.2 (Jul 1, 2026), repo pushed same-day as
+                      this research (Jul 21, 2026), 41.9k+ stars
+                    </td>
+                    <td>
+                      <a href="https://github.com/juanfont/headscale" target="_blank" rel="noopener"
+                        >juanfont/headscale</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tailscale</td>
+                    <td>
+                      Client is BSD-3-Clause and open source; the hosted coordination server itself
+                      is closed, proprietary SaaS
+                    </td>
+                    <td>
+                      The zero-config on-ramp to the same WireGuard-based mesh &mdash; install on
+                      every device, sign in, and it just connects, using Tailscale's own servers
+                      only for peer discovery and NAT traversal, never for relaying the actual
+                      traffic once a direct connection succeeds.
+                    </td>
+                    <td>
+                      Genuinely end-to-end encrypted device-to-device, but peer discovery trusts
+                      Tailscale's infrastructure &mdash; the exact trade-off Headscale exists to
+                      remove.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; client v1.98.9 (Jul 20, 2026), repo pushed Jul 21,
+                      2026, 5M+ active devices reported in 2026
+                    </td>
+                    <td>
+                      <a href="https://tailscale.com/opensource" target="_blank" rel="noopener"
+                        >tailscale.com/opensource</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WireGuard (plain, no coordination server)</td>
+                    <td>GPL-2.0 (<code>wireguard-tools</code>)</td>
+                    <td>
+                      The kernel-level protocol Headscale and Tailscale both build on, used directly
+                      &mdash; hand-configured peers and keys, no control-plane software at all, the
+                      minimum possible trusted-third-party surface.
+                    </td>
+                    <td>
+                      Nothing to self-host and nothing to trust beyond the devices themselves, but
+                      no NAT traversal or MagicDNS convenience either &mdash; every peer and IP is
+                      manually managed.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; <code>wireguard-tools</code> repo pushed May 6,
+                      2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/WireGuard/wireguard-tools"
+                        target="_blank"
+                        rel="noopener"
+                        >WireGuard/wireguard-tools</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Headscale &mdash; it gets Tailscale's
+              actual day-to-day convenience (MagicDNS, exit nodes, works through most NATs) while
+              keeping the one piece that matters for this project's whole premise, the coordination
+              server, on hardware in the house. Tailscale itself is the right call only for readers
+              who've decided the peer-discovery trust trade-off is acceptable in exchange for zero
+              maintenance. Drop to plain WireGuard only if the household is small and static enough
+              that manual peer configuration isn't a burden.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-compute-core-hardware">Compute core hardware</a> &mdash; Headscale's
+              coordination server is one more service that runs on the same box as TrueNAS and
+              Ollama, and once it's up, every device on the mesh (the
+              <a href="#row-personal-access-device">Fairphone</a>, the
+              <a href="#row-ship-terminal">Framework laptop</a>) can reach
+              <a href="#row-primary-interface">Open WebUI/oterm</a> and
+              <a href="#row-storage-medium">Nextcloud/TrueNAS</a> exactly as if it were on the home
+              LAN, from anywhere.
+            </p>
           </div>
         </section>
 
@@ -2834,9 +3086,14 @@
               before Assist ever sees it. The household runs
               <strong>TrueNAS Community Edition</strong> (<a href="#row-storage-medium"
                 >Storage medium</a
+              >) on top of a <strong>Framework Desktop</strong> (<a
+                href="#row-compute-core-hardware"
+                >Compute core hardware</a
               >) as the box underneath all of this &mdash; HA's config, Open WebUI's chat/RAG
-              storage, and Ollama's model weights all live on the same ZFS-backed volume &mdash; and
-              <strong>Keycloak</strong> (<a href="#row-authorization-method">Authorization method</a
+              storage, and Ollama's model weights all live on the same ZFS-backed volume, on the
+              same physical machine &mdash; and <strong>Keycloak</strong> (<a
+                href="#row-authorization-method"
+                >Authorization method</a
               >) sits in front of Open WebUI and any other self-hosted dashboard as a single
               WebAuthn/FIDO2 SSO login, rather than a separate password per app.
               <strong>Uptime Kuma</strong> (<a href="#row-uptime">Uptime</a>) pings HA's own health
@@ -2870,7 +3127,13 @@
               >) &mdash; chosen over Proton Drive here specifically because Nextcloud's server is
               one you run, keeping the &ldquo;only you hold the keys&rdquo; property intact for the
               mobile-daily-driver use case rather than trusting Proton's (open-client,
-              closed-server) infrastructure. A
+              closed-server) infrastructure. Reaching any of this &mdash; Vaultwarden, Nextcloud,
+              Open WebUI &mdash; from outside the house runs over <strong>Headscale</strong> (<a
+                href="#row-secure-networking"
+                >Secure device networking</a
+              >): the phone joins the same self-hosted WireGuard mesh as every other device in this
+              project, so &ldquo;self-hosted&rdquo; doesn't quietly become &ldquo;only reachable on
+              the home Wi-Fi.&rdquo; A
               <strong>Framework Laptop</strong>
               (<a href="#row-ship-terminal">Ship terminal / console hardware</a>) is the
               pairing/flashing workstation for the phone &mdash; ADB, /e/OS updates, and
@@ -2906,9 +3169,13 @@
               &mdash; lives on <strong>TrueNAS Community Edition</strong> (<a
                 href="#row-storage-medium"
                 >Storage medium</a
-              >), the same ZFS-backed box whose OpenZFS layer (<a href="#row-processing-redundancy"
+              >) running on the same <strong>Framework Desktop</strong> (<a
+                href="#row-compute-core-hardware"
+                >Compute core hardware</a
+              >) as Stack 1, whose OpenZFS layer (<a href="#row-processing-redundancy"
                 >Processing redundancy</a
-              >, below) actually protects it. <strong>CrewAI</strong> and
+              >, below) actually protects it &mdash; one physical machine, shared by both stacks,
+              not a separate box per use case. <strong>CrewAI</strong> and
               <strong>OpenHands</strong> (<a href="#row-autonomous-decision-making"
                 >Autonomous decision-making</a
               >) orchestrate agentic work &mdash; CrewAI for multi-step planning/delegation,
@@ -2962,10 +3229,15 @@
               its 10M+-IP community blocklist (<a href="#row-hostile-takeover-incidents"
                 >Hostile takeover incidents</a
               >) &mdash; three layers feeding a stream of inspectable log lines rather than a
-              fictional boarding count. <strong>Uptime Kuma</strong> watches service availability
-              and <strong>Healthchecks.io</strong> watches whether scheduled backup jobs actually
-              ran (<a href="#row-uptime">Uptime</a>) &mdash; watching, not owning, Stacks 1 and 3's
-              own Storage medium and Processing redundancy picks (TrueNAS, OpenZFS, restic), since
+              fictional boarding count. Stack 2's <strong>Headscale</strong> mesh (<a
+                href="#row-secure-networking"
+                >Secure device networking</a
+              >) sits behind this same OPNsense edge, so remote-access traffic is still subject to
+              the perimeter's IDS/IPS rules before it ever reaches the coordination server.
+              <strong>Uptime Kuma</strong> watches service availability and
+              <strong>Healthchecks.io</strong> watches whether scheduled backup jobs actually ran
+              (<a href="#row-uptime">Uptime</a>) &mdash; watching, not owning, Stacks 1 and 3's own
+              Storage medium and Processing redundancy picks (TrueNAS, OpenZFS, restic), since
               neither protects anyone who silently stopped running them, and Stack 4 doesn't
               introduce a separate storage or redundancy architecture of its own to replace them.
               When self-repair is needed, <strong>Framework</strong>'s published schematics/EC
@@ -3060,6 +3332,16 @@
                     <td>&mdash; (monitors Stack 1/3's TrueNAS; not Stack 4's own pick)</td>
                   </tr>
                   <tr>
+                    <td>
+                      <a href="#row-compute-core-hardware">Compute core hardware</a>
+                      <em>(bonus row)</em>
+                    </td>
+                    <td>Framework Desktop (shared with Stack 3)</td>
+                    <td>&mdash;</td>
+                    <td>Framework Desktop (shared with Stack 1)</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
                     <td><a href="#row-core-architecture">Core architecture</a></td>
                     <td>Ollama</td>
                     <td>&mdash;</td>
@@ -3130,6 +3412,16 @@
                     <td>&mdash;</td>
                     <td>&mdash;</td>
                     <td>OPNsense + Suricata + CrowdSec</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-secure-networking">Secure device networking</a>
+                      <em>(bonus row)</em>
+                    </td>
+                    <td>&mdash;</td>
+                    <td>Headscale (phone reaches home services remotely)</td>
+                    <td>&mdash;</td>
+                    <td>Headscale coordination server, behind OPNsense</td>
                   </tr>
                   <tr>
                     <td><a href="#row-universal-translator">Universal translator</a></td>
