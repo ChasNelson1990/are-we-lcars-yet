@@ -506,7 +506,7 @@ Note: rows 2 and 4 both touch phone/OS choice from different angles (device vs. 
         rel="stylesheet"
       />
       <link rel="stylesheet" href="assets/styles.css" />
-      <link rel="stylesheet" href="assets/report.css" media="(max-width: 900px)" />
+      <link rel="stylesheet" href="assets/report.css" />
     </head>
     <body>
       <div class="lcars-frame">
