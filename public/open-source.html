@@ -2344,9 +2344,11 @@
                     </td>
                     <td>
                       The zero-config on-ramp to the same WireGuard-based mesh &mdash; install on
-                      every device, sign in, and it just connects, using Tailscale's own servers
-                      only for peer discovery and NAT traversal, never for relaying the actual
-                      traffic once a direct connection succeeds.
+                      every device, sign in, and it just connects. Tailscale's own servers handle
+                      peer discovery and NAT traversal, and a direct connection is the normal case;
+                      when NAT traversal fails, traffic falls back to Tailscale's DERP relay servers
+                      &mdash; still end-to-end WireGuard-encrypted, so DERP relays ciphertext it
+                      can't read, but it is a third party in the path in that fallback case.
                     </td>
                     <td>
                       Genuinely end-to-end encrypted device-to-device, but peer discovery trusts
