@@ -539,10 +539,10 @@
               <a href="#row-core-architecture">Core architecture</a> &mdash; all three can run the
               same self-hosted stack referenced elsewhere in this report (a local-LLM backend, Open
               WebUI, Home Assistant Assist) as a home &ldquo;ops console.&rdquo; Also cross-links to
-              the Self-repair capability row (added in Task 12): Framework's published schematics/EC
-              firmware are the same #1 pick there, for a different reason (repairability
-              documentation rather than daily-driver modularity) &mdash; a reader who picks
-              Framework for one gets the other for free.
+              <a href="#row-self-repair-capability">Self-repair capability</a>: Framework's
+              published schematics/EC firmware are the same #1 pick there, for a different reason
+              (repairability documentation rather than daily-driver modularity) &mdash; a reader who
+              picks Framework for one gets the other for free.
             </p>
             <p class="summary">
               <span class="pill pill-yes">Agrees</span>, with a caveat, with
@@ -1659,7 +1659,243 @@
             Simulation &amp; Holography
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 12 -->
+            <h3 class="block-tag" id="row-holodeck">Holodeck / holo-environments</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Not available &mdash; SteamVR on Linux
+              exists, still no photons with mass.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Monado</td>
+                    <td>Boost Software License 1.0</td>
+                    <td>
+                      Open-source implementation of the Khronos OpenXR standard for GNU/Linux (with
+                      Android and Windows support) &mdash; the compositor/runtime layer that lets an
+                      application talk to VR/AR hardware without a proprietary driver stack.
+                    </td>
+                    <td>
+                      Runs entirely on hardware and software you control &mdash; no
+                      telemetry-collecting vendor runtime required to get an OpenXR app on screen.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest stable 25.1.0 (Dec 9, 2025), in-progress
+                      &ldquo;vNEXT&rdquo; entries dated as recent as Jul 21, 2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://gitlab.freedesktop.org/monado/monado"
+                        target="_blank"
+                        rel="noopener"
+                        >gitlab.freedesktop.org/monado/monado</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WiVRn</td>
+                    <td>GPL-3.0</td>
+                    <td>
+                      Wirelessly streams a PC-rendered OpenXR/SteamVR-compatible scene to a
+                      standalone Android headset (Quest 1&ndash;3S, Pico 4, Vive Focus/XR Elite and
+                      others), built on top of Monado.
+                    </td>
+                    <td>
+                      All rendering, compositing, and networking run on hardware you own, with no
+                      cloud relay.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v26.6.2 (Jul 14, 2026), commits as
+                      recent as Jul 21, 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/WiVRn/WiVRn" target="_blank" rel="noopener"
+                        >WiVRn/WiVRn</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hubs (Hubs Foundation, formerly Mozilla Hubs)</td>
+                    <td>MPL-2.0</td>
+                    <td>
+                      Self-hostable, browser-based (WebXR) multi-user virtual space platform: invite
+                      others into a 3D room, walk around, bring in web content, and talk over
+                      spatialized voice, with the companion Spoke editor for building custom scenes.
+                    </td>
+                    <td>
+                      The closest open-source analog to the shared, persistent, walk-in environment
+                      half of a holodeck, but flat WebXR content in a rendered scene, not a
+                      compositor-and-hardware runtime.
+                    </td>
+                    <td>
+                      Actively maintained by the community-run Hubs Foundation after Mozilla ended
+                      its own hosted service May 31, 2024 &mdash; latest production release
+                      prod-2026-03-11, commits as recent as Jul 8, 2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/Hubs-Foundation/hubs"
+                        target="_blank"
+                        rel="noopener"
+                        >Hubs-Foundation/hubs</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> There is no real candidate that rebuts &ldquo;no
+              photons with mass&rdquo; &mdash; that stays true. For the closest practical open stack
+              for room-scale shared VR today: start with Monado as the runtime layer (it's now a
+              shared foundation several commercial headset vendors build on), add WiVRn if the
+              headset is a standalone Android device that needs to talk to a Linux PC wirelessly,
+              and use Hubs for the actual shared/social/persistent-space experience once hardware
+              and runtime are sorted.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              Monado and WiVRn are complementary layers (WiVRn is built on Monado), not competitors
+              &mdash; pick both if the headset is a standalone Quest/Pico-class device. For local
+              AI-driven characters populating a Hubs space, pair with
+              <a href="#row-holographic-crew">Holographic crew</a> &mdash; the persona/memory
+              tooling in the next row.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. The verdict that full sensory, forcefield-assisted holodeck matter is
+              &ldquo;not available&rdquo; remains accurate; SteamVR-on-Linux (and its genuinely open
+              alternatives Monado/WiVRn) get you shared immersive VR, never tangible photons.
+            </p>
+
+            <h3 class="block-tag" id="row-holographic-crew">Holographic crew</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Self-hosted personas persist exactly as
+              long as your backups do.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Letta (formerly MemGPT)</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      Self-hostable framework/server for &ldquo;stateful&rdquo; LLM agents whose
+                      identity is a persistent object: core memory blocks (persona + human facts)
+                      plus an archival memory the agent can search, stored in a database you run
+                      (Postgres or SQLite).
+                    </td>
+                    <td>
+                      Kill the process, restart it, and the persona resumes exactly where it left
+                      off &mdash; because &ldquo;the persona&rdquo; is rows in your database.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release 0.16.8 (May 14, 2026), commits as
+                      recent as Jul 3, 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/letta-ai/letta" target="_blank" rel="noopener"
+                        >letta-ai/letta</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mem0</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      A memory layer you attach to an existing agent/chat stack: extracts durable
+                      facts and preferences from conversations, stores them in a vector/graph store
+                      of your choosing (self-hosted Qdrant, Neo4j, or others).
+                    </td>
+                    <td>
+                      Lower-level than Letta &mdash; a memory API to bolt onto whatever agent
+                      runtime you already have; continuity is entirely a function of backing up that
+                      store.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release cli-node-v0.2.11 (Jul 13, 2026),
+                      commits as recent as Jul 21, 2026, 61k+ GitHub stars
+                    </td>
+                    <td>
+                      <a href="https://github.com/mem0ai/mem0" target="_blank" rel="noopener"
+                        >mem0ai/mem0</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Graphiti</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      Self-hosted temporal knowledge-graph engine for agent memory: facts are stored
+                      as graph edges with validity time ranges against a database you run (Neo4j or
+                      FalkorDB), so an agent can reason about what was true when.
+                    </td>
+                    <td>
+                      The most structurally sophisticated of the three for a persona that needs to
+                      track evolving relationships and history, at the cost of running and backing
+                      up a real graph database yourself.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v0.29.2 (Jun 8, 2026), commits as
+                      recent as Jul 20, 2026, 29k+ GitHub stars. Note: the separate
+                      <code>getzep/zep</code> repo is not this candidate &mdash; it now ships only
+                      Zep Cloud example code; Graphiti is the actual self-hostable open-source
+                      engine.
+                    </td>
+                    <td>
+                      <a href="https://github.com/getzep/graphiti" target="_blank" rel="noopener"
+                        >getzep/graphiti</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Letta if the goal is one persistent named
+              persona with a simple, inspectable memory model &mdash; it's a complete self-hosted
+              agent server, and &ldquo;restart and it remembers&rdquo; is the most direct real-world
+              match to the claim. Reach for Mem0 if there's already an agent/chat stack in place and
+              only a memory layer is needed on top. Choose Graphiti specifically when the persona
+              needs to track changing facts over time, but budget for running and backing up a real
+              graph database. All three make the caveat literal: the persona is data, and it is
+              exactly as durable as the database backups protecting it.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-onboard-ai-personality">Onboard AI personality</a> (Ollama Modelfiles,
+              SillyTavern, Open WebUI) to give a persona both a personality/voice and a durable
+              memory, and with the local-inference runtimes from
+              <a href="#row-primary-interface">Primary interface</a> /
+              <a href="#row-core-architecture">Core architecture</a> (Ollama, llama.cpp, vLLM) as
+              the model actually doing the talking.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Letta, Mem0, and Graphiti are all real, currently-maintained, self-hostable
+              projects whose entire value proposition is that a persona's continuity is stored data;
+              if you don't back that data up, the persona is gone, exactly as the row states.
+            </p>
           </div>
         </section>
 
@@ -1672,7 +1908,256 @@
             Security &amp; Access Control
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 12 -->
+            <h3 class="block-tag" id="row-authorization-method">Authorization method</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Passkeys, FIDO2 hardware keys,
+              Bitwarden / Proton Pass &mdash; auditable end to end.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Vaultwarden</td>
+                    <td>AGPL-3.0</td>
+                    <td>
+                      Unofficial, Rust-rewritten, self-hostable server implementation of the
+                      Bitwarden API &mdash; official Bitwarden apps/extensions point at your own
+                      instance instead of Bitwarden's cloud; also supports WebAuthn/FIDO2 hardware
+                      keys as a two-factor login method.
+                    </td>
+                    <td>
+                      Vault data lives entirely on your own server. Caveat: passwordless login to
+                      the vault itself via passkey is not yet implemented server-side (PR #5929 was
+                      still open/unmerged as of Jul 21, 2026).
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v1.36.0 (May 3, 2026), commits as
+                      recent as Jul 20, 2026, 64k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/dani-garcia/vaultwarden"
+                        target="_blank"
+                        rel="noopener"
+                        >dani-garcia/vaultwarden</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>KeePassXC</td>
+                    <td>GPL-2.0-or-later (dual GPL-2.0/GPL-3.0 per COPYING)</td>
+                    <td>
+                      Fully offline, local-first password database with a browser-extension bridge
+                      storing/autofilling FIDO2 passkeys directly inside the encrypted
+                      <code>.kdbx</code> file; supports YubiKey/OnlyKey hardware keys for
+                      database-unlock.
+                    </td>
+                    <td>
+                      No cloud sync of any kind unless you add your own &mdash; the most
+                      &ldquo;auditable end to end&rdquo; of the three in the strict sense.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release 2.7.12 (Mar 10, 2026), commits as
+                      recent as Jul 11, 2026, 28k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/keepassxreboot/keepassxc"
+                        target="_blank"
+                        rel="noopener"
+                        >keepassxreboot/keepassxc</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Keycloak</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      Self-hosted identity and access management (IAM) server &mdash; become your
+                      own OAuth2/OIDC/SAML provider for every other self-hosted app, with a built-in
+                      WebAuthn engine supporting passkeys as both first-factor and second-factor.
+                    </td>
+                    <td>
+                      Central, inspectable audit logs of every authorization event across a whole
+                      self-hosted stack &mdash; a different kind of &ldquo;auditable end to
+                      end&rdquo; than a password manager provides.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release 26.7.0 (Jul 9, 2026), commits as
+                      recent as Jul 21, 2026, 35k+ GitHub stars
+                    </td>
+                    <td>
+                      <a href="https://github.com/keycloak/keycloak" target="_blank" rel="noopener"
+                        >keycloak/keycloak</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Vaultwarden &mdash; it's the
+              lowest-friction option and covers &ldquo;Bitwarden&rdquo; directly, with the one
+              honest caveat that logging into the vault itself via passkey is still an open PR, not
+              shipped. Reach for KeePassXC instead if &ldquo;auditable end to end&rdquo; needs to
+              mean literally zero network dependency. Add Keycloak on top of either once there's
+              more than one self-hosted service to protect &mdash; the closest real analog to a
+              ship-wide command-code system.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              Vaultwarden and KeePassXC are both password/passkey stores, not identity providers
+              &mdash; either can hold the credentials a person uses to reach a Keycloak-protected
+              login screen, and Keycloak in turn can be the OIDC provider in front of self-hosted
+              apps like <a href="#row-primary-interface">Primary interface</a>'s Open WebUI. All
+              three are independent of model/inference choice.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Passkeys, FIDO2 hardware keys, and self-hosted Bitwarden-compatible vaults are
+              real, current, and (with a self-hosted server) genuinely auditable end to end; the one
+              nuance is that this is strongest for KeePassXC (no server at all) and weakest for
+              Vaultwarden's own login flow specifically.
+            </p>
+
+            <h3 class="block-tag" id="row-hostile-takeover-incidents">
+              Hostile takeover incidents (logged)
+            </h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Same prompt-injection problem, and
+              you're your own security team &mdash; but the attack surface is inspectable.&rdquo;
+              <strong>Reinterpreted row:</strong> there is no real-world &ldquo;hostile takeover
+              incident log&rdquo; analogous to a starship being boarded. The honest real-world
+              analog is home-lab/network-layer intrusion detection and hardening &mdash; the
+              firewall, IDS/IPS, and log-based threat-detection tooling a self-hoster actually runs
+              to notice and stop unauthorized access to their own infrastructure. The candidates
+              below are evaluated against that real practice, not a literal takeover log.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>OPNsense</td>
+                    <td>BSD-2-Clause</td>
+                    <td>
+                      Full self-hosted firewall/router OS (hardened, actively-developed
+                      FreeBSD-based fork of the pfSense lineage) run as the edge device in front of
+                      a home network; can host Suricata as an in-line IDS/IPS plugin directly.
+                    </td>
+                    <td>
+                      One codebase under one open license with no free/paid feature split &mdash; a
+                      single auditable choke point for inbound/outbound traffic.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; twice-yearly major-release cadence, current series
+                      26.7 with point release 26.7.1
+                    </td>
+                    <td>
+                      <a href="https://github.com/opnsense/core" target="_blank" rel="noopener"
+                        >opnsense/core</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Suricata</td>
+                    <td>GPL-2.0</td>
+                    <td>
+                      Network intrusion detection/prevention engine (IDS/IPS) inspecting live
+                      traffic against signature rulesets (e.g. community Emerging Threats), logging
+                      matches or actively dropping flagged packets in inline IPS mode.
+                    </td>
+                    <td>
+                      Every rule match is a plain, greppable log line &mdash; the actual
+                      &ldquo;inspectable attack surface&rdquo; a self-hoster gets in place of a
+                      fictional takeover log.
+                    </td>
+                    <td>
+                      Actively maintained by the nonprofit OISF &mdash; latest release
+                      suricata-8.0.6 (Jul 7, 2026), commits as recent as Jul 10, 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/OISF/suricata" target="_blank" rel="noopener"
+                        >OISF/suricata</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CrowdSec</td>
+                    <td>MIT</td>
+                    <td>
+                      Log-based threat-detection engine (a modernized, crowdsourced answer to
+                      fail2ban) that tails service logs, matches behavioral &ldquo;scenarios&rdquo;
+                      to spot brute-force/scan/exploit patterns, and hands off enforcement to
+                      pluggable &ldquo;bouncers.&rdquo;
+                    </td>
+                    <td>
+                      Opt-in community blocklist (10M+ contributed malicious IPs as of mid-2026)
+                      &mdash; about as close as the real world gets to a shared &ldquo;hostile
+                      takeover&rdquo; log.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v1.7.8 (May 11, 2026), commits as
+                      recent as Jul 21, 2026, 14k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/crowdsecurity/crowdsec"
+                        target="_blank"
+                        rel="noopener"
+                        >crowdsecurity/crowdsec</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Layer all three rather than picking one: OPNsense as
+              the perimeter firewall, Suricata (bundled or standalone) watching the wire for known
+              attack signatures, and CrowdSec tailing application/service logs to catch brute-force
+              and scan behavior a signature-based IDS alone would miss. None of these produce
+              anything like a &ldquo;confirmed boarding&rdquo; count &mdash; what a self-hoster
+              actually gets is a stream of blocked-IP and rule-match log entries they have to review
+              themselves.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              CrowdSec and Suricata both benefit from being fed logs/traffic from whatever else is
+              self-hosted elsewhere in this project (reverse proxies, SSH daemons, the local-LLM web
+              UIs from <a href="#row-primary-interface">Primary interface</a>), and both can run
+              natively on or alongside an OPNsense box. None of the three are specific to AI/LLM
+              tooling.
+            </p>
+            <p class="summary">
+              <span class="pill pill-bad">Disagrees</span> with <code>index.html</code>'s current
+              claim, taken literally. The claim is about AI agent security, and there is no real
+              &ldquo;hostile takeover incident log&rdquo; to compare it against for a self-hosted
+              setup, fictional or otherwise. The genuinely real practice available today is
+              network/log-based intrusion detection and hardening (OPNsense, Suricata, CrowdSec)
+              &mdash; a different, narrower, and answerable problem than &ldquo;has my system been
+              taken over,&rdquo; but the self-hoster genuinely is their own security team, and the
+              tooling above is what makes the attack surface inspectable rather than a black box.
+            </p>
           </div>
         </section>
 
@@ -1685,7 +2170,245 @@
             Sensors &amp; Navigation
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 12 -->
+            <h3 class="block-tag" id="row-universal-translator">Universal translator</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Whisper + open translation models run
+              locally &mdash; near-real-time, fewer languages, no cloud required.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>whisper.cpp</td>
+                    <td>MIT</td>
+                    <td>
+                      C/C++ port of OpenAI's Whisper speech-recognition model built for local
+                      inference with no Python/CUDA dependency, running on CPU (including phones and
+                      Raspberry Pi) or with optional GPU acceleration; ships a <code>stream</code>
+                      example for near-real-time microphone transcription.
+                    </td>
+                    <td>Audio never leaves the device.</td>
+                    <td>
+                      Actively maintained &mdash; latest release v1.9.1 (Jun 19, 2026), commits as
+                      recent as Jul 11, 2026, 52k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/ggml-org/whisper.cpp"
+                        target="_blank"
+                        rel="noopener"
+                        >ggml-org/whisper.cpp</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Argos Translate</td>
+                    <td>MIT</td>
+                    <td>
+                      Offline neural machine translation library built on OpenNMT/CTranslate2,
+                      distributing per-language-pair model packages that install and run entirely
+                      locally &mdash; the actual &ldquo;open translation model&rdquo; a Whisper
+                      transcript would be piped through.
+                    </td>
+                    <td>
+                      Language coverage (~35 language pairs) is real but far short of a commercial
+                      cloud API's 100+, matching the row's own &ldquo;fewer languages&rdquo; caveat.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest git tag v1.11.0 (Feb 2, 2026), commits as
+                      recent as Jun 27, 2026, 6.3k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/argosopentech/argos-translate"
+                        target="_blank"
+                        rel="noopener"
+                        >argosopentech/argos-translate</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LibreTranslate</td>
+                    <td>AGPL-3.0</td>
+                    <td>
+                      Self-hosted translation API/web UI that wraps Argos Translate's models behind
+                      a simple REST endpoint, so a household can run one local service that a
+                      Whisper transcript is POSTed to instead of calling Google/DeepL.
+                    </td>
+                    <td>
+                      Same underlying models as Argos Translate, packaged as a long-running server
+                      rather than a library.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v1.9.6 (May 26, 2026), commits as
+                      recent as Jul 19, 2026, 15k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/LibreTranslate/LibreTranslate"
+                        target="_blank"
+                        rel="noopener"
+                        >LibreTranslate/LibreTranslate</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with whisper.cpp for the speech-to-text leg
+              &mdash; it's the most actively developed of the group and its <code>stream</code>
+              example is a working near-real-time local transcription pipeline out of the box. Feed
+              its output into Argos Translate directly for a single-device/single-user setup, or
+              LibreTranslate if multiple devices/apps need to share one translation service. The
+              honest caveat the row already states holds up: local models cover a real but limited
+              language list, and end-to-end latency is &ldquo;near-real-time,&rdquo; not instant.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-primary-interface">Primary interface</a>'s Home Assistant Assist voice
+              pipeline for wake-word-triggered translation, and with local TTS engines (e.g. Piper)
+              to close the loop into spoken output &mdash; note Piper is archived upstream (last
+              pushed 2025-08-26), still functional and widely used, just not actively developed (see
+              the Primary interface row's own caveat). None of these three depend on any AI-autonomy
+              or data-storage picks from other groups.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Whisper-family speech recognition plus locally-run open translation models is a
+              real, currently-maintained, no-cloud-required stack, and &ldquo;fewer languages&rdquo;
+              than a commercial cloud service is an accurate, not exaggerated, limitation.
+            </p>
+
+            <h3 class="block-tag" id="row-stellar-cartography">Stellar cartography</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Stellarium + open sky-survey data
+              &mdash; the actual star charts are already open source.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Stellarium</td>
+                    <td>GPL-2.0</td>
+                    <td>
+                      Desktop/mobile planetarium rendering real star catalogs (Hipparcos by default,
+                      with a Gaia DR2/DR3 add-on) plus real deep-sky-object and satellite data;
+                      ships a <code>NavStars</code> plugin of the 57 traditional
+                      celestial-navigation stars.
+                    </td>
+                    <td>
+                      The one candidate here that maps most literally onto a ship's &ldquo;stellar
+                      cartography for navigation&rdquo; use case.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v26.2 (Jun 24, 2026), commits as
+                      recent as Jul 21, 2026, 9.8k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/Stellarium/stellarium"
+                        target="_blank"
+                        rel="noopener"
+                        >Stellarium/stellarium</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>KStars</td>
+                    <td>GPL-2.0-or-later (KDE REUSE-compliant)</td>
+                    <td>
+                      KDE's astronomy suite: a planetarium view built on the same class of open
+                      star/DSO catalogs as Stellarium, bundled with INDI-protocol telescope/mount
+                      control, plate-solving, and autoguiding.
+                    </td>
+                    <td>
+                      The actual &ldquo;navigation&rdquo; half of stellar cartography &mdash;
+                      pointing a real telescope at real coordinates, not just viewing a star chart.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; ChangeLog shows tagged version 3.8.1, repo pushed
+                      as recently as Jul 21, 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/KDE/kstars" target="_blank" rel="noopener"
+                        >KDE/kstars</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>OpenSpace</td>
+                    <td>MIT (per <code>LICENSE.md</code>)</td>
+                    <td>
+                      NASA/AMNH-backed interactive astrovisualization engine rendering real
+                      large-scale survey data (Gaia's ~2-billion-star catalog, exoplanet databases,
+                      spacecraft trajectories) as a navigable 3D volume.
+                    </td>
+                    <td>
+                      Closer to a starship-scale &ldquo;stellar cartography deck&rdquo; than a
+                      backyard-telescope planetarium.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v0.22.0 (Jun 12, 2026), commits as
+                      recent as Jul 21, 2026, 1.2k+ GitHub stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/OpenSpace/OpenSpace"
+                        target="_blank"
+                        rel="noopener"
+                        >OpenSpace/OpenSpace</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Stellarium if the goal is literally
+              &ldquo;open star charts&rdquo; &mdash; it's the most direct match for the row's own
+              wording, the most active of the three by commit cadence, and its <code>NavStars</code>
+              plugin is a genuine celestial-navigation dataset. Add KStars instead (or alongside) if
+              the point is to actually use the charts to navigate. Reach for OpenSpace only if the
+              ambition is the full &ldquo;flying through a 3D star field&rdquo; cartography-deck
+              experience &mdash; real and actively maintained but a heavier, more specialized
+              install.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              KStars' INDI backend is the same protocol used by most open-source telescope-control
+              and astrophotography tooling, so it extends naturally into any
+              <a href="#row-handheld-sensor-device">Handheld sensor device</a> picks involving
+              telescopes/mounts. All three consume the same class of open astronomical data (Gaia,
+              Hipparcos, DSS), so none of these choices are exclusive.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Stellarium and the open star-survey data behind it (Hipparcos, Gaia) are real,
+              currently maintained, and genuinely open source; the row's own caveat framing is
+              honest, since a planetarium app viewing public survey data is a much smaller thing
+              than a starship's active-sensor stellar cartography deck.
+            </p>
           </div>
         </section>
 
@@ -1698,7 +2421,371 @@
             Reliability &amp; Support
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 12 -->
+            <h3 class="block-tag" id="row-self-repair-capability">Self-repair capability</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;The system can't fix itself, but you
+              can &mdash; schematics, parts, and source are all published.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Framework Computer (Laptop 13 / Laptop 16)</td>
+                    <td>
+                      Hardware design files released openly per-repo (<code
+                        >FrameworkComputer/Framework-Laptop-13</code
+                      >
+                      = CC-BY-4.0; the real EmbeddedController firmware branches carry a
+                      BSD-3-Clause-style &ldquo;Chromium OS Authors&rdquo; license)
+                    </td>
+                    <td>
+                      A laptop vendor built around modularity: standard screws, swappable expansion
+                      cards, and mainboard schematics published publicly. Every FRU (battery,
+                      screen, mainboard, keyboard) is sold directly at transparent prices with a
+                      free step-by-step repair guide.
+                    </td>
+                    <td>
+                      The closest real match to &ldquo;schematics, parts, and source are all
+                      published&rdquo; for a piece of hardware you'd actually buy today.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; EmbeddedController pushed Jun 25, 2026,
+                      Framework-Laptop-13 repo pushed Jul 14, 2026, Pro line announced Apr 21, 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/FrameworkComputer" target="_blank" rel="noopener"
+                        >github.com/FrameworkComputer</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>iFixit</td>
+                    <td>Guide/wiki content CC BY-NC-SA 3.0</td>
+                    <td>
+                      The reference repair-documentation resource: free, crowd-editable teardown and
+                      repair guides for essentially any consumer device, plus a parts marketplace
+                      and community answers forum.
+                    </td>
+                    <td>
+                      The &ldquo;source are all published&rdquo; analog for devices that don't ship
+                      their own official schematics &mdash; someone in the community has usually
+                      reverse-engineered and documented the repair path anyway.
+                    </td>
+                    <td>
+                      Actively operating &mdash; July 2026-dated editorial content live, 160,922+
+                      free guides, 246,412+ community-contributed solutions
+                    </td>
+                    <td>
+                      <a href="https://www.ifixit.com/" target="_blank" rel="noopener"
+                        >ifixit.com</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>PINE64</td>
+                    <td>Schematics released openly per device (PDF/KiCad on the docs wiki)</td>
+                    <td>
+                      A community-driven hardware maker (PinePhone, PineTime, PineBook, dev boards)
+                      that publishes full schematics and encourages third-party modification and
+                      repair, with community chat bridged across Discord/IRC/Matrix/Telegram.
+                    </td>
+                    <td>
+                      Openness is if anything more total than Framework (schematics for niche
+                      devices few vendors would ever publish), but device support cadence is slower
+                      and repair falls almost entirely to the community.
+                    </td>
+                    <td>
+                      Active open-hardware community &mdash; GitHub org repos pushed within the
+                      research window, community blog's most recent post May 18, 2026
+                    </td>
+                    <td>
+                      <a href="https://pine64.org/" target="_blank" rel="noopener">pine64.org</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Framework if buying new: it's the only one
+              of the three that is itself a vendor selling the exact parts and schematics the claim
+              describes, at real consumer prices, with an official repair guide for every part. Keep
+              iFixit as the go-to for anything you already own that wasn't designed this way. Treat
+              PINE64 as the &ldquo;as-open-as-it-gets&rdquo; option for readers who want hardware
+              with zero vendor lock-in and are willing to trade some polish and support
+              responsiveness for it.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-ship-terminal">Ship terminal / console hardware</a> &mdash; both rows
+              independently rank Framework Computer's Laptop 13/16/Desktop line as their #1 pick,
+              for two different reasons (that row: modular/repairable daily driver; this row:
+              schematics/parts/EC-firmware openly published). A reader who picks Framework for one
+              gets the other for free. PINE64 also overlaps with
+              <a href="#row-handheld-sensor-device">Handheld sensor device</a> &mdash; a repairable
+              body is only half the story if the internals (SBCs, displays, batteries) aren't also
+              documented. iFixit's documentation is generic reference material that applies
+              regardless of which hardware picks a reader makes elsewhere in this report.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. The caveat framing is accurate: none of these projects make hardware
+              self-repairing or self-diagnosing, they simply guarantee that a human doing the repair
+              has schematics, parts, and documented procedure, which is exactly what the claim says.
+            </p>
+
+            <h3 class="block-tag" id="row-uptime">Uptime (malfunction-free episodes)</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Your homelab, your SLA &mdash; exactly
+              as good as your backups.&rdquo; <strong>Reinterpreted row:</strong> there is no
+              real-world &ldquo;malfunction-free episode&rdquo; percentage for a self-hosted stack.
+              The honest real-world analog is the self-healing/monitoring practice a self-hoster
+              actually runs to keep uptime high and notice failures fast &mdash; status/uptime
+              monitoring, heartbeat/dead-man's-switch checks for scheduled jobs, and
+              auto-restart/auto-remediation tooling for containers. The candidates below are
+              evaluated against that practice, not a literal malfunction-free-episode count.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Uptime Kuma</td>
+                    <td>MIT</td>
+                    <td>
+                      Self-hosted status-page and uptime monitor: pings HTTP(S)/TCP/DNS/Docker-
+                      container targets on an interval, shows a public or private status page, and
+                      fires notifications (email, ntfy, Discord, etc.) on downtime.
+                    </td>
+                    <td>
+                      The direct open-source analog to a commercial &ldquo;SLA&rdquo; page &mdash;
+                      the most widely deployed tool for the &ldquo;notice it broke&rdquo; half of
+                      self-hosted reliability.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v2.4.0 (May 31, 2026), 89,354+
+                      GitHub stars, repo pushed Jul 21, 2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/louislam/uptime-kuma"
+                        target="_blank"
+                        rel="noopener"
+                        >louislam/uptime-kuma</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Healthchecks.io (self-hosted)</td>
+                    <td>BSD-3-Clause</td>
+                    <td>
+                      Dead-man's-switch / heartbeat monitor for scheduled jobs (cron, systemd
+                      timers, backup scripts): each job pings a unique URL on success, and
+                      Healthchecks.io alerts you when a ping is late or missing.
+                    </td>
+                    <td>
+                      Covers &ldquo;did last night's backup job actually run&rdquo; &mdash; directly
+                      relevant given the claim's own &ldquo;exactly as good as your backups&rdquo;
+                      framing.
+                    </td>
+                    <td>Actively maintained &mdash; latest tag v4.3, repo pushed Jul 21, 2026</td>
+                    <td>
+                      <a
+                        href="https://github.com/healthchecks/healthchecks"
+                        target="_blank"
+                        rel="noopener"
+                        >healthchecks/healthchecks</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>nicholas-fedor/watchtower (community fork of Watchtower)</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      Automatically watches running Docker containers for new image versions and
+                      redeploys them, which combined with a container's own restart/healthcheck
+                      policy gets close to an auto-remediation pattern.
+                    </td>
+                    <td>
+                      The original <code>containrrr/watchtower</code> was archived by its maintainer
+                      Dec 17, 2025 and is unmaintained; this fork is the actively-maintained,
+                      drop-in-compatible replacement the self-hosting community migrated to.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; latest release v1.19.0 (Jun 30, 2026), repo pushed
+                      Jul 21, 2026, 4,071+ stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/nicholas-fedor/watchtower"
+                        target="_blank"
+                        rel="noopener"
+                        >nicholas-fedor/watchtower</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Run Uptime Kuma first &mdash; it's the lowest-effort,
+              highest-visibility piece and covers the &ldquo;is anything down right now&rdquo;
+              question the claim gestures at. Add Healthchecks.io specifically to watch backup/cron
+              jobs, since silent backup failure is the actual risk the claim calls out and a
+              service-uptime monitor alone won't catch it. Treat nicholas-fedor/watchtower as
+              optional and lower-priority &mdash; if adopting it, use the fork, not the archived
+              <code>containrrr/watchtower</code>.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              All three assume something is already self-hosted to monitor &mdash; they pair with
+              whichever storage/processing stack a reader runs from
+              <a href="#row-storage-medium">Storage medium</a> and the AI/model-serving stack from
+              <a href="#row-core-architecture">Core architecture</a>. Healthchecks.io in particular
+              is only useful once a reader has scheduled backup jobs to watch, so it depends on a
+              real backup routine existing first.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span>, with reinterpretation, with
+              <code>index.html</code>'s current claim. There's no real percentage to compare against
+              a fictional malfunction-free-episode figure, but the claim's underlying point
+              (&ldquo;your homelab, your SLA &mdash; exactly as good as your backups&rdquo;) is
+              accurate: a self-hoster's real uptime is a direct function of the monitoring and
+              backup discipline they build themselves, not a vendor guarantee.
+            </p>
+
+            <h3 class="block-tag" id="row-support-channel">Support channel</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;You <em>are</em> the chief engineer
+              &mdash; plus forums, Matrix rooms, and GitHub issues.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>r/selfhosted (Reddit)</td>
+                    <td>N/A &mdash; community forum</td>
+                    <td>
+                      The largest general-purpose self-hosting community: troubleshooting threads,
+                      software recommendations, and &ldquo;what would you run for X&rdquo;
+                      discussions, with heavy day-to-day traffic.
+                    </td>
+                    <td>
+                      The direct real-world equivalent of &ldquo;you are the chief engineer&rdquo;
+                      &mdash; no vendor support line, but a large peer community to ask instead.
+                    </td>
+                    <td>
+                      Active &mdash; ~804,000 members, +243k members in the past year (+43.4%)
+                    </td>
+                    <td>
+                      <a href="https://www.reddit.com/r/selfhosted/" target="_blank" rel="noopener"
+                        >reddit.com/r/selfhosted</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Home Assistant Community Forum</td>
+                    <td>N/A &mdash; Discourse-based support forum</td>
+                    <td>
+                      A large, project-specific Discourse forum for Home Assistant users covering
+                      integrations, automations, and hardware troubleshooting, with well over
+                      100,000 topics accumulated across categories.
+                    </td>
+                    <td>
+                      Representative of the &ldquo;official-adjacent forum&rdquo; pattern many
+                      self-hosted projects rely on instead of paid support.
+                    </td>
+                    <td>
+                      Active &mdash; confirmed live topic activity on the research date itself
+                    </td>
+                    <td>
+                      <a href="https://community.home-assistant.io/" target="_blank" rel="noopener"
+                        >community.home-assistant.io</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LinuxServer.io Discord</td>
+                    <td>N/A &mdash; chat-based support community</td>
+                    <td>
+                      The primary live-chat support channel for LinuxServer.io's widely-used Docker
+                      container images (Sonarr, Radarr, Plex-adjacent tooling, etc.), with dedicated
+                      per-app support channels.
+                    </td>
+                    <td>
+                      Chosen over LinuxServer.io's own Discourse forum specifically because the
+                      forum shows no recent activity while the Discord and the underlying project
+                      both do.
+                    </td>
+                    <td>
+                      Active &mdash; ~41,463 members, ~7,011 online (Dec-2025 tracker snapshot,
+                      corroborated by the LinuxServer.io GitHub org remaining highly active in 2026)
+                    </td>
+                    <td>
+                      <a
+                        href="https://discord.com/invite/linuxserver"
+                        target="_blank"
+                        rel="noopener"
+                        >discord.com/invite/linuxserver</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with r/selfhosted for general &ldquo;what
+              should I run&rdquo; and troubleshooting questions &mdash; it has the widest reach and
+              fastest response for common problems. Use a project-specific forum like Home
+              Assistant's Discourse once you've committed to a specific piece of software and need
+              deep, searchable history on that project's quirks. Reach for a Discord like
+              LinuxServer.io's when you need real-time back-and-forth on a live problem &mdash; but
+              verify the specific community you land in is still the active one for that project.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              These are general-purpose human support channels that apply regardless of which
+              specific software picks a reader makes across the other seven groups in this report
+              &mdash; r/selfhosted and Home Assistant's forum in particular will have existing
+              threads on almost any project named elsewhere in this research (Uptime Kuma, Open
+              WebUI, Immich, etc.), so they're a first stop for troubleshooting any of this
+              project's other recommendations.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. &ldquo;You are the chief engineer &mdash; plus forums, Matrix rooms, and GitHub
+              issues&rdquo; is an accurate summary of self-hosted support reality: there's no vendor
+              on-call engineer, but large, currently-active peer communities genuinely substitute
+              for one, which is exactly what the claim says.
+            </p>
           </div>
         </section>
 
