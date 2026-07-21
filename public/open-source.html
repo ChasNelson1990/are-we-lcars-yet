@@ -1495,7 +1495,9 @@
               Ollama <em>and</em> a dozen containers on a single machine &mdash; virtualizing
               TrueNAS (with HBA passthrough) beside a container VM is the real-world shape of the
               &ldquo;one box&rdquo; every stack below assumes. A lighter alternative is to run
-              TrueNAS on bare metal and use its own built-in Docker app engine for the service
+              TrueNAS on bare metal and use its own built-in app catalog &mdash; a
+              Docker-Compose-based engine, separate from the LXC-style container instances noted in
+              the <a href="#row-storage-medium">Storage medium</a> row &mdash; for the service
               layer.
             </p>
             <p class="summary">
