@@ -1392,6 +1392,123 @@
               is the machine a person sits at, this row is the machine that just runs, headless,
               around the clock.
             </p>
+
+            <h3 class="block-tag" id="row-orchestration">Orchestration &amp; deployment</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong> every reference stack below says
+              the household &ldquo;runs TrueNAS and Ollama and Open WebUI and Keycloak on the same
+              box&rdquo; &mdash; but none of them names what actually makes a dozen services coexist
+              on one machine. Almost everything in this report is normally deployed as a container,
+              and the &ldquo;all on one box&rdquo; claim quietly assumes a runtime and, often, a
+              hypervisor underneath it. This row is that missing substrate.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Docker Engine + Compose</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      The default self-hosting runtime: one <code>compose.yaml</code> per stack
+                      declares every service, network, and volume, and
+                      <code>docker compose up</code>
+                      brings the whole set up reproducibly. Nearly every project in this report
+                      ships an official Compose file.
+                    </td>
+                    <td>
+                      Runs entirely on your own hardware; images can be pinned by digest and
+                      mirrored locally so nothing has to be pulled from a registry at deploy time.
+                    </td>
+                    <td>Actively maintained &mdash; Compose v5.3.1 (Jul 7, 2026), 37.8k+ stars</td>
+                    <td>
+                      <a href="https://github.com/docker/compose" target="_blank" rel="noopener"
+                        >docker/compose</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Podman (+ Quadlet)</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      A daemonless, rootless-by-default container engine with a Docker-compatible
+                      CLI; its Quadlet integration runs each container as a native systemd unit, so
+                      restarts and dependencies are managed by the OS rather than a background
+                      daemon.
+                    </td>
+                    <td>
+                      Rootless containers shrink the blast radius of a compromised service &mdash; a
+                      container escape lands as an unprivileged user, not root.
+                    </td>
+                    <td>Actively maintained &mdash; v6.0.1 (Jul 8, 2026), 32.3k+ stars</td>
+                    <td>
+                      <a href="https://github.com/containers/podman" target="_blank" rel="noopener"
+                        >containers/podman</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Proxmox VE</td>
+                    <td>AGPL-3.0</td>
+                    <td>
+                      A Debian-based bare-metal hypervisor (KVM VMs + LXC containers) that resolves
+                      the &ldquo;one box&rdquo; tension honestly: TrueNAS runs in a VM with the disk
+                      controller passed through to it, while the containerized services run in a
+                      separate VM or LXC on the same physical host, each isolated but sharing one
+                      machine.
+                    </td>
+                    <td>
+                      Fully self-hosted; the whole virtualization control plane is open source with
+                      no phone-home, though a paid enterprise repo exists for support/stability.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; Proxmox VE 9.2 (May 21, 2026), Debian 13 base
+                    </td>
+                    <td>
+                      <a
+                        href="https://www.proxmox.com/en/proxmox-virtual-environment/overview"
+                        target="_blank"
+                        rel="noopener"
+                        >proxmox.com/proxmox-virtual-environment</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Docker Compose &mdash; it's what almost
+              every project in this report documents, and a per-stack <code>compose.yaml</code> is
+              the lowest-friction way to bring up Open WebUI, Keycloak, Vaultwarden, Nextcloud,
+              Headscale, Uptime Kuma, and CrowdSec reproducibly. Reach for Podman if rootless
+              isolation or systemd-native management matters more than ecosystem ubiquity. Add
+              Proxmox VE underneath both once you actually want TrueNAS <em>and</em> GPU-accelerated
+              Ollama <em>and</em> a dozen containers on a single machine &mdash; virtualizing
+              TrueNAS (with HBA passthrough) beside a container VM is the real-world shape of the
+              &ldquo;one box&rdquo; every stack below assumes. A lighter alternative is to run
+              TrueNAS on bare metal and use its own built-in Docker app engine for the service
+              layer.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-compute-core-hardware">Compute core hardware</a> &mdash; this is the
+              layer that actually runs on that box, and it's the unspoken dependency of nearly every
+              software pick in this report: <a href="#row-primary-interface">Open WebUI</a>,
+              <a href="#row-authorization-method">Keycloak / Vaultwarden</a>,
+              <a href="#row-storage-medium">Nextcloud</a>,
+              <a href="#row-secure-networking">Headscale</a>, <a href="#row-uptime">Uptime Kuma</a>,
+              and <a href="#row-reverse-proxy">the reverse proxy below</a> are all normally deployed
+              as containers on top of it.
+            </p>
           </div>
         </section>
 
@@ -2414,6 +2531,224 @@
               <a href="#row-storage-medium">Nextcloud/TrueNAS</a> exactly as if it were on the home
               LAN, from anywhere.
             </p>
+
+            <h3 class="block-tag" id="row-reverse-proxy">Reverse proxy &amp; TLS</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong>
+              <a href="#row-authorization-method">Authorization method</a> puts Keycloak &ldquo;in
+              front of Open WebUI and any other dashboard,&rdquo; and
+              <a href="#row-secure-networking">Secure device networking</a> gets your devices onto
+              the same mesh &mdash; but nothing in either row actually terminates HTTPS, routes a
+              hostname to the right container, or presents a single trusted certificate. Every web
+              UI in this report is served over plain HTTP by default. This row is the layer that
+              fixes that.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Caddy</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      A reverse proxy that provisions and renews TLS certificates automatically
+                      (Let's Encrypt / ZeroSSL or an internal CA) with a two-line config per site
+                      &mdash; the lowest-effort way to put valid HTTPS in front of every self-hosted
+                      service.
+                    </td>
+                    <td>
+                      Certificates and keys stay on your own host; with an internal CA it can issue
+                      trusted certs for services that never touch the public internet at all.
+                    </td>
+                    <td>Actively maintained &mdash; v2.11.4 (Jun 3, 2026), 74.2k+ stars</td>
+                    <td>
+                      <a href="https://github.com/caddyserver/caddy" target="_blank" rel="noopener"
+                        >caddyserver/caddy</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Traefik</td>
+                    <td>MIT</td>
+                    <td>
+                      A container-native reverse proxy that discovers services from Docker/Compose
+                      labels and reconfigures itself live &mdash; new containers get routed and
+                      certificated automatically, without editing a central config file.
+                    </td>
+                    <td>
+                      Same self-hosted TLS termination as Caddy; the dynamic model fits a fleet of
+                      containers that come and go rather than a fixed handful of sites.
+                    </td>
+                    <td>Actively maintained &mdash; v3.7.8 (Jul 15, 2026), 64k+ stars</td>
+                    <td>
+                      <a href="https://github.com/traefik/traefik" target="_blank" rel="noopener"
+                        >traefik/traefik</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nginx Proxy Manager</td>
+                    <td>MIT</td>
+                    <td>
+                      A web-GUI wrapper around nginx + Let's Encrypt: add a proxy host, pick a
+                      certificate, and toggle access rules from a browser instead of a config file
+                      &mdash; the friendliest on-ramp for someone new to reverse proxying.
+                    </td>
+                    <td>
+                      Self-hosted; the trade-off for the GUI is a heavier, database-backed stack
+                      than Caddy's single binary, and a slower release cadence.
+                    </td>
+                    <td>Actively maintained &mdash; v2.15.1 (Jun 3, 2026), 33.6k+ stars</td>
+                    <td>
+                      <a
+                        href="https://github.com/NginxProxyManager/nginx-proxy-manager"
+                        target="_blank"
+                        rel="noopener"
+                        >NginxProxyManager/nginx-proxy-manager</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Caddy &mdash; automatic HTTPS with a
+              near-trivial config is exactly what a home stack wants, and it removes the single most
+              common reason self-hosters skip TLS entirely. Choose Traefik instead if the deployment
+              is many short-lived containers and label-driven auto-discovery saves real toil. Nginx
+              Proxy Manager is the right pick only if a browser GUI matters more than a
+              version-controllable text config. Whichever you pick, note that
+              <a href="#row-authorization-method">Keycloak</a> only gates apps that speak OIDC
+              natively &mdash; for the ones that don't, add a forward-auth layer (Authelia,
+              Apache-2.0, or oauth2-proxy) at the proxy so the SSO front door actually covers them.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-secure-networking">Secure device networking</a> and
+              <a href="#row-authorization-method">Authorization method</a> &mdash; behind Headscale,
+              the reverse proxy is the one service every request lands on first, so it's the natural
+              place to enforce TLS and hang forward-auth off Keycloak. It fronts every
+              browser-facing pick in this report: <a href="#row-primary-interface">Open WebUI</a>,
+              <a href="#row-storage-medium">Nextcloud</a>, and
+              <a href="#row-uptime">Uptime Kuma</a>. It is itself deployed via
+              <a href="#row-orchestration">Orchestration &amp; deployment</a>.
+            </p>
+
+            <h3 class="block-tag" id="row-dns">DNS &amp; network-level filtering</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong>
+              <a href="#row-secure-networking">Secure device networking</a>'s Headscale gives you
+              MagicDNS across the mesh, but that only names devices <em>on</em> the tailnet. Nothing
+              in the report resolves names for the home LAN, blocks ads and tracker/telemetry
+              domains network-wide, or lets you avoid handing every DNS query to a public upstream
+              resolver. This row is that piece.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Pi-hole</td>
+                    <td>EUPL-1.2</td>
+                    <td>
+                      A network-wide DNS sinkhole: every device's DNS points at it,
+                      ad/tracker/malware domains are answered with nothing, and everything else is
+                      forwarded &mdash; plus local DNS records so <code>nas.home</code> resolves on
+                      the LAN.
+                    </td>
+                    <td>
+                      Query logging is local and optional, and blocking telemetry domains at the DNS
+                      layer stops a lot of passive tracking before it leaves the network.
+                    </td>
+                    <td>Actively maintained &mdash; v6.4.3 (Jul 6, 2026), 60k+ stars</td>
+                    <td>
+                      <a href="https://github.com/pi-hole/pi-hole" target="_blank" rel="noopener"
+                        >pi-hole/pi-hole</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>AdGuard Home</td>
+                    <td>GPL-3.0</td>
+                    <td>
+                      A single-binary equivalent to Pi-hole with encrypted upstream resolution
+                      (DoH/DoT/DoQ) and per-client rules built in, configured entirely from its own
+                      web UI.
+                    </td>
+                    <td>
+                      Built-in encrypted-upstream support means outbound DNS itself can be private,
+                      not just filtered; all logs and config stay on your host.
+                    </td>
+                    <td>Actively maintained &mdash; v0.107.78 (Jul 13, 2026), 35.6k+ stars</td>
+                    <td>
+                      <a
+                        href="https://github.com/AdguardTeam/AdGuardHome"
+                        target="_blank"
+                        rel="noopener"
+                        >AdguardTeam/AdGuardHome</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Unbound</td>
+                    <td>BSD-3-Clause</td>
+                    <td>
+                      A validating, recursive resolver: instead of forwarding to Google/Cloudflare,
+                      it resolves queries from the root servers itself, so no third-party resolver
+                      ever sees your full query stream.
+                    </td>
+                    <td>
+                      The most private posture of the three &mdash; run it behind Pi-hole/AdGuard
+                      Home and no external resolver is trusted at all, at the cost of slightly
+                      slower cold-cache lookups.
+                    </td>
+                    <td>Actively maintained by NLnet Labs &mdash; 1.25.1 (May 20, 2026)</td>
+                    <td>
+                      <a href="https://github.com/NLnetLabs/unbound" target="_blank" rel="noopener"
+                        >NLnetLabs/unbound</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Pi-hole &mdash; it's the ubiquitous
+              choice, covers network-wide blocking and local LAN records in one place, and has the
+              deepest community documentation. Choose AdGuard Home instead if you want encrypted
+              upstream resolution and per-client policies without bolting on extra pieces. Add
+              Unbound behind either one when &ldquo;only you hold the keys&rdquo; should extend to
+              DNS too: a Pi-hole&nbsp;+&nbsp;Unbound pair depends on no public resolver at all.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-secure-networking">Secure device networking</a> &mdash; Headscale's
+              MagicDNS handles names on the mesh while this handles the LAN and egress filtering,
+              and the two compose cleanly (point the tailnet's global nameserver at Pi-hole). It
+              also complements
+              <a href="#row-hostile-takeover-incidents">Hostile takeover incidents</a>: DNS-level
+              blocklists cut off command-and-control and telemetry domains that packet-inspecting
+              IDS/IPS would only see after the connection opens. Deployed via
+              <a href="#row-orchestration">Orchestration &amp; deployment</a>.
+            </p>
           </div>
         </section>
 
@@ -3043,6 +3378,236 @@
               on-call engineer, but large, currently-active peer communities genuinely substitute
               for one, which is exactly what the claim says.
             </p>
+
+            <h3 class="block-tag" id="row-observability">
+              Observability &mdash; metrics &amp; logs
+            </h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong>
+              <a href="#row-uptime">Uptime</a>'s Uptime Kuma answers &ldquo;is it up?&rdquo; &mdash;
+              but not &ldquo;why is inference slow tonight?&rdquo;, &ldquo;is the ZFS pool filling
+              up?&rdquo;, or &ldquo;what did the firewall actually block?&rdquo; And
+              <a href="#row-hostile-takeover-incidents">OPNsense, Suricata, and CrowdSec</a> emit a
+              stream of security logs that, as that row admits, a self-hoster &ldquo;has to review
+              themselves&rdquo; &mdash; with nothing aggregating or correlating them. This row is
+              the metrics-and-logs layer that closes both gaps.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Netdata</td>
+                    <td>GPL-3.0-or-later</td>
+                    <td>
+                      Zero-configuration, per-second metrics for a node the moment it's installed:
+                      CPU, memory, disk, network, and auto-detected apps (Docker, ZFS, Nginx) on a
+                      live dashboard, with alerting built in.
+                    </td>
+                    <td>
+                      Can run fully self-hosted with its cloud features disabled, so all telemetry
+                      stays on the box &mdash; the lowest-effort way to get real visibility.
+                    </td>
+                    <td>Actively maintained &mdash; v2.10.4 (Jul 15, 2026), 79.7k+ stars</td>
+                    <td>
+                      <a href="https://github.com/netdata/netdata" target="_blank" rel="noopener"
+                        >netdata/netdata</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Prometheus + Grafana</td>
+                    <td>Apache-2.0 (Prometheus) / AGPL-3.0 (Grafana)</td>
+                    <td>
+                      The standard metrics stack: Prometheus scrapes and stores time-series from
+                      every service's exporter, Grafana renders dashboards and fires alerts &mdash;
+                      real retention, history, and cross-service correlation, not just a live view.
+                    </td>
+                    <td>
+                      Entirely self-hosted; both the metrics database and the dashboards live on
+                      your own infrastructure with no external dependency.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; Prometheus v3.13.1 (Jul 10, 2026), Grafana v13.1.1
+                      (Jul 21, 2026)
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/prometheus/prometheus"
+                        target="_blank"
+                        rel="noopener"
+                        >prometheus/prometheus</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Wazuh</td>
+                    <td>GPL-2.0</td>
+                    <td>
+                      A self-hosted SIEM/XDR platform that ingests, parses, and correlates logs from
+                      hosts and security tools (Suricata, CrowdSec, SSH, the firewall) into
+                      searchable alerts &mdash; the actual answer to &ldquo;something needs to
+                      <em>read</em> these security logs.&rdquo;
+                    </td>
+                    <td>
+                      Runs on your own hardware; turns the raw log stream the Hostile-takeover row
+                      leaves the operator to eyeball into correlated, rule-scored events.
+                    </td>
+                    <td>Actively maintained &mdash; v4.14.6 (Jul 3, 2026), 16.2k+ stars</td>
+                    <td>
+                      <a href="https://github.com/wazuh/wazuh" target="_blank" rel="noopener"
+                        >wazuh/wazuh</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Netdata &mdash; it's the highest
+              insight-per-minute-of-setup of anything here, and on a single-box homelab it may be
+              all the metrics you need. Graduate to Prometheus + Grafana once you want retention,
+              historical dashboards, and unified alerting across several machines (add Grafana Loki,
+              AGPL-3.0, for logs into the same Grafana). Add Wazuh specifically for the security-log
+              half of the problem: it's the SIEM that turns
+              <a href="#row-hostile-takeover-incidents">Suricata/CrowdSec/OPNsense</a>'s
+              review-it-yourself log stream into correlated, searchable alerts.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-uptime">Uptime</a> &mdash; Uptime Kuma answers up/down, this answers
+              <em>why</em> and <em>since when</em>. Wazuh in particular is the missing correlation
+              layer over <a href="#row-hostile-takeover-incidents">Hostile takeover incidents</a>'s
+              logs, and Netdata's ZFS and Docker collectors watch exactly the
+              <a href="#row-storage-medium">TrueNAS pool</a> and
+              <a href="#row-orchestration">container runtime</a> everything else in this report runs
+              on.
+            </p>
+
+            <h3 class="block-tag" id="row-power-ups">Power &amp; UPS</h3>
+            <p class="summary">
+              <strong>Bonus row, not on the pricing table:</strong> this whole report's premise is
+              that your data lives on hardware you own &mdash; and a
+              <a href="#row-storage-medium">ZFS pool</a> that loses power mid-write, with no clean
+              shutdown, is exactly how you lose the data the &ldquo;only you hold the keys&rdquo;
+              theme is built to protect. Nothing anywhere else in the report handles graceful
+              shutdown on power loss. This row is that safeguard.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Network UPS Tools (NUT)</td>
+                    <td>GPL-2.0-or-later</td>
+                    <td>
+                      The multi-vendor standard: one machine talks to the UPS over USB/serial/SNMP
+                      and shares its status over the network, so every box on the shelf shuts down
+                      cleanly when the battery runs low &mdash; not just the one the UPS is plugged
+                      into.
+                    </td>
+                    <td>
+                      Fully local; the entire power-monitoring loop runs on your own network with no
+                      vendor cloud in the path.
+                    </td>
+                    <td>Actively maintained &mdash; v2.8.5 (Apr 3, 2026)</td>
+                    <td>
+                      <a
+                        href="https://github.com/networkupstools/nut"
+                        target="_blank"
+                        rel="noopener"
+                        >networkupstools/nut</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>apcupsd</td>
+                    <td>GPL-2.0</td>
+                    <td>
+                      A simpler, single-daemon monitor focused on APC (and some compatible) units
+                      &mdash; less flexible than NUT for mixed or networked setups, but easy to
+                      point at one directly-attached APC UPS.
+                    </td>
+                    <td>
+                      Local-only, like NUT. Caveat: development is effectively frozen &mdash; the
+                      last stable release (3.14.14) dates to 2016, so treat it as
+                      stable-but-unmaintained rather than actively developed.
+                    </td>
+                    <td>Stable but dormant &mdash; last release 3.14.14 (2016)</td>
+                    <td>
+                      <a
+                        href="https://sourceforge.net/projects/apcupsd/"
+                        target="_blank"
+                        rel="noopener"
+                        >sourceforge.net/projects/apcupsd</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NUT, as bundled in TrueNAS / Home Assistant</td>
+                    <td>GPL-2.0-or-later (same NUT)</td>
+                    <td>
+                      Not a separate project: both this report's recommended NAS (<a
+                        href="#row-storage-medium"
+                        >TrueNAS</a
+                      >) and <a href="#row-primary-interface">Home Assistant</a> ship NUT
+                      integrations, so on the stacks below this is usually a service to
+                      <em>enable</em> and a client to point at it, not a new install.
+                    </td>
+                    <td>
+                      Same all-local posture as standalone NUT; the value is that the box you
+                      already run is both the UPS master and the thing most worth protecting.
+                    </td>
+                    <td>
+                      Ships with TrueNAS Community Edition and Home Assistant &mdash; tracks their
+                      release cadence
+                    </td>
+                    <td>
+                      <a href="https://www.truenas.com/docs/" target="_blank" rel="noopener"
+                        >truenas.com/docs</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Use NUT &mdash; one UPS signalling every box on the
+              network to shut down cleanly is exactly the coordination a multi-machine homelab
+              needs, and it's the only option here that isn't vendor-locked or dormant. Reach for
+              apcupsd only for a single directly-attached APC unit where its simpler setup outweighs
+              its stalled development. In practice, if you took this report's
+              <a href="#row-storage-medium">TrueNAS</a> pick, NUT is already there &mdash; enable
+              its UPS service and this row is mostly done.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-compute-core-hardware">Compute core hardware</a> and
+              <a href="#row-storage-medium">Storage medium</a> &mdash; it's what protects the ZFS
+              pool and any in-flight writes on the always-on box, and it turns a yanked-power event
+              (the classic cause of a failed pool import) into a non-event. It's the physical-world
+              complement to <a href="#row-processing-redundancy">Processing redundancy</a>: RAID and
+              backups protect against disk failure, a UPS protects against the power failure that
+              can cause it.
+            </p>
           </div>
         </section>
 
@@ -3062,8 +3627,14 @@
                 >Primary interface</a
               >): wake-word detection, faster-whisper speech-to-text, the Assist conversation agent,
               and Piper text-to-speech, wired together over the local network via the open
-              <strong>Wyoming protocol</strong>. Assist's conversation agent calls out to a local
-              model server &mdash; <strong>Ollama</strong> (<a href="#row-core-architecture"
+              <strong>Wyoming protocol</strong>. The actual smart-home devices reach Home Assistant
+              over open local protocols rather than a vendor cloud: <strong>Zigbee</strong> bulbs
+              and sensors via a coordinator and Zigbee2MQTT (or the built-in ZHA integration),
+              <strong>Matter-over-Thread</strong> devices via a Thread border router, and DIY
+              ESP32/sensor nodes over <strong>MQTT</strong> &mdash; so the &ldquo;ambient
+              computer&rdquo; has a nervous system, not just a voice. Assist's conversation agent
+              calls out to a local model server &mdash; <strong>Ollama</strong> (<a
+                href="#row-core-architecture"
                 >Core architecture</a
               >) &mdash; over its OpenAI-compatible HTTP API, serving
               <strong>Qwen3.6-27B</strong> (<a href="#row-nlp">Natural language processing</a>) as
@@ -3099,10 +3670,23 @@
                 href="#row-authorization-method"
                 >Authorization method</a
               >) sits in front of Open WebUI and any other self-hosted dashboard as a single
-              WebAuthn/FIDO2 SSO login, rather than a separate password per app.
-              <strong>Uptime Kuma</strong> (<a href="#row-uptime">Uptime</a>) pings HA's own health
-              endpoint and the Ollama server; when something breaks, the fallback is
-              <strong>r/selfhosted</strong> and the
+              WebAuthn/FIDO2 SSO login, rather than a separate password per app. Underneath all of
+              it, every service here is a container brought up by
+              <strong>Docker Compose</strong> (<a href="#row-orchestration"
+                >Orchestration &amp; deployment</a
+              >), fronted by <strong>Caddy</strong> (<a href="#row-reverse-proxy"
+                >Reverse proxy &amp; TLS</a
+              >) so each dashboard is reached over real HTTPS rather than plain HTTP, with
+              <strong>Pi-hole</strong> (<a href="#row-dns">DNS &amp; network-level filtering</a>)
+              serving LAN names and blocking tracker domains, and a <strong>NUT</strong>-managed UPS
+              (<a href="#row-power-ups">Power &amp; UPS</a>) standing by to shut the box down
+              cleanly if the power drops. <strong>Netdata</strong> (<a href="#row-observability"
+                >Observability</a
+              >) gives per-second visibility into the host, while <strong>Uptime Kuma</strong> (<a
+                href="#row-uptime"
+                >Uptime</a
+              >) pings HA's own health endpoint and the Ollama server; when something breaks, the
+              fallback is <strong>r/selfhosted</strong> and the
               <strong>Home Assistant Community Forum</strong>
               (<a href="#row-support-channel">Support channel</a>).
             </p>
@@ -3465,6 +4049,56 @@
                     <td>r/selfhosted</td>
                     <td>&mdash;</td>
                     <td>r/selfhosted + project Discourse/Discord</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-orchestration">Orchestration &amp; deployment</a>
+                      <em>(infra bonus row)</em>
+                    </td>
+                    <td>Docker Compose</td>
+                    <td>&mdash;</td>
+                    <td>Docker Compose / Podman (shared box)</td>
+                    <td>Proxmox VE (host for the shared box)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-reverse-proxy">Reverse proxy &amp; TLS</a>
+                      <em>(infra bonus row)</em>
+                    </td>
+                    <td>Caddy (fronts Open WebUI + dashboards)</td>
+                    <td>&mdash;</td>
+                    <td>Caddy</td>
+                    <td>&mdash;</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-dns">DNS &amp; network-level filtering</a>
+                      <em>(infra bonus row)</em>
+                    </td>
+                    <td>Pi-hole (LAN DNS + blocking)</td>
+                    <td>&mdash;</td>
+                    <td>&mdash;</td>
+                    <td>Pi-hole + Unbound (network-wide)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-observability">Observability &mdash; metrics &amp; logs</a>
+                      <em>(infra bonus row)</em>
+                    </td>
+                    <td>Netdata + Uptime Kuma</td>
+                    <td>&mdash;</td>
+                    <td>Netdata / Prometheus + Grafana</td>
+                    <td>Wazuh (SIEM over Suricata/CrowdSec)</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#row-power-ups">Power &amp; UPS</a>
+                      <em>(infra bonus row)</em>
+                    </td>
+                    <td>NUT (TrueNAS UPS service)</td>
+                    <td>&mdash;</td>
+                    <td>NUT (same box, protects ZFS pool)</td>
+                    <td>NUT (network-wide clean shutdown)</td>
                   </tr>
                 </tbody>
               </table>
