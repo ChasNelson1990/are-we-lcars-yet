@@ -81,7 +81,338 @@
             Interface &amp; Input
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 11 -->
+            <h3 class="block-tag" id="row-primary-interface">Primary interface</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Terminal, self-hosted web UIs (Open
+              WebUI), Home Assistant voice for ambient pickup.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Open WebUI</td>
+                    <td>
+                      &ldquo;Open WebUI License&rdquo; (BSD-3-Clause base + mandatory
+                      branding-retention clause for deployments over 50 users; code through v0.6.5
+                      remains plain BSD-3-Clause)
+                    </td>
+                    <td>
+                      Self-hosted, ChatGPT-style web front end for local or remote model backends
+                      (Ollama, OpenAI-compatible APIs).
+                    </td>
+                    <td>
+                      All chat data and RAG documents stay on your own server by default &mdash;
+                      nothing is sent to Open WebUI's maintainers.
+                    </td>
+                    <td>Actively maintained &mdash; v0.10.2 (Jul 1, 2026), 166 releases</td>
+                    <td>
+                      <a
+                        href="https://github.com/open-webui/open-webui"
+                        target="_blank"
+                        rel="noopener"
+                        >open-webui/open-webui</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Home Assistant Assist (voice pipeline)</td>
+                    <td>Apache-2.0 (Home Assistant Core)</td>
+                    <td>
+                      Wires wake-word detection, speech-to-text, a conversation agent, and
+                      text-to-speech together over the local network via the open Wyoming protocol.
+                    </td>
+                    <td>
+                      Run fully locally (faster-whisper + Piper + a local Ollama model) &mdash; no
+                      audio or transcript ever needs to leave the home network. Caveat: the Piper
+                      TTS component in this pipeline is archived upstream (last pushed 2025-08-26)
+                      &mdash; still functional and widely used, just not actively developed.
+                    </td>
+                    <td>Actively maintained &mdash; Home Assistant Core 2026.7.2 (Jul 10, 2026)</td>
+                    <td>
+                      <a
+                        href="https://www.home-assistant.io/voice_control/voice_remote_local_assistant/"
+                        target="_blank"
+                        rel="noopener"
+                        >Home Assistant Voice Control</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>oterm</td>
+                    <td>MIT</td>
+                    <td>
+                      Terminal UI client that talks to Ollama and any pydantic-ai-supported provider
+                      (OpenAI, Anthropic, local OpenAI-compatible servers) &mdash; no browser or web
+                      server required.
+                    </td>
+                    <td>
+                      Chat history and settings are stored locally in SQLite; when pointed at a
+                      local Ollama endpoint, nothing leaves the machine.
+                    </td>
+                    <td>Actively maintained &mdash; v0.20.0 (Jun 30, 2026), 81 releases</td>
+                    <td>
+                      <a href="https://github.com/ggozad/oterm" target="_blank" rel="noopener"
+                        >ggozad/oterm</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Home Assistant's Assist pipeline if
+              ambient, hands-free pickup is the goal &mdash; it's the only one of the three actually
+              designed for &ldquo;walk up and talk,&rdquo; and it's fully local end to end. Layer
+              Open WebUI on top for a shared, multi-user chat surface, but budget time to read the
+              2025 license change before deploying it beyond a household. Keep oterm in the toolbox
+              for quick, no-server terminal access to the same local models &mdash; it has near-zero
+              setup cost, but it's single-user.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-core-architecture">Core architecture</a> &mdash; Home Assistant Assist
+              needs a local inference backend, and Open WebUI and oterm can point at that same
+              backend, so all three can share one self-hosted model server rather than three
+              separate stacks.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Open WebUI and Home Assistant's Assist voice pipeline are both real, current,
+              actively-maintained projects that do what the claim says, and a terminal remains a
+              genuine, low-overhead primary interface for this kind of self-hosted stack.
+            </p>
+
+            <h3 class="block-tag" id="row-touchscreen-gui">Touchscreen GUI</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Linux touch support is real but patchy
+              &mdash; and open computer-use agents can drive a screen too&rdquo; (status: caveat).
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>GNOME Shell / libadwaita apps</td>
+                    <td>GPL-2.0-or-later (core)</td>
+                    <td>
+                      The default Linux desktop's touch handling: on-screen gestures, tablet-mode
+                      auto-rotation, and adaptive apps that resize for touch.
+                    </td>
+                    <td>
+                      Fully local, no telemetry by default. Genuinely earns the &ldquo;patchy&rdquo;
+                      label &mdash; 2026 community threads still report gestures not registering and
+                      tablet-mode detection breaking on some hardware.
+                    </td>
+                    <td>Actively maintained &mdash; GNOME 48 line, mid-2026 point releases</td>
+                    <td>
+                      <a
+                        href="https://gitlab.gnome.org/GNOME/gnome-shell"
+                        target="_blank"
+                        rel="noopener"
+                        >GNOME/gnome-shell</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>KDE Plasma Mobile</td>
+                    <td>GPL/LGPL (standard KDE licensing)</td>
+                    <td>
+                      A touch-first Plasma shell built specifically for phones and tablets
+                      (PinePhone, OnePlus 6 via postmarketOS), not a touch mode bolted onto a
+                      desktop shell.
+                    </td>
+                    <td>
+                      More consistent on supported hardware than desktop-GNOME's touch mode, but
+                      device support is narrower.
+                    </td>
+                    <td>Actively maintained &mdash; Plasma 6 line, v6.6.5 (May 12, 2026)</td>
+                    <td>
+                      <a href="https://invent.kde.org/plasma-mobile" target="_blank" rel="noopener"
+                        >invent.kde.org/plasma-mobile</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cua (trycua/cua)</td>
+                    <td>MIT</td>
+                    <td>
+                      Open-source infrastructure for computer-use agents: sandboxed virtual desktops
+                      plus an SDK/benchmark suite so a vision-capable model can perceive a screen
+                      and drive it with clicks/taps/keystrokes.
+                    </td>
+                    <td>
+                      Self-hosted sandboxes; the more current pick over Open Interpreter (pivoted to
+                      a coding agent in 2026) or self-operating-computer (no commits since Sep 2025)
+                      for this specific job.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; @trycua/fleet v0.0.3 (Jul 15, 2026), 20.4k stars
+                    </td>
+                    <td>
+                      <a href="https://github.com/trycua/cua" target="_blank" rel="noopener"
+                        >trycua/cua</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> If you already run a Linux desktop, don't add
+              anything &mdash; GNOME's or Plasma Mobile's touch support (whichever your distro
+              ships) is &ldquo;good enough, patchy&rdquo; out of the box and matches what
+              <code>index.html</code> actually claims. Reach for Cua only for the narrower job of
+              letting an agent operate a screen on your behalf. Don't reach for Open Interpreter for
+              this job in 2026 &mdash; it's no longer a computer-use tool.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-nlp">Natural language processing</a> &mdash; Cua needs a vision-capable
+              model to actually see and act on the screen, and this report's own NLP pick,
+              Qwen3.6-27B, is already described as a multimodal model, so it doesn't need inventing
+              a separate model for this job.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Linux touchscreen support is genuinely inconsistent in current releases, and
+              open, MIT-licensed computer-use agents (Cua) really can drive a screen today.
+            </p>
+
+            <h3 class="block-tag" id="row-nlp">Natural language processing</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Open-weight models are genuinely
+              conversational &mdash; a step behind frontier on the hardest reasoning&rdquo; (status:
+              caveat).
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DeepSeek V4 (V4-Pro / V4-Flash)</td>
+                    <td>MIT (weights)</td>
+                    <td>
+                      Mixture-of-experts family (V4-Pro: 1.6T total/49B active; V4-Flash: 284B
+                      total/13B active), both with 1M-token context, downloadable and runnable fully
+                      offline.
+                    </td>
+                    <td>
+                      MIT licensing permits self-hosting with no callback to DeepSeek's servers
+                      &mdash; genuine local-only privacy once self-hosted, though
+                      &ldquo;open-weight&rdquo; here means the weights are open, not the training
+                      data.
+                    </td>
+                    <td>Actively maintained &mdash; released Apr 24, 2026</td>
+                    <td>
+                      <a
+                        href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+                        target="_blank"
+                        rel="noopener"
+                        >deepseek-ai/DeepSeek-V4-Pro</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Qwen3.6-27B</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      27B-parameter dense multimodal model built for agentic coding and
+                      repository-level reasoning, small enough to self-host on a single
+                      consumer-class GPU.
+                    </td>
+                    <td>
+                      No commercial-use restriction; runs fully locally via Ollama/vLLM/llama.cpp
+                      once downloaded, so no data has to leave the host.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; released Apr 22, 2026, still Alibaba's newest
+                      fully open-weight general model
+                    </td>
+                    <td>
+                      <a
+                        href="https://huggingface.co/Qwen/Qwen3.6-27B"
+                        target="_blank"
+                        rel="noopener"
+                        >Qwen/Qwen3.6-27B</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mistral Large 3</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      Sparse mixture-of-experts model (41B active/675B total) available in base,
+                      instruct, and reasoning variants.
+                    </td>
+                    <td>
+                      Apache-2.0 covers essentially the whole family, so downstream users can
+                      redistribute and commercialize without legal review; self-hostable for full
+                      data locality at real hardware cost.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; released Dec 2, 2025, with a further open-weight
+                      model in early access as of Jul 2026
+                    </td>
+                    <td>
+                      <a href="https://mistral.ai/news/mistral-3/" target="_blank" rel="noopener"
+                        >mistral.ai/news/mistral-3</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> For a home/self-hosted setup, start with Qwen3.6-27B
+              &mdash; it's the only one of the three that realistically runs on a single consumer
+              GPU. Reach for DeepSeek V4-Flash or Mistral Large 3 only if you have the hardware and
+              want the strongest open-weight reasoning available, accepting both still trail the
+              best closed frontier models on the hardest reasoning benchmarks. None of the three
+              publish full training-data provenance, so &ldquo;open-weight&rdquo; should not be read
+              as &ldquo;fully auditable.&rdquo;
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-core-architecture">Core architecture</a> &mdash; all three need a local
+              inference runtime to actually self-host, and can share the same backend already
+              referenced by the Primary interface row and the Touchscreen GUI row's computer-use
+              pick (Cua, if a multimodal variant is used).
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. DeepSeek V4, Qwen3.6, and Mistral Large 3 are all genuinely conversational,
+              currently-maintained open-weight models, and independent 2026 benchmarking confirms
+              the best of them still sit a notch behind top closed frontier models on the hardest
+              reasoning tasks, exactly as the claim states.
+            </p>
           </div>
         </section>
 
@@ -94,7 +425,481 @@
             Personal &amp; Field Hardware
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 11 -->
+            <h3 class="block-tag" id="row-ship-terminal">Ship terminal / console hardware</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Framework laptop or desktop &mdash;
+              modular, repairable, upgradeable; still no fixed bridge console.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Framework Laptop 13 Pro / 16 / Desktop</td>
+                    <td>
+                      Not fully open &mdash; chassis CAD and Expansion Card designs are CC BY 4.0
+                      and EC firmware is open source on GitHub, but mainboard schematics are only
+                      partially published and include closed vendor components (Intel ME, etc.)
+                    </td>
+                    <td>
+                      Modular x86 laptops/desktop where mainboard, keyboard, screen, battery, ports,
+                      and (on the 16) GPU module are all user-replaceable with standard screws and
+                      no adhesive.
+                    </td>
+                    <td>
+                      Repairability is real and independently documented, but the &ldquo;open
+                      source&rdquo; framing needs precision &mdash; not OSHWA-certified.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; Laptop 13 Pro launched Apr 22, 2026 with a
+                      ground-up redesign
+                    </td>
+                    <td>
+                      <a href="https://frame.work/" target="_blank" rel="noopener">frame.work</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>System76 Lemur Pro (Coreboot-based Open Firmware)</td>
+                    <td>
+                      GPL-2.0 (coreboot) + GPL-3.0 (embedded controller) + BSD-2-Clause-Patent
+                      (edk2); Intel CSME/FSP/microcode remain proprietary blobs
+                    </td>
+                    <td>
+                      Linux-first laptops (Pop!_OS/Ubuntu) whose boot firmware is open source rather
+                      than a closed vendor BIOS blob.
+                    </td>
+                    <td>
+                      Real, verifiable control over boot/power/thermal behavior; not modular across
+                      models the way Framework is.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; new Lemur Pro announced Jul 2026 with
+                      Coreboot-based firmware
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/system76/firmware-open"
+                        target="_blank"
+                        rel="noopener"
+                        >system76/firmware-open</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>MNT Reform Next</td>
+                    <td>
+                      CERN-OHL-2.0-S (hardware), GPL-3.0 (software/firmware), CC-BY-SA 4.0
+                      (docs/artwork) &mdash; OSHWA-certified
+                    </td>
+                    <td>
+                      A genuinely fully-open-hardware laptop: complete schematics, mechanical
+                      designs, and firmware published under reciprocal open licenses.
+                    </td>
+                    <td>
+                      The only laptop with OSHWA certification; a niche, lower-performance ARM
+                      machine from a small team, not an x86 workstation replacement.
+                    </td>
+                    <td>
+                      Actively shipping &mdash; second-generation crowdfunding campaign, Jul 30,
+                      2026 ship date
+                    </td>
+                    <td>
+                      <a
+                        href="https://www.crowdsupply.com/mnt/mnt-reform-next"
+                        target="_blank"
+                        rel="noopener"
+                        >crowdsupply.com/mnt/mnt-reform-next</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Framework if the goal is a practical
+              daily-driver stand-in for a bridge console &mdash; it's the literal product named in
+              the claim, x86-performance-competitive, and its repairability is real even though its
+              &ldquo;openness&rdquo; is partial. Add System76's open firmware if boot-level
+              transparency matters more than modularity. Reserve MNT Reform Next for readers who
+              want a genuinely 100%-open, OSHWA-certified machine and are willing to trade raw
+              performance and mainstream software compatibility for it.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-primary-interface">Primary interface</a> and
+              <a href="#row-core-architecture">Core architecture</a> &mdash; all three can run the
+              same self-hosted stack referenced elsewhere in this report (a local-LLM backend, Open
+              WebUI, Home Assistant Assist) as a home &ldquo;ops console.&rdquo; Also cross-links to
+              the Self-repair capability row (added in Task 12): Framework's published schematics/EC
+              firmware are the same #1 pick there, for a different reason (repairability
+              documentation rather than daily-driver modularity) &mdash; a reader who picks
+              Framework for one gets the other for free.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span>, with a caveat, with
+              <code>index.html</code>'s current claim. Framework genuinely is
+              modular/repairable/upgradeable and remains actively developed in 2026, but its
+              &ldquo;open source&rdquo; framing should be tightened: it's open-ish (CAD, EC
+              firmware, and Expansion Card specs are open; mainboard schematics are only partial),
+              not a certified open-hardware design the way MNT Reform is.
+            </p>
+
+            <h3 class="block-tag" id="row-personal-access-device">Personal access device</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Fairphone &mdash; a user-replaceable
+              battery beats a PADD.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fairphone 6</td>
+                    <td>
+                      Hardware design not published/open-hardware-certified; GPL-licensed kernel
+                      sources published as legally required; ships a standard Android build
+                    </td>
+                    <td>
+                      Modular, screw-based (T5 Torx only) smartphone with 12 user-replaceable parts
+                      &mdash; battery, screen, cameras, USB port &mdash; shipped with its own
+                      screwdriver.
+                    </td>
+                    <td>
+                      Only &ldquo;open source&rdquo; adjacent &mdash; publishes GPL-required kernel
+                      sources, not full hardware schematics; stock OS is ordinary Android.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; launched 2026, iFixit 10/10 repairability, 5-year
+                      warranty
+                    </td>
+                    <td>
+                      <a href="https://www.fairphone.com/" target="_blank" rel="noopener"
+                        >fairphone.com</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Volla Phone (Quintus / Plinius / X23)</td>
+                    <td>
+                      Volla OS is AOSP-based (Apache-2.0 core), developed in the open on GitHub;
+                      hardware itself is not open-hardware-certified
+                    </td>
+                    <td>
+                      German-made de-Googled Android alternative with a removable battery on some
+                      models and multi-boot support for Ubuntu Touch.
+                    </td>
+                    <td>
+                      Less repair-documented than Fairphone, from a smaller company with a slower
+                      patch cadence, but the OS itself is open source out of the box.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; multiple current models with regular Volla OS
+                      release notes through 2026
+                    </td>
+                    <td>
+                      <a href="https://volla.online/en/volla-phone/" target="_blank" rel="noopener"
+                        >volla.online/en/volla-phone</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Purism Librem 5</td>
+                    <td>
+                      Hardware schematics/STEP files released under GNU GPLv3+; PureOS is a
+                      Debian-based, predominantly free-software Linux distribution
+                    </td>
+                    <td>
+                      The only one of the three where both hardware design and the entire software
+                      stack aim for GPL-level openness, running mainline Linux (Phosh).
+                    </td>
+                    <td>
+                      Most &ldquo;actually open source&rdquo; of the three; uses an aging,
+                      underpowered SoC (i.MX8), so performance lags well behind Fairphone or Volla.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; PureOS Crimson released across 2026, PureOS Dawn
+                      in development
+                    </td>
+                    <td>
+                      <a href="https://puri.sm/products/librem-5/" target="_blank" rel="noopener"
+                        >puri.sm/products/librem-5</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Fairphone 6 remains the strongest default &mdash;
+              <code>index.html</code>'s specific claim about a user-replaceable battery is accurate
+              today, repairability is independently verified, and performance is
+              mainstream-competitive, at the cost of running a fairly ordinary (if de-Googleable)
+              Android build. Choose the Librem 5 only if genuinely open-source software matters more
+              than raw performance. Volla Phone sits in between: a smaller company with less mature
+              repair support, but an OS that's open source out of the box.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-personal-communicator">Personal communicator</a> &mdash; /e/OS (that
+              row's recommended pick) runs on Fairphone 6 as Murena's flagship device, so choosing
+              Fairphone here and /e/OS there is the same real-world combination that row's claim
+              describes. The Librem 5 pairs with its own PureOS/Phosh stack instead.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Fairphone genuinely offers an independently-verified user-replaceable battery
+              and is the strongest currently-available repairable-phone pick, though the claim
+              slightly conflates &ldquo;open source&rdquo; with &ldquo;repairable/ethical.&rdquo;
+            </p>
+
+            <h3 class="block-tag" id="row-handheld-sensor-device">Handheld sensor device</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Open hardware boards + SDR + thermal
+              cams &mdash; more tricorder-like, more assembly required.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>HackRF One + PortaPack (Mayhem firmware)</td>
+                    <td>
+                      HackRF hardware designs and firmware published on GitHub under open licenses;
+                      community Mayhem firmware is GPL-licensed
+                    </td>
+                    <td>
+                      Open hardware software-defined radio (1&nbsp;MHz&ndash;6&nbsp;GHz); with the
+                      PortaPack add-on and Mayhem firmware it becomes a genuinely standalone
+                      handheld spectrum scanner with its own screen.
+                    </td>
+                    <td>
+                      Closest real match to a tricorder's &ldquo;scan for signals&rdquo; function,
+                      though it requires buying/attaching the PortaPack add-on.
+                    </td>
+                    <td>Actively maintained &mdash; Mayhem nightly builds through Jul 11, 2026</td>
+                    <td>
+                      <a
+                        href="https://github.com/greatscottgadgets/hackrf"
+                        target="_blank"
+                        rel="noopener"
+                        >greatscottgadgets/hackrf</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Flipper Zero</td>
+                    <td>
+                      Firmware source published on GitHub, though not uniformly open &mdash; some ST
+                      radio-stack components remain proprietary blobs
+                    </td>
+                    <td>
+                      A pocket multi-tool combining sub-GHz radio, NFC/RFID, infrared, and GPIO in
+                      one handheld device with a screen and buttons.
+                    </td>
+                    <td>
+                      Most &ldquo;off-the-shelf tricorder&rdquo; feeling of the three; mid-2026 saw
+                      genuine community concern over firmware development slowing, since addressed
+                      with a recommitment of resources.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; stable firmware 1.0 since Sep 2024, commits
+                      through Jul 2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/flipperdevices/flipperzero-firmware"
+                        target="_blank"
+                        rel="noopener"
+                        >flipperdevices/flipperzero-firmware</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>M5Stack modular sensor ecosystem (Core2/Cardputer + Units)</td>
+                    <td>
+                      Hardware schematics and example firmware per module published on GitHub under
+                      generally permissive licenses; not a single OSHWA-certified product line
+                    </td>
+                    <td>
+                      A build-your-own-tricorder ecosystem: a handheld ESP32/microcontroller base
+                      plus snap-on sensor Units &mdash; thermal imaging (MLX90640),
+                      environmental/air-quality (BME688), and more.
+                    </td>
+                    <td>
+                      Most literal match to &ldquo;open hardware boards + thermal cams,&rdquo; but
+                      also the most assembly-and-code-required of the three.
+                    </td>
+                    <td>Actively sold and documented &mdash; current product catalog</td>
+                    <td>
+                      <a href="https://docs.m5stack.com/en/products" target="_blank" rel="noopener"
+                        >docs.m5stack.com/en/products</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> If matching the claim exactly (SDR + thermal, DIY
+              assembly) is the goal, M5Stack's modular Units are the most literal fit and cheapest
+              entry point, but expect real soldering/coding/case-design work. HackRF One + PortaPack
+              Mayhem is the better pick if RF-scanning is the priority and a finished, ready-to-use
+              handheld matters more than modularity. Flipper Zero is the best starting point for
+              someone who wants a low-assembly device today, accepting it covers a narrower set of
+              &ldquo;senses&rdquo; and carries a small amount of firmware-roadmap uncertainty.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-ship-terminal">Ship terminal / console hardware</a> &mdash; the
+              Framework/System76 machines there are the natural flashing/development host for all
+              three &mdash; HackRF/Mayhem firmware builds, Flipper Zero's <code>qFlipper</code>
+              updater, and M5Stack's Arduino/UIFlow tooling all run from a normal Linux laptop.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Real open hardware SDR (HackRF) and thermal-camera modules (M5Stack) exist and
+              are tricorder-like, but none of the three is a single finished tricorder &mdash; all
+              require meaningfully more assembly/configuration than the show's one-button device.
+            </p>
+
+            <h3 class="block-tag" id="row-personal-communicator">Personal communicator</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Fairphone on /e/OS + Signal &mdash;
+              E2E-encrypted comms on hardware you can open with a screwdriver.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Signal</td>
+                    <td>
+                      Clients (Android/iOS/Desktop) are AGPLv3; the Signal Protocol library is GPLv3
+                    </td>
+                    <td>
+                      End-to-end encrypted messaging/calling with an open, independently audited
+                      protocol; both server and client code are open source.
+                    </td>
+                    <td>
+                      The most credible, actively-maintained E2EE messenger for mainstream daily
+                      use; a phone number is still required and the service runs on centralized (if
+                      minimal-metadata) infrastructure.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; iOS 8.14 (Jun 4, 2026), Android 8.10.3 (May 19,
+                      2026)
+                    </td>
+                    <td>
+                      <a href="https://signal.org/" target="_blank" rel="noopener">signal.org</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>/e/OS (Murena)</td>
+                    <td>
+                      AOSP-based, predominantly open source (Apache-2.0 core plus GPL kernel
+                      components)
+                    </td>
+                    <td>
+                      A de-Googled Android fork with its own privacy-respecting app repository and
+                      cloud alternative, sold pre-installed on Fairphone hardware by Murena.
+                    </td>
+                    <td>
+                      Murena's cloud/workspace services run on the company's own infrastructure, not
+                      self-hostable by default.
+                    </td>
+                    <td>Actively maintained &mdash; /e/OS 4.0 released Jun 2026</td>
+                    <td>
+                      <a
+                        href="https://murena.com/e-os-4-0-murena-workspace-whats-new-faq/"
+                        target="_blank"
+                        rel="noopener"
+                        >murena.com/e-os-4-0</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>GrapheneOS</td>
+                    <td>Open source, AOSP-consistent licensing plus GrapheneOS's own components</td>
+                    <td>
+                      A security-hardened AOSP fork with a stronger sandboxing/exploit-mitigation
+                      track record than /e/OS.
+                    </td>
+                    <td>
+                      Officially Pixel-only, so it cannot run on the Fairphone this row's claim (and
+                      the Personal access device row) recommends &mdash; trades away repairable
+                      hardware for a harder security posture.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; current release line covers Pixel 6 through Pixel
+                      10/10 Pro
+                    </td>
+                    <td>
+                      <a href="https://grapheneos.org/releases" target="_blank" rel="noopener"
+                        >grapheneos.org/releases</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> /e/OS + Signal best matches the claim as written
+              &mdash; repairable Fairphone hardware plus a de-Googled OS plus E2EE messaging, all
+              currently shipping and maintained. Recommend GrapheneOS + Signal instead only for
+              readers who prioritize hardened security over repairable/ethical hardware. Signal
+              itself is close to non-negotiable either way.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-personal-access-device">Personal access device</a> &mdash; this row is
+              the software/communications half of that row above; /e/OS is literally the OS Murena
+              preinstalls on the Fairphone 6 recommended there, so &ldquo;Fairphone 6 + /e/OS +
+              Signal&rdquo; is one coherent real-world stack across both rows. Choosing GrapheneOS
+              here instead pulls a reader toward Pixel hardware, away from that row's Fairphone
+              pick.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Fairphone on /e/OS with Signal is a real, currently-shipping,
+              actively-maintained combination that does deliver genuine E2E-encrypted communication
+              on repairable hardware, exactly as claimed.
+            </p>
           </div>
         </section>
 
@@ -107,7 +912,359 @@
             Data Storage &amp; Processing
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 11 -->
+            <h3 class="block-tag" id="row-storage-medium">Storage medium</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Self-hosted NAS or E2E-encrypted cloud
+              (Proton Drive) &mdash; either way, only you hold the keys.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>TrueNAS Community Edition</td>
+                    <td>
+                      Open source (GPL-3.0 Linux kernel + BSD-licensed middleware/GUI); the
+                      Enterprise tier is a paid add-on, not required for home use
+                    </td>
+                    <td>
+                      A free, self-hosted NAS operating system (ZFS-based storage, snapshots,
+                      shares, and now LXC-style containers) that runs entirely on hardware you own.
+                    </td>
+                    <td>
+                      No vendor holds a decryption key; the ZFS layer underneath provides the actual
+                      data-integrity guarantees the claim gestures at.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; CORE/SCALE unified into Community Edition; 25.10.4
+                      (Jun 3, 2026), 26-BETA.2 previewing OpenZFS 2.4
+                    </td>
+                    <td>
+                      <a
+                        href="https://www.truenas.com/truenas-community-edition/"
+                        target="_blank"
+                        rel="noopener"
+                        >truenas.com/truenas-community-edition</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Proton Drive</td>
+                    <td>
+                      Client apps are open source and independently audited; server-side
+                      infrastructure is Proton's own and not self-hostable
+                    </td>
+                    <td>
+                      Files are encrypted client-side before upload under a &ldquo;zero-access
+                      encryption&rdquo; design, so Proton itself cannot read them.
+                    </td>
+                    <td>
+                      Only the client apps are open source and auditable &mdash; the server side is
+                      proprietary, centrally-hosted infrastructure you're trusting Proton to run
+                      correctly.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; 2026 cryptography overhaul, native Linux client in
+                      progress
+                    </td>
+                    <td>
+                      <a
+                        href="https://proton.me/security/zero-access-encryption"
+                        target="_blank"
+                        rel="noopener"
+                        >proton.me/security/zero-access-encryption</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nextcloud Hub</td>
+                    <td>AGPLv3, no open-core split</td>
+                    <td>
+                      A self-hosted alternative to Proton Drive: folder-level, client-side
+                      end-to-end encryption plus full file sync/share, calendar, and office-suite
+                      features.
+                    </td>
+                    <td>
+                      Server never sees plaintext for E2EE folders, and you run the server yourself,
+                      unlike Proton's proprietary server side.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; Hub 26 &ldquo;Winter&rdquo; (Feb 2026); 500,000+
+                      servers reported running it as of 2025
+                    </td>
+                    <td>
+                      <a href="https://nextcloud.com/encryption/" target="_blank" rel="noopener"
+                        >nextcloud.com/encryption</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with TrueNAS Community Edition if the goal is
+              literally &ldquo;self-hosted NAS&rdquo; &mdash; it's free, open source, ZFS-backed,
+              and its 2026 roadmap keeps it current. Reach for Nextcloud Hub instead of Proton Drive
+              if self-hosting matters more than convenience. Proton Drive remains the right pick for
+              readers who want the claim's specific named product and are comfortable trusting
+              Proton's infrastructure rather than operating their own box.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-processing-redundancy">Processing redundancy</a> &mdash; TrueNAS is the
+              natural home for that row's redundancy tooling (it ships OpenZFS directly) and can
+              serve as the storage backend for the
+              <a href="#row-core-architecture">Core architecture</a> row's local-LLM inference stack
+              or the <a href="#row-primary-interface">Primary interface</a> row's Open WebUI
+              chat/RAG document storage.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Self-hosted NAS software (TrueNAS) and Proton Drive's E2E-encrypted cloud are
+              both real, current, actively-maintained options that put encryption keys in the user's
+              hands rather than a third party's, exactly as the claim frames the choice.
+            </p>
+
+            <h3 class="block-tag" id="row-core-architecture">Core architecture</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Same transformers, quantized (GGUF)
+              onto a consumer GPU or unified-memory mini PC at home.&rdquo; This row covers
+              local-LLM <em>inference runtimes</em> &mdash; the software that loads a quantized
+              GGUF-style model and serves it &mdash; not which model to run; model selection is the
+              <a href="#row-nlp">Natural language processing</a> row's job.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>llama.cpp</td>
+                    <td>MIT</td>
+                    <td>
+                      The reference C/C++ inference engine that originated the GGUF format itself;
+                      loads a quantized model, manages the KV cache, and can expose an
+                      OpenAI/Anthropic-compatible HTTP server.
+                    </td>
+                    <td>
+                      Runs on a single consumer GPU (or CPU-only) with no cloud dependency &mdash;
+                      prompts, responses, and weights stay on the machine it runs on.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; continuous build-tagged releases (b10075, Jul 20,
+                      2026), 120,898+ stars
+                    </td>
+                    <td>
+                      <a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener"
+                        >ggml-org/llama.cpp</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ollama</td>
+                    <td>
+                      MIT (a 2025 desktop-app license ambiguity was resolved Nov 2025 &mdash; the
+                      whole repo now falls under one MIT LICENSE)
+                    </td>
+                    <td>
+                      A single binary that pulls quantized GGUF models and serves them locally with
+                      minimal setup &mdash; the most widely-adopted &ldquo;consumer GPU or
+                      unified-memory mini PC&rdquo; runtime.
+                    </td>
+                    <td>
+                      Popular specifically on Apple Silicon unified-memory Macs and consumer NVIDIA
+                      GPUs; no outstanding licensing concern as of this research date.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v0.32.1 (Jul 16, 2026); 52M monthly downloads
+                      reported Q1 2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/ollama/ollama" target="_blank" rel="noopener"
+                        >ollama/ollama</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>vLLM</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      A higher-throughput serving engine (PagedAttention, continuous batching) aimed
+                      at running one model for several concurrent local users/devices; supports GGUF
+                      alongside AWQ/GPTQ/FP8.
+                    </td>
+                    <td>
+                      Narrower &ldquo;at home&rdquo; fit than llama.cpp/Ollama &mdash; wants a real
+                      NVIDIA GPU rather than being CPU/unified-memory-friendly.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; hosted under the PyTorch Foundation; v26.06 (Jul
+                      2026) adds CUDA 13.0 support
+                    </td>
+                    <td>
+                      <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener"
+                        >vllm-project/vllm</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Ollama for the actual &ldquo;consumer GPU
+              or unified-memory mini PC at home&rdquo; case &mdash; it's the lowest-friction way to
+              run a quantized GGUF model locally today, and it's cleanly MIT-licensed with no
+              outstanding ambiguity. Drop to bare llama.cpp for tighter control over
+              quantization/build flags. Reach for vLLM only once &ldquo;one model, one user&rdquo;
+              stops being the real workload.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-onboard-ai-personality">Onboard AI personality</a> &mdash; whichever
+              runtime is picked here becomes the shared local backend for
+              <a href="#row-primary-interface">Primary interface</a>'s Open WebUI/oterm/Home
+              Assistant Assist and <a href="#row-touchscreen-gui">Touchscreen GUI</a>'s Cua. Ollama
+              in particular does double duty: the same instance that serves the model here also
+              holds the household's persona via a Modelfile <code>SYSTEM</code> directive in the
+              Onboard AI personality row &mdash; one install, two jobs, not two unrelated tools.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. llama.cpp, Ollama, and vLLM are all real, currently-maintained runtimes that do
+              exactly what the claim describes: take a transformer, quantize it to GGUF, and run it
+              on a consumer GPU or unified-memory mini PC rather than a hyperscaler cluster.
+            </p>
+
+            <h3 class="block-tag" id="row-processing-redundancy">Processing redundancy</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Whatever redundancy you build &mdash;
+              RAID and a second box, or it's a single point of failure.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>OpenZFS</td>
+                    <td>
+                      CDDL (weak-copyleft, OSI-approved, but GPL-incompatible per the FSF, so it
+                      ships as a loadable kernel module on Linux)
+                    </td>
+                    <td>
+                      The RAID-Z/mirror layer underneath TrueNAS and most serious homelab NAS
+                      builds: real-time redundancy against 1&ndash;3 simultaneous disk failures,
+                      snapshots, and <code>zfs send</code>/<code>receive</code> for replicating a
+                      full pool to a second box.
+                    </td>
+                    <td>
+                      Directly matches both halves of the claim (&ldquo;RAID and a second
+                      box&rdquo;) in one tool; CDDL's GPL-incompatibility keeps it a separately
+                      maintained out-of-tree module.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; 2.4.3 (Jun 12, 2026), stabilized RAID-Z expansion
+                    </td>
+                    <td>
+                      <a
+                        href="https://openzfs.github.io/openzfs-docs/License.html"
+                        target="_blank"
+                        rel="noopener"
+                        >openzfs.github.io/openzfs-docs</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SnapRAID</td>
+                    <td>GPL-3.0</td>
+                    <td>
+                      A lighter-weight alternative to ZFS for home media/parity arrays: scheduled
+                      (not real-time) parity computed across up to six disks of protection.
+                    </td>
+                    <td>
+                      Because parity syncs are scheduled rather than continuous, any file written
+                      since the last sync is genuinely unprotected &mdash; a real gap the claim's
+                      &ldquo;whatever redundancy you build&rdquo; phrasing implicitly warns about.
+                    </td>
+                    <td>Actively maintained &mdash; CLI v14.9 (Jul 19, 2026)</td>
+                    <td>
+                      <a href="https://github.com/amadvance/snapraid" target="_blank" rel="noopener"
+                        >amadvance/snapraid</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>restic</td>
+                    <td>BSD-2-Clause</td>
+                    <td>
+                      Encrypted (AES-256), deduplicated backups to a second location &mdash; SFTP,
+                      another server, or S3-compatible object storage.
+                    </td>
+                    <td>
+                      Covers the &ldquo;second box&rdquo; half of the claim for readers who don't
+                      want full ZFS replication between two always-on machines &mdash; one cron job
+                      pushing encrypted snapshots off-site.
+                    </td>
+                    <td>Actively maintained &mdash; v0.19.0 current as of early 2026</td>
+                    <td>
+                      <a href="https://github.com/restic/restic" target="_blank" rel="noopener"
+                        >restic/restic</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> If the storage medium is already TrueNAS, OpenZFS is
+              not a separate install &mdash; RAID-Z plus <code>zfs send</code>/<code>receive</code>
+              to a second TrueNAS box is the most complete real-world match for &ldquo;RAID and a
+              second box&rdquo; in one stack. Choose SnapRAID+mergerfs instead only if the array is
+              a JBOD of mismatched drive sizes with mostly write-once media. Layer restic on top of
+              either as the actual off-site &ldquo;second box&rdquo; leg regardless of which parity
+              scheme is chosen.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-storage-medium">Storage medium</a> &mdash; builds directly on that row's
+              TrueNAS pick (ZFS is TrueNAS's native filesystem) and can back up the same TrueNAS
+              box's config/datasets that host the
+              <a href="#row-core-architecture">Core architecture</a> row's model weights and any
+              chat/RAG data from the <a href="#row-primary-interface">Primary interface</a> row's
+              Open WebUI.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Real, current open-source tools exist for both RAID-style redundancy (OpenZFS,
+              SnapRAID) and second-box replication (ZFS send/receive, restic), but none of them is
+              automatic &mdash; a reader who does nothing really is left with the single point of
+              failure the claim warns about.
+            </p>
           </div>
         </section>
 
@@ -120,7 +1277,376 @@
             AI &amp; Autonomy
           </h2>
           <div class="report-body">
-            <!-- TODO: populate in Task 11 -->
+            <h3 class="block-tag" id="row-onboard-ai-personality">Onboard AI personality</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Any persona you like &mdash; the system
+              prompt is yours to edit.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ollama (Modelfile <code>SYSTEM</code> directive)</td>
+                    <td>MIT</td>
+                    <td>
+                      Ollama's Modelfile format lets you bake a persistent <code>SYSTEM</code>
+                      prompt into a named local model variant, or override it per-session at
+                      runtime.
+                    </td>
+                    <td>
+                      Everything &mdash; model weights, persona text, conversation &mdash; runs and
+                      stays on your own machine; no persona data is sent anywhere.
+                    </td>
+                    <td>Actively maintained &mdash; v0.32.1 (Jul 16, 2026), weekly cadence</td>
+                    <td>
+                      <a href="https://github.com/ollama/ollama" target="_blank" rel="noopener"
+                        >ollama/ollama</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SillyTavern</td>
+                    <td>AGPL-3.0</td>
+                    <td>
+                      A self-hosted chat front end built around character personas: &ldquo;character
+                      cards&rdquo; bundle a name, avatar, and personality definition, layered with
+                      world-info/lorebooks.
+                    </td>
+                    <td>
+                      Connects to any backend (local Ollama/llama.cpp, or a hosted API key you
+                      supply); stored personas/chat logs live in your own data directory.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v1.18.0 (May 3, 2026), commits through Jul 11,
+                      2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/SillyTavern/SillyTavern"
+                        target="_blank"
+                        rel="noopener"
+                        >SillyTavern/SillyTavern</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Open WebUI (Workspace &ldquo;Models&rdquo;)</td>
+                    <td>
+                      &ldquo;Open WebUI License&rdquo; (BSD-3-Clause base plus a mandatory
+                      branding-retention clause for deployments over 50 users)
+                    </td>
+                    <td>
+                      The Workspace &rarr; Models screen lets you wrap any connected base model with
+                      a custom name, avatar, system prompt, knowledge base, and tools, saved as a
+                      selectable persona.
+                    </td>
+                    <td>
+                      Same self-hosted deployment flagged in the Primary interface row for its 2025
+                      branding-clause license change; persona/system-prompt data stays on your own
+                      server regardless.
+                    </td>
+                    <td>Actively maintained &mdash; v0.10.2 (Jul 1, 2026)</td>
+                    <td>
+                      <a
+                        href="https://docs.openwebui.com/features/workspace/models/"
+                        target="_blank"
+                        rel="noopener"
+                        >docs.openwebui.com/features/workspace/models</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with Ollama's Modelfile <code>SYSTEM</code>
+              directive if you just want one or two fixed personas bound to specific local models
+              &mdash; lowest-overhead option, no licensing caveats. Reach for SillyTavern if you
+              want to swap between many distinct personas in a single session, accepting AGPL-3.0
+              copyleft terms if you redistribute a modified build. Open WebUI's Workspace/Models
+              feature is the middle ground for a household, with the same branding-clause caveat
+              already noted for the Primary interface row.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-core-architecture">Core architecture</a> &mdash; all three need a model
+              to actually run, and Ollama is both a candidate here and the natural local-inference
+              backend for the other two. This is the same Ollama instance doing double duty: one
+              install, two jobs &mdash; serving the model (Core architecture) and holding the
+              persona (this row) &mdash; not two unrelated discoveries of the same tool.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. Self-hosted tooling genuinely lets you write, edit, and swap any system
+              prompt/persona you like, with no platform-imposed restriction on content, matching the
+              &ldquo;yes&rdquo; status.
+            </p>
+
+            <h3 class="block-tag" id="row-autonomous-decision-making">
+              Autonomous decision-making
+            </h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Open agent stacks run locally &mdash;
+              capable, but you're the safety team.&rdquo;
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>CrewAI</td>
+                    <td>MIT</td>
+                    <td>
+                      A Python framework for orchestrating teams (&ldquo;crews&rdquo;) of
+                      role-playing autonomous agents that plan, delegate, and execute multi-step
+                      tasks, with a separate &ldquo;Flows&rdquo; system for deterministic control.
+                    </td>
+                    <td>
+                      Runs entirely on infrastructure you control against any LLM backend, including
+                      fully local models; no built-in approval gate stops a destructive tool call.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v1.15.5 (Jul 20, 2026), very active release
+                      cadence
+                    </td>
+                    <td>
+                      <a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener"
+                        >crewAIInc/crewAI</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>OpenHands</td>
+                    <td>
+                      MIT for the core project (a separate enterprise directory has its own license)
+                    </td>
+                    <td>
+                      A software-engineering agent that runs a plan &rarr; code &rarr;
+                      run-in-sandbox &rarr; fix loop against a real terminal, file system, and
+                      browser.
+                    </td>
+                    <td>
+                      Self-hostable with any LLM API key including a local model server; sandboxing
+                      limits blast radius, but nothing stops it running destructive commands inside
+                      that sandbox.
+                    </td>
+                    <td>Actively maintained &mdash; cloud-1.47.0 (Jul 21, 2026)</td>
+                    <td>
+                      <a
+                        href="https://github.com/OpenHands/OpenHands"
+                        target="_blank"
+                        rel="noopener"
+                        >OpenHands/OpenHands</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>AutoGPT</td>
+                    <td>
+                      Split &mdash; the original agent (<code>classic/</code>) is MIT; the newer
+                      &ldquo;AutoGPT Platform&rdquo; is PolyForm Shield License 1.0.0
+                      (source-available, restricts building a competing product)
+                    </td>
+                    <td>
+                      One of the original &ldquo;give an LLM a goal and let it plan its own
+                      steps&rdquo; agents, now split between the classic single-agent version and a
+                      newer visual, block-based platform.
+                    </td>
+                    <td>
+                      Both run against your own LLM credentials; the platform's PolyForm Shield
+                      terms are a real license caveat worth flagging even though the code remains
+                      inspectable and self-hostable.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; platform beta v0.6.68 (Jul 17, 2026), 185k+ stars
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/Significant-Gravitas/AutoGPT"
+                        target="_blank"
+                        rel="noopener"
+                        >Significant-Gravitas/AutoGPT</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Start with CrewAI if the goal is a small,
+              controllable multi-agent workflow &mdash; cleanly MIT-licensed, no platform lock-in,
+              and its &ldquo;Flows&rdquo; mode keeps a human-in-the-loop checkpoint exactly where
+              this row's caveat says you need one. Reach for OpenHands specifically for coding/dev
+              tasks, and pair it with container-level sandboxing, not credentials wider than the
+              task needs. Treat AutoGPT's classic agent as a historically important but now
+              second-tier option, and note its newer &ldquo;Platform&rdquo; half is not MIT. None of
+              the three ship a safety layer beyond basic sandboxing.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-known-sentience-risk">Known sentience risk</a> &mdash; all three are
+              LLM-agnostic orchestration layers that pair with the local-inference picks from the
+              <a href="#row-core-architecture">Core architecture</a> row and can share the same
+              open-weight model chosen for
+              <a href="#row-onboard-ai-personality">Onboard AI personality</a>. For guardrails
+              against exactly the unsupervised-action risk this claim flags, pair any of the three
+              with the guardrail/red-teaming tooling in the next row.
+            </p>
+            <p class="summary">
+              <span class="pill pill-yes">Agrees</span> with <code>index.html</code>'s current
+              claim. CrewAI, OpenHands, and AutoGPT are all real, current, self-hostable agent
+              stacks capable of genuine autonomous multi-step action, and none of them include a
+              built-in safety reviewer: the operator is unambiguously the safety team.
+            </p>
+
+            <h3 class="block-tag" id="row-known-sentience-risk">Known sentience risk</h3>
+            <p class="summary">
+              <code>index.html</code> currently says: &ldquo;Same open question &mdash; but at least
+              you can read the weights.&rdquo;
+              <strong>This row is a reinterpretation, not a literal sentience test:</strong> no
+              open-source tool measures, detects, or rules out machine sentience &mdash; that
+              remains a philosophical and scientific open question with no instrument that resolves
+              it, in this codebase's fiction or in reality. The three candidates below are the
+              closest real analog available &mdash; open-source tooling that tests whether a model
+              or agent is behaving unexpectedly or unsafely (guardrail frameworks, vulnerability
+              scanners, and red-teaming/jailbreak harnesses), reinterpreted onto AI safety and
+              guardrails tooling rather than onto anything that answers the sentience question
+              itself.
+            </p>
+            <div class="report-table-wrap">
+              <table class="report-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>License</th>
+                    <th>What it does</th>
+                    <th>Privacy stance</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NeMo Guardrails (NVIDIA)</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      A runtime guardrail framework: programmable &ldquo;rails&rdquo; (topical,
+                      safety, jailbreak-detection, execution rails around tool/agent calls)
+                      intercept a conversation or agent action before and after the LLM call.
+                    </td>
+                    <td>
+                      Self-hosted; enforces rules the operator writes, not an independent judgment
+                      about the model's inner state &mdash; the category closest to &ldquo;ongoing
+                      supervision of an autonomous system.&rdquo;
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v0.23.0 (Jul 1, 2026), commits through Jul 21,
+                      2026
+                    </td>
+                    <td>
+                      <a
+                        href="https://github.com/NVIDIA-NeMo/Guardrails"
+                        target="_blank"
+                        rel="noopener"
+                        >NVIDIA-NeMo/Guardrails</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>garak (NVIDIA)</td>
+                    <td>Apache-2.0</td>
+                    <td>
+                      An LLM &ldquo;vulnerability scanner&rdquo;: a CLI tool with 50+ probe modules
+                      that throw known failure-inducing inputs at a model or agent (jailbreaks,
+                      prompt injection, data leakage, an &ldquo;Agent-breaker&rdquo; probe for agent
+                      tools) and reports which probes succeeded.
+                    </td>
+                    <td>
+                      Offline/pre-deployment testing for unexpected or unsafe behavior, not a
+                      measurement of anything resembling awareness or experience.
+                    </td>
+                    <td>Actively maintained &mdash; v0.15.1 (Jun 5, 2026), 8.5k+ stars</td>
+                    <td>
+                      <a href="https://github.com/NVIDIA/garak" target="_blank" rel="noopener"
+                        >NVIDIA/garak</a
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>PyRIT (Microsoft)</td>
+                    <td>MIT</td>
+                    <td>
+                      An automation framework built by Microsoft's AI Red Team for orchestrating
+                      adversarial-prompt campaigns against a target model or agent, scoring
+                      responses and logging what got past defenses.
+                    </td>
+                    <td>
+                      Tests for exploitable, unsafe, or policy-violating behavior under adversarial
+                      pressure; no mechanism for and makes no claim about assessing sentience or
+                      inner experience. Now at <code>microsoft/PyRIT</code> &mdash; the old
+                      <code>Azure/PyRIT</code> location is archived.
+                    </td>
+                    <td>
+                      Actively maintained &mdash; v0.14.0 (Jun 5, 2026), commits through Jul 21,
+                      2026
+                    </td>
+                    <td>
+                      <a href="https://github.com/microsoft/PyRIT" target="_blank" rel="noopener"
+                        >microsoft/PyRIT</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="summary">
+              <strong>Recommendation:</strong> Closest real practice is guarding against
+              unexpected/unsafe autonomous behavior &mdash; not measuring sentience, which no tool
+              in this space claims or attempts to do. If running any of the agent stacks from the
+              Autonomous decision-making row, start with NeMo Guardrails as the runtime layer, then
+              use garak and/or PyRIT before deployment to probe for jailbreaks and prompt-injection
+              weaknesses the guardrails might miss. All three are current, actively-maintained,
+              permissively-licensed projects &mdash; but this row is a reinterpretation, not a real
+              answer to &ldquo;is it sentient&rdquo;: that question has no open-source instrument,
+              full stop.
+            </p>
+            <p class="summary">
+              <strong>Plays well with:</strong>
+              <a href="#row-autonomous-decision-making">Autonomous decision-making</a> &mdash;
+              directly complements that row's candidates (CrewAI, OpenHands, AutoGPT): NeMo
+              Guardrails wraps around any of them as a runtime policy layer, while garak and PyRIT
+              are used to red-team the underlying model before it's given agentic tool access. All
+              three are model-agnostic and can point at the same local open-weight model chosen
+              elsewhere in this group.
+            </p>
+            <p class="summary">
+              <span class="pill pill-bad">Disagrees</span> with <code>index.html</code>'s current
+              claim, taken literally. The line plays along with the bit (&ldquo;read the
+              weights&rdquo; as a stand-in for insight into sentience), which is fair satire, but
+              taken literally it overstates what's real: no open-source tool, weight-readable or
+              not, tests for or resolves the sentience question. The genuinely real practice
+              available today is behavioral guardrails and red-teaming &mdash; a different (and
+              answerable) problem than the one the row's label names.
+            </p>
           </div>
         </section>
 
