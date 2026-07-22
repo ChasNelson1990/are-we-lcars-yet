@@ -114,6 +114,16 @@ table.report-table tbody tr:nth-child(even) {
   background: rgb(255 255 255 / 1.5%);
 }
 
+table.report-table tbody td a,
+table.report-table tbody td a:visited {
+  color: var(--panel-blue);
+}
+
+table.report-table tbody td a:hover,
+table.report-table tbody td a:focus-visible {
+  color: var(--panel-orange);
+}
+
 td.ep-cite {
   font-family: "Space Mono", monospace;
   font-size: 0.74rem;
